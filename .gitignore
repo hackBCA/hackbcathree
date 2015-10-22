@@ -58,9 +58,11 @@ docs/_build/
 # PyBuilder
 target/
 
-<<<<<<< HEAD
+# Configuration Files
 config.cfg
-=======
+prod_config.cfg
+dev_config.cfg
+default_config.cfg
+
 # Virtual Environments
 venv/
->>>>>>> master
