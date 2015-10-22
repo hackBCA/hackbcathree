@@ -59,10 +59,7 @@ docs/_build/
 target/
 
 # Configuration Files
-config.cfg
-prod_config.cfg
-dev_config.cfg
-default_config.cfg
+*.cfg
 
 # Virtual Environments
 venv/

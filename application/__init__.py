@@ -2,7 +2,6 @@ from flask import Flask
 
 app = Flask(__name__)
 
-
 try:
     app.config.from_pyfile("../prod_config.cfg")
     print("Production configuration file loaded.")
