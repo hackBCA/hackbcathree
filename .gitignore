@@ -63,3 +63,7 @@ target/
 
 # Virtual Environments
 venv/
+
+# Sass
+.sass-cache/
+*.css.map
