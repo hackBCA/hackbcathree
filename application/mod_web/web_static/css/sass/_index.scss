@@ -1,0 +1,90 @@
+.bg-img {
+    position: absolute;
+    display: table;
+    min-height:100%;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+    background: url(/web_static/landing.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: 1;
+
+    .container {
+        width: 100%;
+        display: table-cell;
+        vertical-align: middle;
+        height: 50%;
+        text-align: center;
+        z-index: 9999;
+
+        .cover {
+            display: inline-block;
+            color: white;
+
+            .logo {
+                margin: auto;
+                top: 0; right: 0; bottom: 0; left: 0;
+                width: 55%;
+                opacity: 0;
+                /* YAY FOR VENDOR PREFIXES */
+                @include animation(fadein, 3s, 1.5s, forwards);
+            }
+
+            .text {
+                /* YAY FOR VENDOR PREFIXES */
+                opacity: 0;
+                @include animation(fadein, 3s, 3.75s, forwards);
+            }
+        }
+    }
+}
+
+.center {
+    display: table;
+    width: 100%;
+}
+
+.hackbcatwo {
+    position: absolute;
+    z-index: 9999;
+    bottom: 5px;
+    right: 5px;
+
+    a {
+        color: white;    
+    }
+}
+
+/* YAY FOR VENDOR PREFIXES */
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* YAY FOR VENDOR PREFIXES */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* YAY FOR VENDOR PREFIXES */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* YAY FOR VENDOR PREFIXES */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* YAY FOR VENDOR PREFIXES */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

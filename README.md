@@ -1,21 +1,33 @@
 # hackBCA III Website
 
 ## Installation
-**Make sure you are running Python 3.4.3.**
+**Make sure you are using Python 3.4.x when running this.**
+
+(Using `virtualenv` is recommended.)
+
+Clone this repository onto your machine.
 
 ### Requirements
 Requirements can be installed all at once using the requirements file:
 
-`pip3 install -r requirements.txt`
+`pip install -r requirements.txt`
 
 ### Configuration
-Place `config.cfg` with all of the configuration values in the root of the project.
+There are 3 different configurations for this website:
+
+- `default_config.cfg` (default values)
+- `dev_config.cfg` (development values)
+- `prod_config.cfg` (production values)
+
+`dev_config.cfg` will override `default_config.cfg`, and `prod_config.cfg` will override `dev_config.cfg`.
+
+Obtain one of these files from an authorized person and place one of these configuration files with all of the configuration values in the root of the project.
+
+**IMPORTANT: Make sure none of the configuration files are committed into Git or publicly available!**
 
 ## Running
 Run the application with Python 3:
 
-`python3 app.py [port]`
+`python run.py`
 
-If there is no specified `port`, the default value of `port` is `5000`.
-
-Visit the website at `127.0.0.1:port`.
+Visit the website at `localhost:5000`.

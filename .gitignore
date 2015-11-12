@@ -58,9 +58,12 @@ docs/_build/
 # PyBuilder
 target/
 
-<<<<<<< HEAD
-config.cfg
-=======
+# Configuration Files
+*.cfg
+
 # Virtual Environments
 venv/
->>>>>>> master
+
+# Sass
+.sass-cache/
+*.css.map
