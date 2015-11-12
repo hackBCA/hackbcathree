@@ -28,6 +28,6 @@ Obtain one of these files from an authorized person and place one of these confi
 ## Running
 Run the application with Python 3:
 
-`python3 run.py`
+`python run.py`
 
 Visit the website at `localhost:5000`.
