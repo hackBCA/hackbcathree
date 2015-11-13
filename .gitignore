@@ -60,6 +60,8 @@ target/
 
 # Configuration Files
 *.cfg
+*.ini
+*.pem
 
 # Virtual Environments
 venv/
@@ -68,4 +70,5 @@ venv/
 .sass-cache/
 *.css.map
 
-*.ini
+# Logging
+*.log

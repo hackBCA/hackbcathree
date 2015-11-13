@@ -1,18 +1,28 @@
 # hackBCA III Website
 
-## Installation
+## Development
+
+### Installation
 **Make sure you are using Python 3.4.x when running this.**
 
-(Using `virtualenv` is recommended.)
+(Using `virtualenv` is recommended. Call your virtual environment folder `venv`; otherwise make sure to add the folder name in the `.gitignore`.)
 
 Clone this repository onto your machine.
 
-### Requirements
-Requirements can be installed all at once using the requirements file:
+#### Requirements
+Requirements can be installed all at once through `pip` using the requirements file:
 
 `pip install -r requirements.txt`
 
-### Configuration
+Install Sass in order to compile the `.scss` files to `.css`.
+
+Once Sass is installed, run the following command to compile to `css` to the right folder:
+
+`sass --watch /path/to/css/sass/:/path/to/css/`
+
+The path will be different depending on the Blueprint the `.scss` files need to be compiled for.
+
+#### Configuration
 There are 3 different configurations for this website:
 
 - `default_config.cfg` (default values)
@@ -25,7 +35,7 @@ Obtain one of these files from an authorized person and place one of these confi
 
 **IMPORTANT: Make sure none of the configuration files are committed into Git or publicly available!**
 
-## Running
+### Running
 Run the application with Python 3:
 
 `python run.py`
