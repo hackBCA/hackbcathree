@@ -67,3 +67,5 @@ venv/
 # Sass
 .sass-cache/
 *.css.map
+
+*.ini
