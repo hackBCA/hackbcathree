@@ -14,6 +14,9 @@
 body {
   font-family: "Proxima Nova Light"; }
 
+a {
+  color: white; }
+
 .bg-img {
   position: absolute;
   display: table;
@@ -22,7 +25,7 @@ body {
   height: auto;
   top: 0;
   left: 0;
-  background: url(/web_static/landing.png) no-repeat center center;
+  background: url(https://s3.amazonaws.com/hackbcawebsite/landing.png) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -46,20 +49,25 @@ body {
         left: 0;
         width: 55%;
         opacity: 0;
-        /* YAY FOR VENDOR PREFIXES */
         -webkit-animation: fadein 3s 1.5s forwards;
         -moz-animation: fadein 3s 1.5s forwards;
         -ms-animation: fadein 3s 1.5s forwards;
         -o-animation: fadein 3s 1.5s forwards;
         animation: fadein 3s 1.5s forwards; }
       .bg-img .container .cover .text {
-        /* YAY FOR VENDOR PREFIXES */
         opacity: 0;
         -webkit-animation: fadein 3s 3.75s forwards;
         -moz-animation: fadein 3s 3.75s forwards;
         -ms-animation: fadein 3s 3.75s forwards;
         -o-animation: fadein 3s 3.75s forwards;
         animation: fadein 3s 3.75s forwards; }
+      .bg-img .container .cover .sponsor {
+        opacity: 0;
+        -webkit-animation: fadein 3s 6s forwards;
+        -moz-animation: fadein 3s 6s forwards;
+        -ms-animation: fadein 3s 6s forwards;
+        -o-animation: fadein 3s 6s forwards;
+        animation: fadein 3s 6s forwards; }
 
 .center {
   display: table;
@@ -67,11 +75,11 @@ body {
 
 .hackbcatwo {
   position: absolute;
+  margin: 0;
+  padding: 0;
   z-index: 9999;
   bottom: 5px;
   right: 5px; }
-  .hackbcatwo a {
-    color: white; }
 
 /* YAY FOR VENDOR PREFIXES */
 @keyframes fadein {

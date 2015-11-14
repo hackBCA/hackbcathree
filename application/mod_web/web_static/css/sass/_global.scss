@@ -27,3 +27,7 @@ body {
     -o-animation: $name $duration $delay $fill-mode;
     animation: $name $duration $delay $fill-mode;
 }
+
+a {
+    color: white;    
+}

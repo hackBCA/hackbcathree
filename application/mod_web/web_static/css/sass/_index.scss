@@ -6,7 +6,7 @@
     height: auto;
     top: 0;
     left: 0;
-    background: url(/web_static/landing.png) no-repeat center center;
+    background: url(https://s3.amazonaws.com/hackbcawebsite/landing.png) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -30,14 +30,17 @@
                 top: 0; right: 0; bottom: 0; left: 0;
                 width: 55%;
                 opacity: 0;
-                /* YAY FOR VENDOR PREFIXES */
                 @include animation(fadein, 3s, 1.5s, forwards);
             }
 
             .text {
-                /* YAY FOR VENDOR PREFIXES */
                 opacity: 0;
                 @include animation(fadein, 3s, 3.75s, forwards);
+            }
+
+            .sponsor {
+                opacity: 0;
+                @include animation(fadein, 3s, 6s, forwards);
             }
         }
     }
@@ -50,13 +53,11 @@
 
 .hackbcatwo {
     position: absolute;
+    margin: 0;
+    padding: 0;
     z-index: 9999;
     bottom: 5px;
     right: 5px;
-
-    a {
-        color: white;    
-    }
 }
 
 /* YAY FOR VENDOR PREFIXES */
