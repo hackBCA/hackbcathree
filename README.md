@@ -18,7 +18,7 @@ Install Sass in order to compile the `.scss` files to `.css`.
 
 Once Sass is installed, run the following command to compile to `css` to the right folder:
 
-`sass --watch /path/to/css/sass/:/path/to/css/`
+`sass --watch /path/to/css/sass/:/path/to/css/ --style compressed`
 
 The path will be different depending on the Blueprint the `.scss` files need to be compiled for.
 
