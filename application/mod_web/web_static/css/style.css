@@ -22,7 +22,7 @@ a {
   display: table;
   min-height: 100%;
   width: 100%;
-  height: auto;
+  height: 100%;
   top: 0;
   left: 0;
   background: url(https://s3.amazonaws.com/hackbcawebsite/landing.png) no-repeat center center;
@@ -47,7 +47,7 @@ a {
         right: 0;
         bottom: 0;
         left: 0;
-        width: 55%;
+        width: 250px;
         opacity: 0;
         -webkit-animation: fadein 3s 1.5s forwards;
         -moz-animation: fadein 3s 1.5s forwards;
@@ -69,10 +69,6 @@ a {
         -o-animation: fadein 3s 6s forwards;
         animation: fadein 3s 6s forwards; }
 
-.center {
-  display: table;
-  width: 100%; }
-
 .hackbcatwo {
   position: absolute;
   margin: 0;
@@ -80,6 +76,16 @@ a {
   z-index: 9999;
   bottom: 5px;
   right: 5px; }
+
+.no-cssanimations .bg-img .container .cover .logo {
+  animation: none;
+  opacity: 1; }
+.no-cssanimations .bg-img .container .cover .text {
+  animation: none;
+  opacity: 1; }
+.no-cssanimations .bg-img .container .cover .sponsor {
+  animation: none;
+  opacity: 1; }
 
 /* YAY FOR VENDOR PREFIXES */
 @keyframes fadein {
