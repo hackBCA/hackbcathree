@@ -41,7 +41,16 @@
 
             .sponsor {
                 opacity: 0;
+                margin-top: 20px;
                 @include animation(fadein, 3s, 6s, forwards);
+
+                h2 {
+                    margin: 5px;
+                }
+
+                &.mobile {
+                    display: none;
+                }
             }
         }
     }
@@ -71,6 +80,23 @@
                 .sponsor {
                     animation: none;
                     opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .bg-img {
+        .container {
+            .cover {
+                .sponsor {
+                    &.mobile {
+                        display: block;
+                    }
+                    &.no-mobile {
+                        display: none;
+                    }
                 }
             }
         }

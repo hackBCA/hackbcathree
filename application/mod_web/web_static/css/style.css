@@ -64,11 +64,16 @@ a {
         animation: fadein 3s 3.75s forwards; }
       .bg-img .container .cover .sponsor {
         opacity: 0;
+        margin-top: 20px;
         -webkit-animation: fadein 3s 6s forwards;
         -moz-animation: fadein 3s 6s forwards;
         -ms-animation: fadein 3s 6s forwards;
         -o-animation: fadein 3s 6s forwards;
         animation: fadein 3s 6s forwards; }
+        .bg-img .container .cover .sponsor h2 {
+          margin: 5px; }
+        .bg-img .container .cover .sponsor.mobile {
+          display: none; }
 
 .hackbcatwo {
   position: absolute;
@@ -88,6 +93,11 @@ a {
   animation: none;
   opacity: 1; }
 
+@media screen and (max-width: 320px) {
+  .bg-img .container .cover .sponsor.mobile {
+    display: block; }
+  .bg-img .container .cover .sponsor.no-mobile {
+    display: none; } }
 /* YAY FOR VENDOR PREFIXES */
 @keyframes fadein {
   from {
