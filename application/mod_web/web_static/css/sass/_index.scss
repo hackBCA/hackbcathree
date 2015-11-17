@@ -56,11 +56,22 @@
     }
 }
 
+.social_box {
+    position: fixed;
+    top: 10px;  
+    right: 10px; 
+    .social {
+        padding: 5px 0px; 
+    }
+    z-index: 9999;
+    @include animation(fadein, 3s, 1.5s, forwards)
+}
+
 .hackbcatwo {
     position: absolute;
     margin: 0;
     padding: 0;
-    z-index: 9999;
+    z-index: 9001;
     bottom: 5px;
     right: 5px;
 }
