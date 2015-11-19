@@ -65,6 +65,9 @@ target/
 
 # Virtual Environments
 venv/
+pip-1.5.6/
+setuptools-3.4.4/
+ez_setup.py
 
 # Sass
 .sass-cache/
