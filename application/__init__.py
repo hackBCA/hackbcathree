@@ -1,4 +1,5 @@
 from flask import Flask
+from mongoengine import register_connection
 
 app = Flask(
     __name__,
@@ -25,6 +26,15 @@ except FileNotFoundError:
             print("No configuration files found.")
 
 CONFIG = app.config
+
+register_connection(
+    alias = 'db', 
+    name = CONFIG['DB_NAME'],
+    username = CONFIG['DB_USERNAME'],
+    password = CONFIG['DB_PASSWORD'],
+    host = CONFIG['DB_HOST'],
+    port = CONFIG['DB_PORT']
+)
 
 from application.mod_web import web_module
 app.register_blueprint(web_module)
