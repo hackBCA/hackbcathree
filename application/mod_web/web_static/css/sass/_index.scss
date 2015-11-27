@@ -41,6 +41,15 @@
             .form {
                 opacity: 0;
                 @include animation(fadein, 2s, 2.5s, forwards);
+
+                .error{
+                    margin-top: 5px;
+                    color: red;
+                }
+                .message{
+                    margin-top: 5px;
+                    color: white;
+                }
             }
         }
         .sponsor {
