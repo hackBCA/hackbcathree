@@ -1,14 +1,34 @@
-from flask import render_template, redirect
-from . import web_module as web
+from flask import *
+from . import web_module as mod_web
+from . import controllers as controller
 
-@web.route("/")
+@mod_web.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+	if request.method == "POST":
+		if request.form["email"]:
+			email = request.form["email"]
+			try:
+				controller.add_email(email)
+			except Exception as e:
+				if(e.args[0] == 'EmailExistsError'):
+					return render_template("index.html", error = e.args[1])
+				pass
+			return render_template("index.html", message = 'Verification email sent.')
+	if request.args.get('status'):
+		status = request.args.get('status')
+		if status == 'confirmed':
+			return render_template("index.html", message = "Subscription confirmed.")
+	return render_template("index.html")
 
-@web.route("/sponsors",methods=["GET"])
+@mod_web.route("/sponsors",methods=["GET"])
 def sponsors():
-    return web.send_static_file("sponsors.pdf")
+    return mod_web.send_static_file("sponsors.pdf")
 
-@web.route("/sponsors.pdf",methods=["GET"])
+@mod_web.route("/sponsors.pdf",methods=["GET"])
 def foward_sponsors():
     return redirect("/sponsors")
+
+@mod_web.route('/confirm/<token>')
+def confirm_email(token):
+	controller.confirm_email(token);
+	return redirect('/?status=confirmed');
