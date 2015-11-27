@@ -1,9 +1,15 @@
 from flask import render_template, redirect
 from . import web_module as mod_web
+from .controllers import *
 
 @mod_web.route("/")
 def index():
     return render_template("index.html")
+
+@mod_web.route("/register")
+def register():
+		add_email('jack@test.com')
+		return render_template("index.html")
 
 @mod_web.route("/sponsors",methods=["GET"])
 def sponsors():

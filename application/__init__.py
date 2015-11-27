@@ -28,7 +28,7 @@ except FileNotFoundError:
 CONFIG = app.config
 
 register_connection(
-    alias = 'db', 
+    alias = 'default', 
     name = CONFIG['DB_NAME'],
     username = CONFIG['DB_USERNAME'],
     password = CONFIG['DB_PASSWORD'],
