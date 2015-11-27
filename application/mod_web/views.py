@@ -6,11 +6,6 @@ from .controllers import *
 def index():
     return render_template("index.html")
 
-@mod_web.route("/register")
-def register():
-		add_email('jack@test.com')
-		return render_template("index.html")
-
 @mod_web.route("/sponsors",methods=["GET"])
 def sponsors():
     return mod_web.send_static_file("sponsors.pdf")
