@@ -23,7 +23,6 @@
 
         .cover {
             display: inline-block;
-            color: white;
 
             .logo {
                 margin: auto;
@@ -31,26 +30,33 @@
                 width: 250px;
                 height: 250px;
                 opacity: 0;
-                @include animation(fadein, 3s, 1.5s, forwards);
+                @include animation(fadein, 2s, 0.5s, forwards);
             }
 
             .text {
                 opacity: 0;
-                @include animation(fadein, 3s, 3.75s, forwards);
+                @include animation(fadein, 2s, 1.5s, forwards);
             }
 
-            .sponsor {
+            .form {
                 opacity: 0;
-                margin-top: 20px;
-                @include animation(fadein, 3s, 6s, forwards);
+                @include animation(fadein, 2s, 2.5s, forwards);
+            }
+        }
+        .sponsor {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            @include animation(fadein, 2s, 3.5s, forwards);
 
-                h2 {
-                    margin: 5px;
-                }
+            h3 {
+                margin: 0;
+            }
 
-                &.mobile {
-                    display: none;
-                }
+            &.mobile {
+                display: none;
             }
         }
     }
@@ -59,21 +65,12 @@
 .social_box {
     position: fixed;
     top: 10px;  
-    right: 10px; 
+    left: 10px; 
+    z-index: 9999;
+
     .social {
         padding: 5px 0px; 
     }
-    z-index: 9999;
-    @include animation(fadein, 3s, 1.5s, forwards)
-}
-
-.hackbcatwo {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    z-index: 9001;
-    bottom: 5px;
-    right: 5px;
 }
 
 .no-cssanimations {
@@ -88,10 +85,10 @@
                     animation: none;
                     opacity: 1;
                 }
-                .sponsor {
-                    animation: none;
-                    opacity: 1;
-                }
+            }
+            .sponsor {
+                animation: none;
+                opacity: 1;
             }
         }
     }
@@ -101,45 +98,19 @@
     .bg-img {
         .container {
             .cover {
-                .sponsor {
-                    &.mobile {
-                        display: block;
-                    }
-                    &.no-mobile {
-                        display: none;
-                    }
+                .logo {
+                    width: 150px;
+                    height: 150px;
+                }
+            }
+            .sponsor {
+                &.mobile {
+                    display: block;
+                }
+                &.no-mobile {
+                    display: none;
                 }
             }
         }
     }
-}
-
-/* YAY FOR VENDOR PREFIXES */
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* YAY FOR VENDOR PREFIXES */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* YAY FOR VENDOR PREFIXES */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* YAY FOR VENDOR PREFIXES */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* YAY FOR VENDOR PREFIXES */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
 }
