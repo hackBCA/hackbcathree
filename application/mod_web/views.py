@@ -1,9 +1,15 @@
-from flask import render_template, redirect
+from flask import render_template, request
 from . import web_module as mod_web
 from .controllers import *
 
-@mod_web.route("/")
+@mod_web.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "POST":
+        try:
+            email = request.form["email"]
+            add_email(email)
+        except KeyError:
+            pass
     return render_template("index.html")
 
 @mod_web.route("/sponsors",methods=["GET"])
