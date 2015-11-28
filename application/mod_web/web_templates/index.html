@@ -1,97 +1,97 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>               
-    <div class="social_box">                    
-        <div class="social">
-            <a href="https://twitter.com/hackBCA" class="twitter-follow-button" data-show-count="false">Follow @hackBCA</a>
-        </div>
-        <div class="social">
-            <div class="facebook-btn">
-                <div class="fb-like" data-href="https://www.facebook.com/BCAhackathon" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-            </div>
-        </div>
-        <div class="social">
-            <a href="//2015.hackbca.com">hackBCA II Website</a>
-        </div>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>               
+  <div class="social_box">                    
+    <div class="social">
+      <a href="https://twitter.com/hackBCA" class="twitter-follow-button" data-show-count="false">Follow @hackBCA</a>
     </div>
-    <div class="clearfix">
-        <div class="bg-img clearfix">
-            <div class="container">
-                <div class="cover">
-                    <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.svg">
-                    <h1 class="text">Coming Soon</h1>
-                    <div class="form">
-                        <form action="/" method="POST">
-                            <input type="text" name="email" placeholder="Enter email for updates!">
-                            <input type="submit" value="Submit">
-                        </form>
-                    </div>
-                </div>
-                <div class="sponsor no-mobile">
-                    <h3>Interested in sponsoring? Talk to us at <a href="mailto:contact@hackbca.com">contact@hackbca.com</a>.</h3>
-                </div>
-                <div class="sponsor mobile">
-                    <h3><a href="mailto:contact@hackbca.com">Interested in sponsoring?</a></h3>
-                </div>
-            </div>
-        </div>
+    <div class="social">
+      <div class="facebook-btn">
+        <div class="fb-like" data-href="https://www.facebook.com/BCAhackathon" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+      </div>
     </div>
+    <div class="social">
+      <a href="//2015.hackbca.com">hackBCA II Website</a>
+    </div>
+  </div>
+  <div class="clearfix">
+    <div class="bg-img clearfix">
+      <div class="container">
+        <div class="cover">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.svg">
+          <h1 class="text">Coming Soon</h1>
+          <div class="form">
+            <form action="/" method="POST">
+              <input type="text" name="email" placeholder="Enter email for updates!">
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+        <div class="sponsor no-mobile">
+          <h3>Interested in sponsoring? Talk to us at <a href="mailto:contact@hackbca.com">contact@hackbca.com</a>.</h3>
+        </div>
+        <div class="sponsor mobile">
+          <h3><a href="mailto:contact@hackbca.com">Interested in sponsoring?</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 {% block scripts %}
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-70077079-1', 'auto');
-        ga('send', 'pageview');
-    </script> 
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-    </script>
-    <script type="text/javascript">
-        if (Modernizr.svgasimg) {}
-        else {
-            var logo = document.querySelector(".logo");
-            logo.src = "https://s3.amazonaws.com/hackbcawebsite/logo.png";
-        }
-    </script>
-    <script type="text/javascript">
-        console.log(
-                "\n                   `:+oyhdmmmmmddhyo+:`\n"+
-                "               `/sdmmmmddddddddddddmmmmds/`\n"+
-                "            `/hmmmdddddmmmmmmmmmmmmdddddmmmh/`\n"+
-                "          `ommmdddmmmmmmmmmmhymmmmmmmmmmdddmmmo`\n"+
-                "         +mmmddmmmmmmmmmmmy+s+/sdmmmmmmmmmmddmmm+\n"+
-                "       .hmmdhmmmmmmmmmmmhso:+s/o:odmmmmmmmmmmhdmmh.\n"+
-                "      -mmmhdmmmmmmmmmmyo++:-/o/o//oyhmmmmmmmmmdhmmm-\n"+
-                "     -mmmhmmmmmmmmmmmmd/::::://////ommmmmmmmmmmmhmmm-\n"+
-                "    `dmmhmmmmmmmmmmmmmmh::::://///+dmmmmmmmmmmmmmhmmd`\n"+
-                "    +mmddmmmmmmmmmmmmmmmds:::/+++hmmmmmmmmmmmmmmmddmm+\n"+
-                "    hmmhmmmmmmmmo::odmmmmmdyyyhhmmmmmmh+-/ymmmmmmmhmmh\n"+
-                "    mmmhmmmmmmms....-+ymmmm+///ymmmds:-....mmmmmmmhmmm\n"+
-                "    mmmhmmmmmmmmyo/-...:sdmo/o/ymh+-...:+shmmmmmmmhmmm\n"+
-                "    hmmhmmmmmmmmmmmmmhyo/://yys:/:+oydmmmmmmmmmmmmhmmh\n"+
-                "    +mmddmmmmmmmmmmmmmmmy/yyyyyyo/hmmmmmmmmmmmmmmddmm+\n"+
-                "    `dmmhmmmmmmmmmmmmdyo:::+yyy:::/shmmmmmmmmmmmmhmmd`\n"+
-                "     -mmmhmmmmmmhs+:..-:shhhyyhhhh+-..-/+shmmmmmhmmm-\n"+
-                "      -mmmhdmmmy....-/ymmmmdyyhmmmmds:-....mmmdhmmm-\n"+
-                "       .hmmdhmmmo:-odmmmmmmdhhdmmmmmmmy+-:ymmhdmmh.\n"+
-                "         +mmmddmmmmmmmmmmmmo/++dmmmmmmmmmmmddmmm+\n"+
-                "          `ommmdddmmmmmmmmmmmmmmmmmmmmmmdddmmmo`\n"+
-                "            `/hmmmdddddmmmmmmmmmmmmdddddmmmh/`\n"+
-                "               `/sdmmmmddddddddddddmmmmds/`\n"+
-                "                   `:+oyhdmmmmmmdhyo+:`\n"+
-                "            ____ ____ ____ ____ ____ ____ ____\n"+
-                "           ||h |||a |||c |||k |||B |||C |||A ||\n"+
-                "           ||__|||__|||__|||__|||__|||__|||__||\n"+
-                "           |/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|\n\n");
-    </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-70077079-1', 'auto');
+    ga('send', 'pageview');
+  </script> 
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
+  <script type="text/javascript">
+    if (Modernizr.svgasimg) {}
+    else {
+      var logo = document.querySelector(".logo");
+      logo.src = "https://s3.amazonaws.com/hackbcawebsite/logo.png";
+    }
+  </script>
+  <script type="text/javascript">
+    console.log(
+            "\n                   `:+oyhdmmmmmddhyo+:`\n"+
+            "               `/sdmmmmddddddddddddmmmmds/`\n"+
+            "            `/hmmmdddddmmmmmmmmmmmmdddddmmmh/`\n"+
+            "          `ommmdddmmmmmmmmmmhymmmmmmmmmmdddmmmo`\n"+
+            "         +mmmddmmmmmmmmmmmy+s+/sdmmmmmmmmmmddmmm+\n"+
+            "       .hmmdhmmmmmmmmmmmhso:+s/o:odmmmmmmmmmmhdmmh.\n"+
+            "      -mmmhdmmmmmmmmmmyo++:-/o/o//oyhmmmmmmmmmdhmmm-\n"+
+            "     -mmmhmmmmmmmmmmmmd/::::://////ommmmmmmmmmmmhmmm-\n"+
+            "    `dmmhmmmmmmmmmmmmmmh::::://///+dmmmmmmmmmmmmmhmmd`\n"+
+            "    +mmddmmmmmmmmmmmmmmmds:::/+++hmmmmmmmmmmmmmmmddmm+\n"+
+            "    hmmhmmmmmmmmo::odmmmmmdyyyhhmmmmmmh+-/ymmmmmmmhmmh\n"+
+            "    mmmhmmmmmmms....-+ymmmm+///ymmmds:-....mmmmmmmhmmm\n"+
+            "    mmmhmmmmmmmmyo/-...:sdmo/o/ymh+-...:+shmmmmmmmhmmm\n"+
+            "    hmmhmmmmmmmmmmmmmhyo/://yys:/:+oydmmmmmmmmmmmmhmmh\n"+
+            "    +mmddmmmmmmmmmmmmmmmy/yyyyyyo/hmmmmmmmmmmmmmmddmm+\n"+
+            "    `dmmhmmmmmmmmmmmmdyo:::+yyy:::/shmmmmmmmmmmmmhmmd`\n"+
+            "     -mmmhmmmmmmhs+:..-:shhhyyhhhh+-..-/+shmmmmmhmmm-\n"+
+            "      -mmmhdmmmy....-/ymmmmdyyhmmmmds:-....mmmdhmmm-\n"+
+            "       .hmmdhmmmo:-odmmmmmmdhhdmmmmmmmy+-:ymmhdmmh.\n"+
+            "         +mmmddmmmmmmmmmmmmo/++dmmmmmmmmmmmddmmm+\n"+
+            "          `ommmdddmmmmmmmmmmmmmmmmmmmmmmdddmmmo`\n"+
+            "            `/hmmmdddddmmmmmmmmmmmmdddddmmmh/`\n"+
+            "               `/sdmmmmddddddddddddmmmmds/`\n"+
+            "                   `:+oyhdmmmmmmdhyo+:`\n"+
+            "            ____ ____ ____ ____ ____ ____ ____\n"+
+            "           ||h |||a |||c |||k |||B |||C |||A ||\n"+
+            "           ||__|||__|||__|||__|||__|||__|||__||\n"+
+            "           |/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|\n\n");
+  </script>
 {% endblock %}
