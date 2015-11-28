@@ -1,7 +1,20 @@
+{% macro render_flash_messages() %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}"><p>{{ category.capitalize() }}: {{ message }}</p></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endmacro %}
+
 <!DOCTYPE html>
 
 <html>
     <head>
+        {{ render_flash_messages() }}
         <!--[if IE]><link rel="shortcut icon" href="/static/favicon.ico"><![endif]-->
         <title>hackBCA III</title>
         <link rel="icon" href="/static/favicon.png">
