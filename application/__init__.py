@@ -3,7 +3,7 @@ from mongoengine import register_connection
 
 app = Flask(
     __name__,
-    static_folder="static"
+    static_folder = "static"
 )
 
 try:
@@ -28,12 +28,12 @@ except FileNotFoundError:
 CONFIG = app.config
 
 register_connection(
-    alias = 'default', 
-    name = CONFIG['DB_NAME'],
-    username = CONFIG['DB_USERNAME'],
-    password = CONFIG['DB_PASSWORD'],
-    host = CONFIG['DB_HOST'],
-    port = CONFIG['DB_PORT']
+    alias = "default", 
+    name = CONFIG["DB_NAME"],
+    username = CONFIG["DB_USERNAME"],
+    password = CONFIG["DB_PASSWORD"],
+    host = CONFIG["DB_HOST"],
+    port = CONFIG["DB_PORT"]
 )
 
 from application.mod_web import web_module
