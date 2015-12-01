@@ -1,14 +1,14 @@
-from application import app
+from application import CONFIG
 from .models import *
 import sendgrid
 import time
 from itsdangerous import URLSafeTimedSerializer
 
-sg = sendgrid.SendGridClient(app.config["SENDGRID_API_KEY"])
-ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
+sg = sendgrid.SendGridClient(CONFIG["SENDGRID_API_KEY"])
+ts = URLSafeTimedSerializer(CONFIG["SECRET_KEY"])
 
 def validate_email(entry):
-	token = ts.dumps(entry.email, salt = app.config["EMAIL_TOKENIZER_SALT"])
+	token = ts.dumps(entry.email, salt = CONFIG["EMAIL_TOKENIZER_SALT"])
 	message = sendgrid.Mail()
 	message.add_to(entry.email)
 	message.set_from("noreply@hackbca.com")
@@ -22,7 +22,7 @@ def validate_email(entry):
 	status, msg = sg.send(message)
 
 def confirm_email(token):
-	email = ts.loads(token, salt = "email-confirm-key", max_age = 86400)
+	email = ts.loads(token, salt = CONFIG["EMAIL_TOKENIZER_SALT"], max_age = 86400)
 	entry = MailingListEntry.objects(email = email)[0]
 	entry.verified = True
 	entry.save()
