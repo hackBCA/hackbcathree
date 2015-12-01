@@ -8,7 +8,7 @@ sg = sendgrid.SendGridClient(app.config["SENDGRID_API_KEY"])
 ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
 def validate_email(entry):
-	token = ts.dumps(entry.email, salt = "email-confirm-key")
+	token = ts.dumps(entry.email, salt = app.config["EMAIL_TOKENIZER_SALT"])
 	message = sendgrid.Mail()
 	message.add_to(entry.email)
 	message.set_from("noreply@hackbca.com")
