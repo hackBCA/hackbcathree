@@ -1,0 +1,47 @@
+#about {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: url(https://s3.amazonaws.com/hackbcawebsite/about.JPG) no-repeat center center scroll;
+  color: #fff;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  .container {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .cover {
+      .content {
+        color: #fff;
+        text-align: center;
+
+        #title {
+          font-size: 144px;
+          font-weight: 400;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+
+        #description {
+          font-weight: 400;
+          margin: 2% 0 0 0;
+        }
+
+        #date-container {
+          width: 100%;
+          text-align: center;
+          margin-top: 1%;
+
+          #date {
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+}
