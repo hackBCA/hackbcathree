@@ -270,23 +270,19 @@ input {
     #about .container .cover .content {
       color: #fff;
       text-align: center; }
-      /* line 23, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
-      #about .container .cover .content #title {
-        font-size: 144px;
-        font-weight: 400;
-        margin-bottom: 0;
-        padding-bottom: 0; }
-      /* line 30, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
-      #about .container .cover .content #description {
-        font-weight: 400;
-        margin: 2% 0 0 0; }
-      /* line 35, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
-      #about .container .cover .content #date-container {
-        width: 100%;
-        text-align: center;
-        margin-top: 1%; }
-        /* line 40, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
-        #about .container .cover .content #date-container #date {
-          font-weight: 300; }
+      /* line 25, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+      #about .container .cover .content .info p {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: justify;
+        line-height: 2em;
+        width: 40%; }
+      /* line 33, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+      #about .container .cover .content .info img {
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 100px;
+        width: 200px;
+        height: 200px; }
 
 /*# sourceMappingURL=../style.scss.css.map */

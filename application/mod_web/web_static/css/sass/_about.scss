@@ -20,25 +20,22 @@
         color: #fff;
         text-align: center;
 
-        #title {
-          font-size: 144px;
-          font-weight: 400;
-          margin-bottom: 0;
-          padding-bottom: 0;
-        }
+        .info {
 
-        #description {
-          font-weight: 400;
-          margin: 2% 0 0 0;
-        }
+          p {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: justify;
+            line-height: 2em;
+            width: 40%;
+          }
 
-        #date-container {
-          width: 100%;
-          text-align: center;
-          margin-top: 1%;
-
-          #date {
-            font-weight: 300;
+          img {
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 100px;
+            width: 200px;
+            height: 200px;
           }
         }
       }
