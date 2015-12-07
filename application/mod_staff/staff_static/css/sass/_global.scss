@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Proxima Nova Light";
+  src: url("/static/fonts/ProximaNova-Light.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Proxima Nova Bold";
+  src: url("/static/fonts/ProximaNova-Bold.otf") format("opentype");
+  font-weight: 400; 
+}
+
+@font-face {
+  font-family: "Proxima Nova ExtraBold";
+  src: url("/static/fonts/ProximaNova-Extrabold.otf") format("opentype");
+  font-weight: 500; 
+}
+
+body {
+  font-family: "Proxima Nova Light";
+}
+
+@mixin animation($name, $duration, $delay, $fill-mode) {
+  -webkit-animation: $name $duration $delay $fill-mode;
+  -moz-animation: $name $duration $delay $fill-mode;
+  -ms-animation: $name $duration $delay $fill-mode;
+  -o-animation: $name $duration $delay $fill-mode;
+  animation: $name $duration $delay $fill-mode;
+}
+
+a {
+  color: white;    
+}
