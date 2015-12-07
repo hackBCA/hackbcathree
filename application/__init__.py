@@ -28,6 +28,7 @@ except FileNotFoundError:
 
 CONFIG = app.config
 
+#MongoLab
 register_connection(
     alias = "default", 
     name = CONFIG["DB_NAME"],
@@ -45,3 +46,5 @@ from application.mod_web import web_module
 app.register_blueprint(web_module)
 from application.mod_user import user_module
 app.register_blueprint(user_module)
+from application.mod_staff import staff_module
+app.register_blueprint(staff_module)
