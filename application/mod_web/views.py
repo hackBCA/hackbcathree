@@ -31,6 +31,8 @@ def sponsors():
     return mod_web.send_static_file("sponsors.pdf")
 
 @mod_web.route("/sponsors.pdf", methods = ["GET"])
+@mod_web.route("/sponsor.pdf", methods = ["GET"])
+@mod_web.route("/sponsor", methods = ["GET"])
 def foward_sponsors():
     return redirect("/sponsors")
 
