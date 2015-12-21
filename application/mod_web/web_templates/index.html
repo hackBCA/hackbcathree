@@ -14,5 +14,37 @@
         {% include "about.html" %}
       </div>
     </section>
+    <section>
+      <div class="page-section" id="whenwhere">
+        {% include "whenwhere.html" %}
+      </div>
+    </section>
+    <section>
+      <div class="page-section" id="faq">
+        {% include "faq.html" %}
+      </div>
+    </section>
   </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+  function initialize() {
+    var mapCanvas = document.getElementById("map-container");
+    var mapOptions = {
+      scrollwheel: false,
+      center: new google.maps.LatLng(40.90220, -74.033752),
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(40.90220, -74.033752),
+      title: "Bergen County Academies"
+    });
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    marker.setMap(map);
+  }
+  google.maps.event.addDomListener(window, "load", initialize);
+</script>
 {% endblock %}

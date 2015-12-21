@@ -38,11 +38,43 @@ body {
 }
 
 h1 {
+  font-size: 108px;
   margin: 10px 0;
+  font-weight: 400;
 }
 
 h2 {
+  font-size: 72px;
   margin: 10px 0;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 48px;
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 36px;
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 32px;
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 24px;
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+p {
+  font-size: 24px;
 }
 
 a {
@@ -64,7 +96,7 @@ a {
     width: 10%;
     min-width: 60px;
     display: block;
-    z-index:10000;
+    z-index: 10000;
 
     img {
       width: 100%;
@@ -178,29 +210,29 @@ input {
   -o-animation-fill-mode: forwards; 
   -moz-animation-fill-mode: forwards; 
   -webkit-animation-fill-mode: forwards; 
-}
 
-.flashes li {
-  list-style: none;
-}
+  li {
+    list-style: none;
 
-.flashes li p {
-  margin: 0;
-  font-size: 1.2em;
-  padding: 1% 5%;
-  color: #fff;
-  display: inline-block;
-  vertical-align: bottom;
-}
+    p {
+      margin: 0;
+      font-size: 1.2em;
+      padding: 1% 5%;
+      color: #fff;
+      display: inline-block;
+      vertical-align: bottom;
 
-.flashes li.success {
-  background-color: #2ecc71;
-}
+      &.success {
+        background-color: #2ecc71;      
+      }
 
-.flashes li.error {
-  background-color: #e74c3c;
-}
+      &.error {
+        background-color: #e74c3c;      
+      }
 
-.flashes li.warning {
-  background-color: #f39c12;
+      &.warning {
+        background-color: #f39c12;      
+      }
+    }
+  }
 }

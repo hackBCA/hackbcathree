@@ -1,42 +1,26 @@
 #about {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  background: url(https://s3.amazonaws.com/hackbcawebsite/about.JPG) no-repeat center center scroll;
-  color: #fff;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: white;
 
   .container {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    position: relative;
+    vertical-align: top;
 
     .cover {
       .content {
-        color: #fff;
         text-align: center;
 
+        .header {
+          background-image: url(/web_static/DSC_1938.JPG);
+
+          .head-cover {
+            padding: 10% 0 1% 0;
+          }
+        }
+
         .info {
-
-          p {
-            display: inline-block;
-            vertical-align: middle;
-            text-align: justify;
-            line-height: 2em;
-            width: 40%;
-          }
-
-          img {
-            display: inline-block;
-            vertical-align: middle;
-            border-radius: 100px;
-            width: 200px;
-            height: 200px;
-          }
+          text-align: left;
+          margin: 5%;
+          line-height: 32px;
+          color: #000;
         }
       }
     }

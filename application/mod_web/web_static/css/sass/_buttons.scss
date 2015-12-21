@@ -1,0 +1,18 @@
+.buttons {
+  &.horizontal {
+    display: inline-block;
+    margin: 10px 0 0 0;
+  }
+
+  .btn {
+    background-color: rgba(66, 160, 255, 0.5);
+    outline: none;
+    box-shadow: none;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+}
