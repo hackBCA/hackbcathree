@@ -1,35 +1,27 @@
 #home {
   height: 100vh;
-  background: url(https://s3.amazonaws.com/hackbcawebsite/landing.png) no-repeat center center scroll;
+  background-image: url(https://s3.amazonaws.com/hackbcawebsite/landing.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-position: center;
   color: #fff;
 
   .container {
     background-color: rgba(0, 0, 0, 0.5);
 
     .cover {
-      padding-left: 10%;
+      padding: 0 10%;
 
       .content {
         color: #fff;
 
         #title {
-          font-size: 108px;
-          font-weight: 400;
           margin-bottom: 0;
           padding-bottom: 0;
-        }
-
-        #description {
-          font-size: 48px;
-        }
-
-        #info-container {
-          font-size: 24px;
-          width: 100%;
-
-          #date {
-            font-weight: 300;
-          }
         }
       }
     }

@@ -1,0 +1,14 @@
+#faq {
+  .container {
+    .info {
+      justify-content: center;
+      text-align: center;
+
+      .q-contain {
+        .question {
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+}

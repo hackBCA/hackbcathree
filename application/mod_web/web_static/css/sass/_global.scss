@@ -1,3 +1,9 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "Proxima Nova Light";
   src: url("/static/fonts/ProximaNova-Light.otf") format("opentype");
@@ -71,10 +77,11 @@ h6 {
   font-size: 24px;
   margin: 10px 0;
   font-weight: 400;
+  font-weight: bold;
 }
 
 p {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 a {
@@ -234,5 +241,13 @@ input {
         background-color: #f39c12;      
       }
     }
+  }
+}
+
+.pure-g {
+  letter-spacing: initial;
+
+  [class *="pure-u"] {
+    font-family: "Proxima Nova Light";
   }
 }
