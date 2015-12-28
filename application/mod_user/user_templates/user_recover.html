@@ -7,14 +7,14 @@
       <div class="cover">
         <div class="content">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
-          <h2>Login</h2>
-          <a href="forgot/">Forgot your password?</a>
+          <h3>Change your Password</h3>
+          <h4>{{ email }}</h4>
           <form method="POST" action="">
             {% for field in form %}
               {{ render_field(field) }}
             {% endfor %}
             <div class="buttons">
-              <button class="btn" type="submit">Login!</button>
+              <button class="btn" type="submit">Change Password</button>
             </div>
           </form>
         </div>
