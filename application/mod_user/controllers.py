@@ -33,7 +33,7 @@ def verify_user(email, password):
 	currUser = get_user(email)
 
 	if currUser is None:
-		raise Exception("UserDoesNotExistError", "Account with given email does not exist.")
+		return None
 
 	hashed = currUser.hashed		
 
