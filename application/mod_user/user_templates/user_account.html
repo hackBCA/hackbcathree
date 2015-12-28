@@ -2,20 +2,19 @@
 
 {% block content %}
 <div class="page-container">
-  <div class="page-section" id="register">
+  <div class="page-section" id="account">
     <div class="container">
-      <div class="cover">
-        <div class="content">
+      <div class="header">
+        <div class="head-cover">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
-          <h2>Login</h2>
-          <form method="POST" action="">
-            {% for field in form %}
-              {{ render_field(field) }}
-            {% endfor %}
-            <div class="buttons">
-              <button class="btn" type="submit">Login!</button>
-            </div>
-          </form>
+          <h2>Account</h2>
+        </div>
+      </div>
+      <div class="info">
+        <h2>Application Status: {{ status }}</h2>
+        <div class="buttons horizontal">
+          <a href="/application" class="btn">Edit Application</a>
+          <a href="/settings" class="btn">Account Settings</a>
         </div>
       </div>
     </div>
