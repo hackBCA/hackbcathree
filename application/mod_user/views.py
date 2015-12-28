@@ -26,10 +26,10 @@ def login():
 					flash("Something went wrong.", "error")
 	return render_template("user_login.html", form = form)
 
-@mod_user.route("/secret")
+@mod_user.route("/account")
 @login_required
-def foo():
-	return render_template("secret.html")
+def account():
+	return render_template("user_account.html")
 
 @mod_user.route("/register", methods=["GET", "POST"])
 def register():
