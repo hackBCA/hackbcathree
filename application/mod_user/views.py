@@ -91,7 +91,7 @@ def register():
 	form = RegistrationForm(request.form)
 	if request.method == "POST" and form.validate():
 		try:
-			controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"])	
+			controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"])
 			flash("Almost there! Check your inbox for a verification email to confirm your account.", "success")
 			return redirect("/")
 		except Exception as e:
@@ -104,6 +104,13 @@ def register():
 				else:
 					flash("Something went wrong.", "error")
 	return render_template("user_register.html", form = form)
+
+@mod_user.route("/application", methods = ["GET", "POST"])
+def application():
+	form = ApplicationForm(request.form)
+	if request.method == "POST" and form.validate():
+		pass #TO-DO when application controller is done
+	return render_template("user_application.html", form = form)
 
 @mod_user.route("/confirm/<token>")
 def confirm_email(token):
