@@ -1,0 +1,32 @@
+#contact {
+  .container {
+    .header {
+      .links {
+        .link {
+          margin-top: 2%;
+          .fa {
+            // font-size: 96px;
+          }
+        }
+      }
+
+      background-image: url(https://s3.amazonaws.com/hackbcawebsite/contact.jpg);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #contact {
+    .container {
+      .header {
+        .links {
+          .link {
+            .fa {
+              // font-size: 48px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

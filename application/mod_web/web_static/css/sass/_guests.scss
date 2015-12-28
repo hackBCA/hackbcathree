@@ -3,5 +3,44 @@
     .header {
       background-image: url(https://s3.amazonaws.com/hackbcawebsite/specialguests.jpg);
     }
+
+    .info {
+      .guest {
+        img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #guests {
+    .container {
+      .info {
+        .guest {
+          img {
+            width: 150px;
+            height: 150px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #guests {
+    .container {
+      .info {
+        .guest {
+          img {
+            width: 150px;
+            height: 150px;
+          }
+        }
+      }
+    }
   }
 }

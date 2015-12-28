@@ -41,3 +41,31 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .page-container {
+    .page-section {
+      .container {
+        .header {
+          .head-cover {
+            padding: 15% 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page-container {
+    .page-section {
+      .container {
+        .header {
+          .head-cover {
+            padding: 20% 0;
+          }
+        }
+      }
+    }
+  }
+}
