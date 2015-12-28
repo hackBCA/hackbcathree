@@ -24,3 +24,12 @@ class RegistrationForm(Form):
         if len(password) >= 8 and password != field.data:
             raise ValidationError("Passwords must match.")
         
+class LoginForm(Form):
+    email = TextField("Email", [
+        validators.Required(message = "Enter an email."), 
+        validators.Email(message = "Invalid email address."
+    )])
+    password = PasswordField("Password", [
+        validators.Required(message = "You must enter a password."), 
+        validators.Length(min = 8, message = "Password must be at least 8 characters.")
+    ])

@@ -1,8 +1,35 @@
 from flask import render_template, redirect, request, flash
+from flask.ext.login import login_required
 from . import user_module as mod_user
 from . import controllers as controller
-from .forms import RegistrationForm
+from .forms import RegistrationForm, LoginForm
 from application import CONFIG
+
+@mod_user.route("/login", methods=["GET", "POST"])
+def login():
+	form = LoginForm(request.form)
+	if request.method == "POST" and form.validate():
+		print("Hello there!")
+		try:
+			controller.login(request.form["email"], request.form["password"])
+		
+		except Exception as e:
+			print(CONFIG["DEBUG"])
+			exceptionType = e.args[0]
+			if exceptionType == "AuthenticationError":
+				print(exceptionType)
+				flash("Invalid email and/or password.", "error")
+			else:
+				if(CONFIG["DEBUG"]):
+					raise e
+				else:
+					flash("Something went wrong.", "error")
+	return render_template("user_login.html", form = form)
+
+@mod_user.route("/secret")
+@login_required
+def foo():
+	return render_template("secret.html")
 
 @mod_user.route("/register", methods=["GET", "POST"])
 def register():
@@ -16,7 +43,7 @@ def register():
 			if exceptionType == "UserExistsError":
 				flash("A user with that email already exists.", "error")
 			else:
-				if CONFIG["Debug"]:
+				if CONFIG["DEBUG"]:
 					raise e
 				else:
 					flash("Something went wrong.", "error")
