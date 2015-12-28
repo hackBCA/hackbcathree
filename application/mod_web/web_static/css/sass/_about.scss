@@ -21,6 +21,18 @@
           background-image: url(https://s3.amazonaws.com/hackbcawebsite/whatishackbca.jpg);
         }
       }
+
+      .info {
+        .images {
+          .i-contain {
+            margin-top: 2%;
+
+            .image {
+              margin: 0 10px;
+            }
+          }
+        }
+      }
     }
   }
 }
