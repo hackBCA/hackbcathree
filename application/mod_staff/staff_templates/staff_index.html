@@ -21,14 +21,16 @@
         <meta property="og:description" content="hackBCA III: Coming Soon." />
         <meta property="og:site_name" content="hackBCA" />
         <meta property="fb:admins" content="1762730074" />
-        
+
         <script type="text/javascript" src="/static/js/modernizr.js"></script>
     </head>
-        <body>
-            <form method="POST" action="">
-                <input type="text" name="username"></input>
-                <input type="password" name="password"></input>
- 
-            </form>
-        </body>
+    <body>
+      {{ username }}
+      <form method="POST" action="/staff/logout">
+        <div class="buttons horizontal">
+            <input class="btn" type="submit" value="Logout">
+        </div>
+      </form>
+
+    </body>
 </html>

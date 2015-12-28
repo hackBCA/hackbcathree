@@ -5,7 +5,7 @@ from mongoengine import *
 class StaffEntry(Document):
 	username = StringField(required = True)
 	firstname = StringField(required = True)
-	lastname = StringField(required = True)	
+	lastname = StringField(required = True)
 	email = StringField(required = True)
 
 	hashed = StringField(required = True)
