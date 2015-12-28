@@ -2,7 +2,7 @@ from flask import render_template, redirect, request, flash
 from flask.ext.login import login_required
 from . import user_module as mod_user
 from . import controllers as controller
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, ApplicationForm
 from application import CONFIG
 
 @mod_user.route("/login", methods=["GET", "POST"])
@@ -12,7 +12,7 @@ def login():
 		print("Hello there!")
 		try:
 			controller.login(request.form["email"], request.form["password"])
-		
+
 		except Exception as e:
 			print(CONFIG["DEBUG"])
 			exceptionType = e.args[0]
@@ -36,7 +36,7 @@ def register():
 	form = RegistrationForm(request.form)
 	if request.method == "POST" and form.validate():
 		try:
-			controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"])	
+			controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"])
 			flash("Almost there! Check your inbox for a verification email to confirm your account.", "success")
 		except Exception as e:
 			exceptionType = e.args[0]
@@ -48,6 +48,13 @@ def register():
 				else:
 					flash("Something went wrong.", "error")
 	return render_template("user_register.html", form = form)
+
+@mod_user.route("/application", methods = ["GET", "POST"])
+def application():
+	form = ApplicationForm(request.form)
+	if request.method == "POST" and form.validate():
+		pass #TO-DO when application controller is done
+	return render_template("user_application.html", form = form)
 
 @mod_user.route("/confirm/<token>")
 def confirm_email(token):
