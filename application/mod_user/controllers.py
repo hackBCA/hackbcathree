@@ -1,27 +1,29 @@
 from application import CONFIG, app
 from .models import *
-from flask.ext.login import login_user
+from flask.ext.login import login_user, logout_user
 import bcrypt
 import re
+import sendgrid
+import time
+from itsdangerous import URLSafeTimedSerializer
 
-user_login_manager = LoginManager()
+login_manager = LoginManager()
+login_manager.init_app(app)
 
-user_login_manager.init_app(app)
-
-@user_login_manager.user_loader
+@login_manager.user_loader
 def load_user(user_id):	
 	user_entries = UserEntry.objects(id = user_id)
 	if user_entries.count() != 1:
 		return None
 	currUser = user_entries[0]
-	user = User(currUser.id, currUser.username, currUser.firstname, currUser.lastname, currUser.email) 
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname) 
 	return user
 
 def verify_user(email, password):
 	user_entries = UserEntry.objects(email = email)
 	
 	if user_entries.count() != 1:
-		raise Exception("UserDoesNotExistError", "Invalid Username")
+		raise Exception("UserDoesNotExistError", "Account with given email does not exist.")
 	currUser = user_entries[0]	
 	hashed = currUser.hashed		
 
@@ -31,9 +33,14 @@ def verify_user(email, password):
 		return None
 
 def login(email, password):
+	print("logging in.")
 	user = verify_user(email, password)
+	print("logged in.")
+	print(user)
 	if user != None:
 		login_user(user)
+	else:
+		raise Exception("AuthenticationError", "Invalid credentials.")
 
 def logout():
 	logout_user()
@@ -47,11 +54,8 @@ def add_user(email, firstname, lastname, password):
 	
 	new_entry = UserEntry(email = email, hashed = hashed, firstname = firstname, lastname = lastname)
 	new_entry.save()
+	
 	validate_email(new_entry)
-
-import sendgrid
-import time
-from itsdangerous import URLSafeTimedSerializer
 
 sg = sendgrid.SendGridClient(CONFIG["SENDGRID_API_KEY"])
 ts = URLSafeTimedSerializer(CONFIG["SECRET_KEY"])
