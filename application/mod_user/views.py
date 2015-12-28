@@ -12,7 +12,7 @@ def login():
 		print("Hello there!")
 		try:
 			controller.login(request.form["email"], request.form["password"])
-		
+			return redirect("/account")
 		except Exception as e:
 			print(CONFIG["DEBUG"])
 			exceptionType = e.args[0]
@@ -26,6 +26,12 @@ def login():
 					flash("Something went wrong.", "error")
 	return render_template("user_login.html", form = form)
 
+@mod_user.route("/logout", methods=["GET", "POST"])
+@login_required
+def logout():
+	controller.logout()
+	return redirect("/")
+
 @mod_user.route("/account")
 @login_required
 def account():
@@ -38,6 +44,7 @@ def register():
 		try:
 			controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"])	
 			flash("Almost there! Check your inbox for a verification email to confirm your account.", "success")
+			return redirect("/")
 		except Exception as e:
 			exceptionType = e.args[0]
 			if exceptionType == "UserExistsError":
