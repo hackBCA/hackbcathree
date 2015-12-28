@@ -1,0 +1,56 @@
+#login {
+  height: 100vh;
+  background-image: url(https://s3.amazonaws.com/hackbcawebsite/whatishackbca.jpg); 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+
+  .container {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .cover {
+      .content {
+        text-align: center;
+
+        .logo {
+          width: 200px;
+          height: 200px;
+        }
+
+        .buttons {
+          .btn {
+            padding: 15px 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  #login {
+    .container {
+      .cover {
+        .content {
+          padding: 10% 0;
+          
+          input {
+            margin-bottom: 5%;
+          }
+
+          .buttons {
+            .btn {
+              padding: 15px 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

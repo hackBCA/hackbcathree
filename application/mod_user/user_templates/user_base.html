@@ -12,10 +12,10 @@
 
 {% macro render_field(field) %}
   <div class="form-elt">
-  {{ field.label }} {{ field }}
-  {% if field.errors %}
-    {{ field.errors[0] }}
-  {% endif %}
+    {{ field(placeholder=field.description) }}
+    {% if field.errors %}
+      {{ field.errors[0] }}
+    {% endif %}
   </div>
 {% endmacro %}
 
@@ -27,7 +27,6 @@
     <title>hackBCA III</title>
     <link rel="icon" href="/static/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/web_static/css/normalize.css">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <!--[if lte IE 8]>
       <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
@@ -35,7 +34,9 @@
     <!--[if gt IE 8]><!-->
       <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
     <!--<![endif]-->
-    <!---<link rel="stylesheet" type="text/css" href="/user_static/css/style.css?3">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?3">
+    <link rel="stylesheet" type="text/css" href="/user_static/css/style.css?3">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@hackBCA">

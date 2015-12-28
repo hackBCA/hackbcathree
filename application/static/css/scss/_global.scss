@@ -85,51 +85,23 @@ p {
 }
 
 @media screen and (max-width: 768px) {
-  h1 {
-    font-size: 72px;
-  }
-  h2 {
-    font-size: 48px;
-  }
-  h3 {
-    font-size: 36px;
-  }
-  h4 {
-    font-size: 32px;
-  }
-  h5 {
-    font-size: 24px;
-  }
-  h6 {
-    font-size: 20px;
-  }
-  p {
-    font-size: 16px;
-  }
+  h1 {font-size: 72px;}
+  h2 {font-size: 48px;}
+  h3 {font-size: 36px;}
+  h4 {font-size: 32px;}
+  h5 {font-size: 24px;}
+  h6 {font-size: 20px;}
+  p {font-size: 16px;}
 }
 
 @media screen and (max-width: 480px) {
-  h1 {
-    font-size: 48px;
-  }
-  h2 {
-    font-size: 36px;
-  }
-  h3 {
-    font-size: 32px;
-  }
-  h4 {
-    font-size: 24px;
-  }
-  h5 {
-    font-size: 20px;
-  }
-  h6 {
-    font-size: 18px;
-  }
-  p {
-    font-size: 16px;
-  }
+  h1 {font-size: 48px;}
+  h2 {font-size: 36px;}
+  h3 {font-size: 32px;}
+  h4 {font-size: 24px;}
+  h5 {font-size: 20px;}
+  h6 {font-size: 18px;}
+  p {font-size: 16px;}
 }
 
 a {
@@ -160,25 +132,30 @@ a {
 }
 
 input {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(200, 200, 200, 0.5);
   outline: none;
   box-shadow: none;
   color: #fff;
-  padding: 5px;
+  padding: 15px 30px;
   border: none;
-  border: 2px solid #fff;
   font-size: 20px;
-  height: 25px;
+  margin-bottom: 1%;
+}
 
-  &[type="submit"], &[type="button"] {
-      height: 39px;
-      @include transition(all, 200ms, ease);
+::-webkit-input-placeholder {
+  color: rgb(215, 215, 215);
+}
 
-      &:hover {
-          background-color: #fff;
-          color: #000;
-      }
-  }
+:-moz-placeholder { /* Firefox 18- */
+  color: rgb(215, 215, 215);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: rgb(215, 215, 215);  
+}
+
+:-ms-input-placeholder {  
+  color: rgb(215, 215, 215);  
 }
 
 @keyframes fadein {
@@ -269,6 +246,18 @@ input {
   li {
     list-style: none;
 
+    &.success {
+      background-color: #2ecc71;      
+    }
+
+    &.error {
+      background-color: #e74c3c;      
+    }
+
+    &.warning {
+      background-color: #f39c12;      
+    }
+
     p {
       margin: 0;
       font-size: 1.2em;
@@ -276,18 +265,6 @@ input {
       color: #fff;
       display: inline-block;
       vertical-align: bottom;
-
-      &.success {
-        background-color: #2ecc71;      
-      }
-
-      &.error {
-        background-color: #e74c3c;      
-      }
-
-      &.warning {
-        background-color: #f39c12;      
-      }
     }
   }
 }
