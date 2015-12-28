@@ -10,12 +10,13 @@
           <h2>Account</h2>
         </div>
       </div>
-      <div class="info">
-        <h2>Application Status: {{ status }}</h2>
+      <div class="info {{ status }}">
+        <h2>Application Status: <span>{{ status }}</span></h2>
         <div class="buttons horizontal">
           <a href="/account/application" class="btn">Edit Application</a>
           <a href="/account/settings" class="btn">Account Settings</a>
         </div>
+        <h3 class="message">We will notify your email by February!</h3>
       </div>
     </div>
   </div>
