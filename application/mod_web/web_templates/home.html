@@ -8,8 +8,12 @@
         <h6 id="location">Bergen County Academies, Hackensack NJ</h6>
       </div>
       <div class="buttons horizontal">
-        <a href="/register" class="btn">REGISTER</a>
-        <a href="/login" class="btn">LOGIN</a>
+        {% if current_user.is_authenticated %}
+          <a href="/logout" class="btn">LOGOUT</a>
+        {% else %}
+          <a href="/register" class="btn">REGISTER</a>
+          <a href="/login" class="btn">LOGIN</a>
+        {% endif %}
       </div>
     </div>
   </div>

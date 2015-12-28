@@ -1,0 +1,56 @@
+#account {
+  .container {
+    .header {
+      background-image: url(https://s3.amazonaws.com/hackbcawebsite/landing.png);
+
+      .head-cover {
+        .logo {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+
+    .info {
+      padding: 5%;
+      text-align: center;
+      color: #000;
+
+      h2 {
+        margin-bottom: 2%;
+      }
+
+      .buttons {
+        margin-bottom: 2%;
+      }
+
+      .message {
+        display: none;
+        margin-bottom: 2%;
+      }
+
+      &.complete {
+
+        span {
+          background-color: #2ecc71;
+        }
+
+        .message {
+          display: block;
+        }
+      }
+
+      &.incomplete {
+        span {
+          background-color: #f39c12;
+        }
+      }
+
+      &.not-started {
+        span {
+          background-color: #e74c3c;
+        }
+      }
+    }
+  }
+}

@@ -1,26 +1,22 @@
 .buttons {
   &.horizontal {
-    display: inline-block;
     margin: 10px 0 0 0;
-  }
 
-  .btn {
-    background-color: rgba(43, 147, 201, 0.75);
-    outline: none;
-    box-shadow: none;
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    font-size: 20px;
-    text-decoration: none;
-    margin-right: 10px;
+    .btn {
+      display: inline-block;
+    }
   }
 }
 
-@media screen and (max-width: 480px) {
-  .buttons {
-    .btn {
-      padding: 5px 10px;
-    }
-  }
+.btn {
+  background-color: rgba(43, 147, 201, 0.75);
+  outline: none;
+  box-shadow: none;
+  color: #fff;
+  padding: 15px 30px;
+  border: none;
+  font-size: 20px;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-bottom: 2%;
 }

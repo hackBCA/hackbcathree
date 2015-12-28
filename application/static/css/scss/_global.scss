@@ -84,6 +84,11 @@ p {
   font-size: 20px;
 }
 
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
 @media screen and (max-width: 768px) {
   h1 {font-size: 72px;}
   h2 {font-size: 48px;}
@@ -92,6 +97,10 @@ p {
   h5 {font-size: 24px;}
   h6 {font-size: 20px;}
   p {font-size: 16px;}
+
+  .logo {
+    width: 150px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -102,6 +111,10 @@ p {
   h5 {font-size: 20px;}
   h6 {font-size: 18px;}
   p {font-size: 16px;}
+
+  .logo {
+    width: 100px;
+  }
 }
 
 a {
@@ -247,15 +260,15 @@ input {
     list-style: none;
 
     &.success {
-      background-color: #2ecc71;      
+      background-color: #2ecc71;
     }
 
     &.error {
-      background-color: #e74c3c;      
+      background-color: #e74c3c;
     }
 
     &.warning {
-      background-color: #f39c12;      
+      background-color: #f39c12;
     }
 
     p {
