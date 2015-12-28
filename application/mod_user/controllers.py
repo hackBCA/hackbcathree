@@ -35,8 +35,8 @@ def login(email, password):
 	if user != None:
 		login_user(user)
 
-def logout(_):
-		logout_user()
+def logout():
+	logout_user()
 
 def add_user(email, firstname, lastname, password):
 	num_entries = UserEntry.objects(email = email).count()
@@ -65,8 +65,6 @@ def validate_email(entry):
 	message.set_from("noreply@hackbca.com")
 	message.set_subject("hackBCA III - Account Creation Confirmation")
 	message.set_html("<p></p>")
-
-	print("Here")
 
 	message.add_filter("templates", "enable", "1")
 	message.add_filter("templates", "template_id", CONFIG["SENDGRID_ACCOUNT_CONFIRM_TEMPLATE"])
