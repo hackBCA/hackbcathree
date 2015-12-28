@@ -1,6 +1,5 @@
 from flask import Flask
 from mongoengine import register_connection
-from sassutils.wsgi import SassMiddleware
 
 app = Flask(
     __name__,
@@ -36,10 +35,6 @@ register_connection(
     host = CONFIG["DB_HOST"],
     port = CONFIG["DB_PORT"]
 )
-
-app.wsgi_app = SassMiddleware(app.wsgi_app, {
-    "application": ("mod_web/web_static/css/sass", "mod_web/web_static/css", "/web_static/css")
-})
 
 from application.mod_web import web_module
 app.register_blueprint(web_module)
