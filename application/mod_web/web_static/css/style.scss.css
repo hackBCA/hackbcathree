@@ -1,5 +1,5 @@
 @import url(normalize.css);
-/* line 1, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 1, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -20,63 +20,63 @@
   src: url("/static/fonts/ProximaNova-Extrabold.otf") format("opentype");
   font-weight: 500; }
 
-/* line 25, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 25, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 body {
   font-family: "Proxima Nova Light";
   color: white; }
 
-/* line 46, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 46, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 h1 {
   font-size: 108px;
   margin: 10px 0;
   font-weight: 400; }
 
-/* line 52, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 52, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 h2 {
   font-size: 72px;
   margin: 10px 0;
   font-weight: 400; }
 
-/* line 58, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 58, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 h3 {
   font-size: 48px;
   margin: 10px 0;
   font-weight: 400; }
 
-/* line 64, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 64, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 h4 {
   font-size: 36px;
   margin: 10px 0;
   font-weight: 400; }
 
-/* line 70, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 70, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 h5 {
   font-size: 32px;
   margin: 10px 0;
   font-weight: 400; }
 
-/* line 76, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 76, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 h6 {
   font-size: 24px;
   margin: 10px 0;
   font-weight: 400;
   font-weight: bold; }
 
-/* line 83, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 83, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 p {
   font-size: 20px; }
 
-/* line 87, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 87, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 a {
   color: white; }
 
-/* line 91, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 91, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 .clearfix:after {
   content: "";
   display: table;
   clear: both; }
 
-/* line 98, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 98, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 .mlh #trust_badge {
   position: fixed;
   top: 0;
@@ -86,11 +86,11 @@ a {
   min-width: 60px;
   display: block;
   z-index: 10000; }
-  /* line 108, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+  /* line 108, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
   .mlh #trust_badge img {
     width: 100%; }
 
-/* line 114, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 114, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 input {
   background-color: transparent;
   outline: none;
@@ -101,7 +101,7 @@ input {
   border: 2px solid #fff;
   font-size: 20px;
   height: 25px; }
-  /* line 125, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+  /* line 125, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
   input[type="submit"], input[type="button"] {
     height: 39px;
     -webkit-transition: all 200ms ease;
@@ -109,7 +109,7 @@ input {
     -ms-transition: all 200ms ease;
     -o-transition: all 200ms ease;
     transition: all 200ms ease; }
-    /* line 129, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+    /* line 129, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
     input[type="submit"]:hover, input[type="button"]:hover {
       background-color: #fff;
       color: #000; }
@@ -133,10 +133,10 @@ input {
     opacity: 1; } }
 
 @-ms-keyframes fadein {
-  /* line 152, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+  /* line 152, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
   from {
     opacity: 0; }
-  /* line 153, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+  /* line 153, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
   to {
     opacity: 1; } }
 
@@ -186,7 +186,7 @@ input {
   to {
     bottom: -100px; } }
 
-/* line 199, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 199, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 .flashes {
   width: 100%;
   z-index: 9999;
@@ -208,10 +208,10 @@ input {
   -o-animation-fill-mode: forwards;
   -moz-animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards; }
-  /* line 221, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+  /* line 221, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
   .flashes li {
     list-style: none; }
-    /* line 224, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+    /* line 224, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
     .flashes li p {
       margin: 0;
       font-size: 1.2em;
@@ -219,60 +219,60 @@ input {
       color: #fff;
       display: inline-block;
       vertical-align: bottom; }
-      /* line 232, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+      /* line 232, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
       .flashes li p.success {
         background-color: #2ecc71; }
-      /* line 236, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+      /* line 236, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
       .flashes li p.error {
         background-color: #e74c3c; }
-      /* line 240, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+      /* line 240, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
       .flashes li p.warning {
         background-color: #f39c12; }
 
-/* line 247, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+/* line 247, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
 .pure-g {
   letter-spacing: initial; }
-  /* line 250, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
+  /* line 250, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_global.scss */
   .pure-g [class*="pure-u"] {
     font-family: "Proxima Nova Light"; }
 
-/* line 1, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
+/* line 1, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 9999;
   background-color: rgba(43, 147, 201, 0.75); }
-  /* line 8, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
+  /* line 8, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
   .navbar ul {
     margin: 0;
     padding: 0;
     text-align: center; }
-    /* line 13, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
+    /* line 13, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
     .navbar ul li {
       margin: 0;
       list-style: none;
       color: white;
       display: inline-block;
       padding: 20px 50px; }
-      /* line 20, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
+      /* line 20, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
       .navbar ul li a {
         text-decoration: none; }
-        /* line 23, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
+        /* line 23, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
         .navbar ul li a p {
           padding: 0;
           margin: 0; }
-      /* line 29, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
+      /* line 29, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_navbar.scss */
       .navbar ul li:hover {
         background-color: white;
         color: black; }
 
-/* line 2, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_buttons.scss */
+/* line 2, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_buttons.scss */
 .buttons.horizontal {
   display: inline-block;
   margin: 10px 0 0 0; }
 
-/* line 7, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_buttons.scss */
+/* line 7, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_buttons.scss */
 .buttons .btn {
   background-color: rgba(43, 147, 201, 0.75);
   outline: none;
@@ -284,19 +284,19 @@ input {
   text-decoration: none;
   margin-right: 10px; }
 
-/* line 2, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
+/* line 2, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
 .page-container .page-section {
   width: 100vw;
   padding: 0;
   display: table; }
-  /* line 7, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
+  /* line 7, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
   .page-container .page-section .container {
     display: table-cell;
     vertical-align: middle;
     width: 100%;
     height: 100%;
     position: relative; }
-    /* line 14, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
+    /* line 14, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
     .page-container .page-section .container .header {
       text-align: center;
       -webkit-background-size: cover;
@@ -306,22 +306,22 @@ input {
       background-attachment: scroll;
       background-repeat: no-repeat;
       background-position: center; }
-      /* line 24, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
+      /* line 24, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
       .page-container .page-section .container .header .head-cover {
         background-color: rgba(0, 0, 0, 0.5);
         height: 100%;
         padding: 7.5% 0; }
-      /* line 30, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
+      /* line 30, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
       .page-container .page-section .container .header .title {
         margin: 0; }
-    /* line 35, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
+    /* line 35, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_index.scss */
     .page-container .page-section .container .info {
       text-align: left;
       margin: 10%;
       line-height: 32px;
       color: #000; }
 
-/* line 1, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
+/* line 1, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
 #home {
   height: 100vh;
   background-image: url(https://s3.amazonaws.com/hackbcawebsite/landing.png);
@@ -333,49 +333,49 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   color: #fff; }
-  /* line 13, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
+  /* line 13, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
   #home .container {
     background-color: rgba(0, 0, 0, 0.5); }
-    /* line 16, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
+    /* line 16, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
     #home .container .cover {
       padding: 0 10%; }
-      /* line 19, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
+      /* line 19, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
       #home .container .cover .content {
         color: #fff; }
-        /* line 22, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
+        /* line 22, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_home.scss */
         #home .container .cover .content #title {
           margin-bottom: 0;
           padding-bottom: 0; }
 
-/* line 1, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+/* line 1, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
 #about {
   background: white; }
-  /* line 4, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+  /* line 4, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
   #about .container {
     vertical-align: top; }
-    /* line 8, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+    /* line 8, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
     #about .container .cover .content {
       text-align: center; }
-      /* line 11, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+      /* line 11, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
       #about .container .cover .content .header {
         background-image: url(https://s3.amazonaws.com/hackbcawebsite/landing.png); }
-        /* line 13, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+        /* line 13, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
         #about .container .cover .content .header .head-cover {
           padding: 2.5%; }
-          /* line 16, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
+          /* line 16, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_about.scss */
           #about .container .cover .content .header .head-cover .logo {
             width: 200px; }
 
-/* line 5, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_whenwhere.scss */
+/* line 5, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_whenwhere.scss */
 #whenwhere .container .cover .content #map-container {
   width: 100%;
   height: 400px; }
 
-/* line 3, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_faq.scss */
+/* line 3, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_faq.scss */
 #faq .container .info {
   justify-content: center;
   text-align: center; }
-  /* line 8, /Users/robertkim/dev/hackbcathree/application/mod_web/web_static/css/sass/_faq.scss */
+  /* line 8, /home/eric/Documents/Github/hackbcathree/application/mod_web/web_static/css/sass/_faq.scss */
   #faq .container .info .q-contain .question {
     margin: 0 10px; }
 
