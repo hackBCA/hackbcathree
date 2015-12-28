@@ -12,11 +12,6 @@
 
           .head-cover {
             padding: 2.5%;
-            
-            .logo {
-              width: 200px;
-              height: 200px;
-            }
           }
           background-image: url(https://s3.amazonaws.com/hackbcawebsite/whatishackbca.jpg);
         }
@@ -29,44 +24,6 @@
 
             .image {
               margin: 0 10px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #about {
-    .container {
-      .cover {
-        .content {
-          .header {
-            .head-cover {
-              .logo {
-                width: 150px;
-                height: 150px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #about {
-    .container {
-      .cover {
-        .content {
-          .header {
-            .head-cover {
-              .logo {
-                width: 100px;
-                height: 100px;
-              }
             }
           }
         }
