@@ -1,0 +1,29 @@
+{% extends "user_base.html" %}
+
+{% block content %}
+<div class="page-container">
+  <div class="page-section" id="register">
+    <div class="container">
+      <div class="cover">
+        <div class="content">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h3>Account Settings</h3>
+          
+          <div class="buttons"><a href="/account"><button class="btn">Account Home</button></a></div>
+
+          <h5>Change your password</h5>
+          <form method="POST" action="/account/settings">
+            <input type="hidden" name="setting" value="password"/>
+            {% for field in password_form %}
+              {{ render_field(field) }}
+            {% endfor %}
+            <div class="buttons">
+              <button class="btn" type="submit">Change Password</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

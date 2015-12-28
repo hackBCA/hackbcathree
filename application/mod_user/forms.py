@@ -49,6 +49,24 @@ class RecoverForm(Form):
         if len(password) >= 8 and password != field.data:
             raise ValidationError("Passwords must match.")
 
+class ChangePasswordForm(Form):
+    password = PasswordField("Password", [
+        validators.Required(message = "You must enter your current password."),
+        validators.Length(min = 8, message = "Password must be at least 8 characters.")
+    ], description = "Password")
+
+    new_password = PasswordField("New Password", [
+        validators.Required(message = "You must choose a new password."),
+        validators.Length(min = 8, message = "Password must be at least 8 characters.")
+    ], description = "New Password")
+    confirm_password = PasswordField("Confirm New Password", description = "Confirm New Password")
+
+    def validate_confirm_password(form, field):
+        password = form['new_password'].data
+        if len(password) >= 8 and password != field.data:
+            raise ValidationError("Passwords must match.")
+
+
 class ApplicationForm(Form):
     first_name = TextField("First Name", [
         validators.Required(message = "You must enter a first name."),
