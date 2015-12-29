@@ -105,7 +105,7 @@ def register():
 					flash("Something went wrong.", "error")
 	return render_template("user_register.html", form = form)
 
-@mod_user.route("/application", methods = ["GET", "POST"])
+@mod_user.route("/account/application", methods = ["GET", "POST"])
 def application():
 	form = ApplicationForm(request.form)
 	if request.method == "POST" and form.validate():
