@@ -39,6 +39,7 @@
         color: #000;
 
         a {
+          color: $blue-color-fallback;
           color: $blue-color;
         }
       }

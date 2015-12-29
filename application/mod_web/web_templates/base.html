@@ -51,7 +51,6 @@
     {% include "navbar.html" %}
     {{ render_flash_messages() }}
     {% block content %}{% endblock %}
+    {% block scripts %}{% endblock %}
   </body>
-
-  {% block scripts %}{% endblock %}
 </html>

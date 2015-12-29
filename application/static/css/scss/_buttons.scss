@@ -9,6 +9,7 @@
 }
 
 .btn {
+  background-color: $blue-color-fallback;
   background-color: $blue-color;
   outline: none;
   box-shadow: none;
@@ -21,6 +22,7 @@
   margin-bottom: 2%;
 
   &:hover {
+    background-color: $blue-fade-color-fallback;
     background-color: $blue-fade-color;
   }
 }

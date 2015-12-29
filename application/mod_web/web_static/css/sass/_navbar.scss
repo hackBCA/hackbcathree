@@ -4,6 +4,7 @@
   width: 100%;
   z-index: 9999;
   height: 50px;
+  background-color: $blue-color-fallback;
   background-color: $blue-color;
 
   ul {
@@ -33,6 +34,7 @@
       }
 
       &:hover {
+        background-color: $blue-fade-color-fallback;
         background-color: $blue-fade-color;
       }
     }
