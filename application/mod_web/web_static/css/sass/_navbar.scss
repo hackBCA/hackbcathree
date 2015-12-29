@@ -4,7 +4,7 @@
   width: 100%;
   z-index: 9999;
   height: 50px;
-  background-color: rgba(43, 147, 201, 0.75);
+  background-color: $blue-color;
 
   ul {
     margin: 0;
@@ -33,8 +33,7 @@
       }
 
       &:hover {
-        background-color: white;
-        color: black;
+        background-color: $blue-fade-color;
       }
     }
   }
