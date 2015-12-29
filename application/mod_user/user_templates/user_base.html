@@ -12,6 +12,9 @@
 
 {% macro render_field(field) %}
   <div class="form-elt">
+    {% if field.type == "TextAreaField" %}
+      <h6>{{ field.label }}</h6>
+    {% endif %}
     {{ field(placeholder=field.description) }}
     {% if field.errors %}
       {{ field.errors[0] }}

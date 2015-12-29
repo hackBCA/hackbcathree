@@ -9,7 +9,8 @@
 }
 
 .btn {
-  background-color: rgba(43, 147, 201, 0.75);
+  background-color: $blue-color-fallback;
+  background-color: $blue-color;
   outline: none;
   box-shadow: none;
   color: #fff;
@@ -19,4 +20,9 @@
   text-decoration: none;
   margin-right: 10px;
   margin-bottom: 2%;
+
+  &:hover {
+    background-color: $blue-fade-color-fallback;
+    background-color: $blue-fade-color;
+  }
 }

@@ -1,0 +1,79 @@
+#application {
+  .container {
+    .header {
+      background-image: url(https://s3.amazonaws.com/hackbcawebsite/landing.png);
+    }
+
+    .info {
+      padding: 5%;
+      text-align: center;
+      color: #000;
+
+      input, textarea, select {
+        width: 50%;
+        background-color: rgba(200, 200, 200, 1);
+        color: #000;
+      }
+
+      select {
+        color: #fff;
+      }
+
+      ::-webkit-input-placeholder {
+        color: #fff;
+      }
+
+      :-moz-placeholder { /* Firefox 18- */
+        color: #fff;
+      }
+
+      ::-moz-placeholder {  /* Firefox 19+ */
+        color: #fff;
+      }
+
+      :-ms-input-placeholder {  
+        color: #fff;
+      }
+
+      .buttons {
+        margin-bottom: 2%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #application {
+    .container {
+      .info {
+        input, textarea, select {
+          width: 75%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #application {
+    .container {
+      .info {
+        input, textarea, select {
+          width: 85%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #application {
+    .container {
+      .info {
+        input, textarea, select {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
