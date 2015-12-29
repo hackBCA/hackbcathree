@@ -34,4 +34,4 @@ def foward_sponsors():
 #mod_web.route("/confirm/<token>")
 # def confirm_email(token):
 # 	controller.confirm_email(token)
-# 	return redirect("/?status=confirmed");
+# 	return redirect("/?status=confirmed")

@@ -2,7 +2,10 @@ from flask import Flask
 from mongoengine import register_connection
 import jinja2
 
-class BetterFlask(Flask):
+# Credits for Jinja overloading method:
+# http://fewstreet.com/2015/01/16/flask-blueprint-templates.html
+
+class FlaskApp(Flask):
     def __init__(self):
         Flask.__init__(self, __name__)
         self.jinja_loader = jinja2.ChoiceLoader([
@@ -16,7 +19,7 @@ class BetterFlask(Flask):
         Flask.register_blueprint(self, blueprint)
         self.jinja_loader.loaders[1].mapping[blueprint.name] = blueprint.jinja_loader
 
-app = BetterFlask()
+app = FlaskApp()
 
 try:
     app.config.from_pyfile("../prod_config.cfg")
@@ -39,7 +42,8 @@ except FileNotFoundError:
 
 CONFIG = app.config
 
-#MongoLab
+# MongoLab
+
 register_connection(
     alias = "default", 
     name = CONFIG["DB_NAME"],
