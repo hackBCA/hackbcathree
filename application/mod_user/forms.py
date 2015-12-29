@@ -66,15 +66,53 @@ class ChangePasswordForm(Form):
         if len(password) >= 8 and password != field.data:
             raise ValidationError("Passwords must match.")
 
+gender_choices = [
+    ("Male", "Male"), 
+    ("Female", "Female"), 
+    ("NA", "Rather Not Say")
+]
+
+has_programmed_choices = [
+    ("Yes", "Yes"),
+    ("No", "No")
+]
+
+ethnicity_choices = [
+    ("White", "White"), 
+    ("African American", "African American"), 
+    ("Asian or Pacific Islander", "Asian or Pacific Islander"), 
+    ("American Indian or Alaskan Native", "American Indian or Alaskan Native"), 
+    ("Multiracial", "Multiracial"), 
+    ("Hispanic origin", "Hispanic origin"), 
+    ("NA", "Rather Not Say")
+]
+
+num_hackathons_choices = [
+    ("0", "0"), 
+    ("1", "1"), 
+    ("2", "2"), 
+    ("3", "3"), 
+    ("4", "4"), 
+    ("5+", "5+")
+]
+
+grade_choices = [
+    ("9", "9th"), 
+    ("10", "10th"), 
+    ("11", "11th"), 
+    ("12", "12th")
+]
+
+free_response1_prompt = "What do you hope to learn and accomplish?"
+free_response2_prompt = "What is something you’re proud of (it doesn’t have to be tech related)?"
+free_response3_prompt = "Is there anything else you want us to know?"
 
 class ApplicationForm(Form):
     first_name = TextField("First Name", [
-        validators.Required(message = "You must enter a first name."),
-        validators.Regexp("[-a-zA-Z0-9_ ]+", message = "Invalid name.")
+        validators.Required(message = "You must enter a first name.")
     ], description = "First Name")
     last_name = TextField("Last Name", [
-        validators.Required(message = "You must enter a last name."),
-        validators.Regexp("[-a-zA-Z0-9_ ]+", message = "Invalid name.")
+        validators.Required(message = "You must enter a last name.")
     ], description = "Last Name")
     email = TextField("Email", [
         validators.Required(message = "Enter an email."),
@@ -84,28 +122,28 @@ class ApplicationForm(Form):
         validators.Required(message = "Enter your school's name.")
     ], description = "School Name")
 
-    gender = SelectField("Gender", choices = [("Male","Male"), ("Female","Female"), ("NA", "Rather Not Say")], description = "Gender")
-    has_programmed = SelectField("Never Programmed?", choices = [("Yes", "Yes"), ("No", "No")], description = "Never Programmed?")
-    ethnicity = SelectField("Ethnicity", choices = [("White", "White"), ("African American", "African American"), ("Asian or Pacific Islander", "Asian or Pacific Islander"), ("American Indian or Alaskan Native", "American Indian or Alaskan Native"), ("Multiracial", "Multiracial"), ("Hispanic origin", "Hispanic origin"), ("NA", "Rather Not Say")], description = "Ethnicity")
-    grade = SelectField("Grade", choices = [("9", "9th"), ("10", "10th"), ("11", "11th"), ("12", "12th")], description = "Grade")
-    num_hackathons = SelectField("How many hackathons have you attended?", choices = [("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5+", "5+")], description = "How many hackathons have you attended?")
+    gender = SelectField("Gender", choices = gender_choices, description = "Gender")
+    has_programmed = SelectField("Never Programmed?", choices = has_programmed_choices, description = "Never Programmed?")
+    ethnicity = SelectField("Ethnicity", choices = ethnicity_choices, description = "Ethnicity")
+    grade = SelectField("Grade", choices = grade_choices, description = "Grade")
+    num_hackathons = SelectField("How many hackathons have you attended?", choices = num_hackathons_choices, description = "How many hackathons have you attended?")
 
-    github = TextField("Github", [validators.optional()], description = "Github")
-    linkedin = TextField("LinkedIn", [validators.optional()], description = "LinkedIn")
-    personal_site = TextField("Personal Site", [validators.optional()], description = "Personal Website")
-    other = TextField("other", [validators.optional()], description = "Other")
+    github = TextField("Github", [validators.optional()], description = "Github (Optional)")
+    linkedin = TextField("LinkedIn", [validators.optional()], description = "LinkedIn (Optional)")
+    personal_site = TextField("Personal Site", [validators.optional()], description = "Personal Website (Optional)")
+    other = TextField("other", [validators.optional()], description = "Other (Optional)")
 
-    free_response1 = TextAreaField("What do you hope to learn and accomplish?", [
+    free_response1 = TextAreaField(free_response1_prompt, [
         validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
-    ], description = "What do you hope to learn and accomplish?")
+    ], description = "500 character maximum.")
 
-    free_response2 = TextAreaField("What is something you’re proud of (it doesn’t have to be tech related)?", [
+    free_response2 = TextAreaField(free_response2_prompt, [
         validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
-    ], description = "What is something you’re proud of (it doesn’t have to be tech related)?")
+    ], description = "500 character maximum.")
 
-    free_response3 = TextAreaField("Is there anything else you want us to know?", [
+    free_response3 = TextAreaField(free_response3_prompt, [
         validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
-    ], description = "Is there anything else you want us to know?")
+    ], description = "500 character maximum.")
