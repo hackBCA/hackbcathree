@@ -21,7 +21,7 @@ def login():
 					raise e
 				else:
 					flash("Something went wrong.", "error")
-	return render_template("user_login.html", form = form)
+	return render_template("user.login.html", form = form)
 
 @mod_user.route("/logout", methods=["GET", "POST"])
 @login_required
@@ -45,7 +45,7 @@ def recover():
 					raise e
 				else:
 					flash("Something went wrong." , "error")
-	return render_template("user_forgot.html", form = form)
+	return render_template("user.forgot.html", form = form)
 
 @mod_user.route("/recover/<token>", methods = ["GET", "POST"])
 def recover_change(token):
@@ -62,12 +62,12 @@ def recover_change(token):
 				raise e
 			else:
 				flash("Something went wrong.", "error")
-	return render_template("user_recover.html", email = email, form = form)
+	return render_template("user.recover.html", email = email, form = form)
 
 @mod_user.route("/account")
 @login_required
 def account():
-	return render_template("user_account.html")
+	return render_template("user.account.html")
 
 @mod_user.route("/account/settings", methods = ["GET", "POST"])
 @login_required
@@ -84,7 +84,7 @@ def settings():
 						raise e
 					else:
 						flash("Something went wrong.", "error")
-	return render_template("user_settings.html", password_form = password_form)
+	return render_template("user.settings.html", password_form = password_form)
 
 @mod_user.route("/register", methods = ["GET", "POST"])
 def register():
@@ -103,14 +103,14 @@ def register():
 					raise e
 				else:
 					flash("Something went wrong.", "error")
-	return render_template("user_register.html", form = form)
+	return render_template("user.register.html", form = form)
 
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 def application():
 	form = ApplicationForm(request.form)
 	if request.method == "POST" and form.validate():
 		pass #TO-DO when application controller is done
-	return render_template("user_application.html", form = form)
+	return render_template("user.application.html", form = form)
 
 @mod_user.route("/confirm/<token>")
 def confirm_email(token):

@@ -1,10 +1,22 @@
 from flask import Flask
 from mongoengine import register_connection
+import jinja2
 
-app = Flask(
-    __name__,
-    static_folder = "static"
-)
+class BetterFlask(Flask):
+    def __init__(self):
+        Flask.__init__(self, __name__)
+        self.jinja_loader = jinja2.ChoiceLoader([
+            self.jinja_loader,
+            jinja2.PrefixLoader({}, delimiter = ".")
+        ])
+    def create_global_jinja_loader(self):
+        return self.jinja_loader
+
+    def register_blueprint(self, blueprint):
+        Flask.register_blueprint(self, blueprint)
+        self.jinja_loader.loaders[1].mapping[blueprint.name] = blueprint.jinja_loader
+
+app = BetterFlask()
 
 try:
     app.config.from_pyfile("../prod_config.cfg")

@@ -7,7 +7,7 @@
         }
       }
 
-      background-image: url(https://s3.amazonaws.com/hackbcawebsite/contact.jpg);
+      background-image: url($asset_url_prefix + "contact.jpg");
     }
   }
 }

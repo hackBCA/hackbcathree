@@ -1,9 +1,15 @@
 .buttons {
+
   &.horizontal {
     margin: 10px 0 0 0;
 
     .btn {
       display: inline-block;
+      margin-right: 10px;
+    }
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
@@ -18,8 +24,6 @@
   border: none;
   font-size: 20px;
   text-decoration: none;
-  margin-right: 10px;
-  margin-bottom: 2%;
 
   &:hover {
     background-color: $blue-fade-color-fallback;

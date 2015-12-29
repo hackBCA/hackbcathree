@@ -126,10 +126,22 @@ class ApplicationForm(Form):
     grade = SelectField("Grade", choices = grade_choices, description = "Grade")
     num_hackathons = SelectField("How many hackathons have you attended?", choices = num_hackathons_choices, description = "How many hackathons have you attended?")
 
-    github = TextField("Github", [validators.optional()], description = "Github (Optional)")
-    linkedin = TextField("LinkedIn", [validators.optional()], description = "LinkedIn (Optional)")
-    personal_site = TextField("Personal Site", [validators.optional()], description = "Personal Website (Optional)")
-    other = TextField("other", [validators.optional()], description = "Other (Optional)")
+    github = TextField("Github Link", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Github Link (Optional)")
+    linkedin = TextField("LinkedIn", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "LinkedIn Link (Optional)")
+    personal_site = TextField("Personal Site", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Personal Site Link (Optional)")
+    other = TextField("other", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Other Link (Optional)")
 
     free_response1 = TextAreaField(free_response1_prompt, [
         validators.Required(message = "You must answer this question."),
