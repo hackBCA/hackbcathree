@@ -6,12 +6,10 @@ class RegistrationForm(Form):
         validators.Email(message = "Invalid email address.")
     ], description = "Email")
     first_name = TextField("First Name", [
-        validators.Required(message = "You must enter a first name."),
-        validators.Regexp("[-a-zA-Z0-9_ ]+", message = "Invalid name.")
+        validators.Required(message = "You must enter a first name.")
     ], description = "First Name")
     last_name = TextField("Last Name", [
-        validators.Required(message = "You must enter a last name."),
-        validators.Regexp("[-a-zA-Z0-9_ ]+", message = "Invalid name.")
+        validators.Required(message = "You must enter a last name.")
     ], description = "Last Name")
     password = PasswordField("Password", [
         validators.Required(message = "You must enter a password."),

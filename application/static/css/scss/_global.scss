@@ -152,15 +152,29 @@ a {
   }
 }
 
-input {
+input, textarea, select {
+  background-color: #c8c8c8;
   background-color: rgba(200, 200, 200, 0.5);
   outline: none;
   box-shadow: none;
   color: #fff;
   padding: 15px 30px;
   border: none;
+  border-radius: 0;
   font-size: 20px;
   margin-bottom: 1%;
+}
+
+select {
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background: url(/static/chevrondown.png) 100% no-repeat;
+   background-size: 50px;
+
+   &::-ms-expand {
+    display: none;
+   }
 }
 
 ::-webkit-input-placeholder {
