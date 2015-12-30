@@ -10,6 +10,11 @@
           width: 50%;
         }
 
+        textarea {
+          max-width: 50%;
+          height: 200px;
+        }
+
         p {
           margin-top: 0;
         }
@@ -25,6 +30,10 @@
         .form-elt {
           input, textarea, select {
             width: 75%;
+          }
+
+          textarea {
+            max-width: 75%;
           }
         }
       }
@@ -46,6 +55,9 @@
           input, textarea, select {
             width: 85%;
           }
+          textarea {
+            max-width: 85%;
+          }
         }
       }
     }
@@ -60,6 +72,9 @@
           input, textarea, select {
             width: 100%;
             margin-bottom: 5%;
+          }
+          textarea {
+            max-width: 100%;
           }
         }
       }
