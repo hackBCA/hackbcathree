@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, flash
+from flask import render_template, redirect, request, flash, session
 from flask.ext.login import login_required, current_user
 from . import user_module as mod_user
 from . import controllers as controller
@@ -11,18 +11,23 @@ from application import cache
 def login():
   form = LoginForm(request.form)
   if request.method == "POST" and form.validate():
-    try:
-      controller.login(request.form["email"], request.form["password"])
-      return redirect("/account")
-    except Exception as e:
-      exceptionType = e.args[0]
-      if exceptionType == "AuthenticationError":
+    try:  
+      if controller.verify_user(request.form["email"], request.form["password"]) is None:
         flash("Invalid email and/or password.", "error")
-      else:
-        if(CONFIG["DEBUG"]):
-          raise e
+      else:    
+        confirmed = controller.get_user_attr(request.form["email"], "confirmed")
+
+        if not confirmed:
+          session["email"] = request.form["email"]
+          return redirect("/account/confirm")
         else:
-          flash("Something went wrong.", "error")
+          controller.login(request.form["email"])
+          return redirect("/account")
+    except Exception as e:
+      if(CONFIG["DEBUG"]):
+        raise e
+      else:
+        flash("Something went wrong.", "error")
   return render_template("user.login.html", form = form)
 
 @mod_user.route("/logout", methods=["GET", "POST"])
@@ -70,31 +75,31 @@ def recover_change(token):
 @mod_user.route("/account")
 @login_required
 def account():
-  confirmed = controller.get_user_attr(current_user.email, "confirmed")
-
-  if not confirmed:
-    return redirect("/account/confirm")
-
   return render_template("user.account.html")
 
 @mod_user.route("/account/confirm", methods = ["GET", "POST"])
-@login_required
 def verify():
+  if "email" not in session:
+    return redirect("/")
+
+  email = session["email"]
+
   if request.method == "POST":
-    controller.validate_email(current_user.email)
+    controller.validate_email(email)
     flash("Almost there! Confirmation email resent.", "success")
     return redirect("/")
 
-  confirmed = controller.get_user_attr(current_user.email, "confirmed")
+  confirmed = controller.get_user_attr(email, "confirmed")
 
-  if confirmed:
-    return redirect("/account")
+  print(current_user)
   
   return render_template("user.confirm.html")
 
 @mod_user.route("/account/confirm/<token>")
 def confirm_email(token):
+  session.pop("email")
   controller.confirm_email(token)
+  flash("Account confirmed!", "success")
   return redirect("/?status=confirmed")
 
 @mod_user.route("/account/settings", methods = ["GET", "POST"])

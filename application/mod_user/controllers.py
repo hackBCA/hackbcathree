@@ -46,13 +46,13 @@ def verify_user(email, password):
 	else:
 		return None
 
-def login(email, password):
-	user = verify_user(email, password)
+def login(email):
+	user = load_user(get_user(email).id)
 
 	if user != None:
 		login_user(user)
 	else:
-		raise AuthenticationError
+		raise UserDoesNotExistError
 
 def logout():
 	logout_user()
