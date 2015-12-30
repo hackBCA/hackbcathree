@@ -3,6 +3,7 @@ from mongoengine import *
 
 application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num_hackathons", "github_link", "linkedin_link", "site_link", "other_link", "free_response1", "free_response2", "free_response3"]
 
+
 #Mongo Object
 class UserEntry(Document):
 	email = StringField(required = True)
@@ -37,6 +38,7 @@ class UserEntry(Document):
 
 class User(UserMixin):
 	def __init__(self, uid, email, firstname, lastname, hacker, status):
+
 		self.uid = str(uid)
 		self.email = email
 		self.firstname = firstname
