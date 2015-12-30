@@ -23,9 +23,9 @@
         </div>
       </div>
       <div class="info {{ status }}">
-        <h2>Application Status: <span>{{ status }}</span></h2>
+        <h3>Application Status: <span>{{ current_user.status }}</span></h3>
         <div class="buttons horizontal">
-          <a href="/account/application" class="btn">Edit Application</a>
+          <a href="/account/application" class="btn">{{ "Edit" if current_user.status == "Not Started" or current_user.status == "In Progress" else "View" }} Application</a>
           <a href="/account/settings" class="btn">Account Settings</a>
           <a href="/logout" class="btn">Logout</a>
         </div>

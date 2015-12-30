@@ -12,6 +12,8 @@
 {% with nav_bar = nav_bar %}
   {% include "navbar.html" %}
 {% endwith %}
+
+{% set can_edit = (current_user.status in ["Not Started", "In Progress"]) %}
 <div class="page-container">
   <div class="page-section" id="application">
     <div class="container">
@@ -25,11 +27,11 @@
         <form class="application-form" method="POST" action="">
           <h6>{{ current_user.full_name() }}</h6>
           {% for field in form %}
-            {{ render_field(field) }}
+            {{ render_field(field, not can_edit) }}
           {% endfor %}
           <div class="buttons horizontal">
-            <button class="btn" type="submit" name="save">Save</button>
-            <button class="btn" type="submit" name="submit">Submit</button>
+            <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
+            <button class="btn" type="submit" name="submit" {{ "disabled" if not can_edit }}>Submit</button>
           </div>
         </form>
       </div>
