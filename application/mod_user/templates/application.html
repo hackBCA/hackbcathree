@@ -1,7 +1,17 @@
 {% extends "user.base.html" %}
 
+{% set nav_bar = [
+  ("/#home", "Home", False),
+  ("/account", "Account", False),
+  ("/account/application", "Application", True),
+  ("/account/settings", "Settings", False),
+  ("/logout", "Logout", False)
+] -%}
+
 {% block content %}
-{% include "navbar.html" %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
 <div class="page-container">
   <div class="page-section" id="application">
     <div class="container">
@@ -13,6 +23,7 @@
       </div>
       <div class="info">
         <form class="application-form" method="POST" action="">
+          <h6>{{ current_user.full_name() }}</h6>
           {% for field in form %}
             {{ render_field(field) }}
           {% endfor %}

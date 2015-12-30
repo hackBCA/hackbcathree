@@ -1,11 +1,19 @@
 {% extends "web.base.html" %}
 
-{% set active_page = "index" %}
+{% set nav_bar = [
+  ("#home", "Home", True),
+  ("#about", "About", False),
+  ("#whenwhere", "Info", False),
+  ("#faq", "FAQ", False),
+  ("#guests", "Guests", False),
+  ("#sponsors", "Sponsors", False),
+  ("#contact", "Contact", False)
+] -%}
 
 {% block header %}{% endblock %}
 
 {% block content %}
-  {% with active_page = active_page %}
+  {% with nav_bar = nav_bar %}
     {% include "navbar.html" %}
   {% endwith %}
   <div class="page-container">

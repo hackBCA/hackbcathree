@@ -33,7 +33,50 @@
       }
 
       .info {
-        padding: 10%;
+        padding: 5%;
+        text-align: center;
+        color: #000;
+
+        .form-elt {
+          input, textarea, select {
+            background-color: rgba(200, 200, 200, 1);
+            color: #000;
+          }
+
+          select {
+            color: #fff;
+          }
+
+          ::-webkit-input-placeholder {
+            color: #fff;
+          }
+
+          :-moz-placeholder {
+            color: #fff;
+          }
+
+          ::-moz-placeholder {
+            color: #fff;
+          }
+
+          :-ms-input-placeholder {
+            color: #fff;
+          }
+
+          &.error {
+
+            input, textarea, select {
+              border: 5px #e74c3c solid;
+            }
+          }
+
+          .error-msg {
+            display: none;
+          }
+        }
+        .buttons {
+          margin-bottom: 2%;
+        }
       }
     }
   }

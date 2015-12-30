@@ -1,28 +1,37 @@
 {% extends "user.base.html" %}
 
+{% set nav_bar = [
+  ("/#home", "Home", False),
+  ("/account", "Account", False),
+  ("/account/application", "Application", False),
+  ("/account/settings", "Settings", True),
+  ("/logout", "Logout", False)
+] -%}
+
 {% block content %}
-{% include "navbar.html" %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
 <div class="page-container">
   <div class="page-section" id="register">
     <div class="container">
-      <div class="cover">
-        <div class="content">
+      <div class="header">
+        <div class="head-cover">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
           <h3>Account Settings</h3>
-          
-          <div class="buttons"><a href="/account"><button class="btn">Account Home</button></a></div>
-
-          <h5>Change your password</h5>
-          <form method="POST" action="/account/settings">
-            <input type="hidden" name="setting" value="password"/>
-            {% for field in password_form %}
-              {{ render_field(field) }}
-            {% endfor %}
-            <div class="buttons">
-              <button class="btn" type="submit">Change Password</button>
-            </div>
-          </form>
         </div>
+      </div>
+      <div class="info">
+        <h5>Change your password</h5>
+        <form method="POST" action="/account/settings">
+          <input type="hidden" name="setting" value="password"/>
+          {% for field in password_form %}
+            {{ render_field(field) }}
+          {% endfor %}
+          <div class="buttons">
+            <button class="btn" type="submit">Change Password</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -21,7 +21,10 @@ class User(UserMixin):
 		self.lastname = lastname
 
 	def is_authenticated(self):
-	    return True
+		return True
 
 	def get_id(self):
-	    return self.uid
+		return self.uid
+
+	def full_name(self):
+		return self.firstname + " " + self.lastname
