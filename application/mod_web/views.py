@@ -1,7 +1,9 @@
 from flask import *
 from . import web_module as mod_web
 from . import controllers as controller
+from application import cache
 
+@cache.cached()
 @mod_web.route("/", methods = ["GET", "POST"])
 def index():
 	if request.method == "POST":
@@ -23,6 +25,7 @@ def index():
 			return render_template("web.index.html")
 	return render_template("web.index.html")
 
+@cache.cached()
 @mod_web.route("/sponsors", methods = ["GET"])
 def sponsors():
     return mod_web.send_static_file("sponsors.pdf")
