@@ -1,10 +1,10 @@
 from flask import Flask
 from mongoengine import register_connection
 import jinja2
+from flask.ext.cache import Cache
 
 # Credits for Jinja overloading method:
 # http://fewstreet.com/2015/01/16/flask-blueprint-templates.html
-
 class FlaskApp(Flask):
     def __init__(self):
         Flask.__init__(self, __name__)
@@ -43,7 +43,6 @@ except FileNotFoundError:
 CONFIG = app.config
 
 # MongoLab
-
 register_connection(
     alias = "default", 
     name = CONFIG["DB_NAME"],
@@ -52,6 +51,9 @@ register_connection(
     host = CONFIG["DB_HOST"],
     port = CONFIG["DB_PORT"]
 )
+
+# Cache
+cache = Cache(app,config={"CACHE_TYPE": "simple", "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 7})
 
 from application.mod_web import web_module
 app.register_blueprint(web_module)
