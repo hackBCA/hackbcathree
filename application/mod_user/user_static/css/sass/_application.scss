@@ -9,6 +9,10 @@
         input, textarea, select {
           width: 50%;
         }
+
+        p {
+          margin-top: 0;
+        }
       }
     }
   }
@@ -18,8 +22,10 @@
   #application {
     .container {
       .info {
-        input, textarea, select {
-          width: 75%;
+        .form-elt {
+          input, textarea, select {
+            width: 75%;
+          }
         }
       }
     }
@@ -29,9 +35,17 @@
 @media screen and (max-width: 768px) {
   #application {
     .container {
+      .header {
+        .head-cover {
+          padding: 15% 0;
+        }
+      }
+
       .info {
-        input, textarea, select {
-          width: 85%;
+        .form-elt {
+          input, textarea, select {
+            width: 85%;
+          }
         }
       }
     }
@@ -42,9 +56,11 @@
   #application {
     .container {
       .info {
-        input, textarea, select {
-          width: 100%;
-          margin-bottom: 5%;
+        .form-elt {
+          input, textarea, select {
+            width: 100%;
+            margin-bottom: 5%;
+          }
         }
       }
     }

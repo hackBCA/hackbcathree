@@ -23,17 +23,63 @@
       </div>
       <div class="info">
         <form class="application-form" method="POST" action="">
-          <h6>{{ current_user.full_name() }}</h6>
+          <h4>{{ current_user.full_name() }}</h4>
           {% for field in form %}
             {{ render_field(field) }}
           {% endfor %}
           <div class="buttons horizontal">
             <button class="btn" type="submit" name="save">Save</button>
-            <button class="btn" type="submit" name="submit">Submit</button>
+            <button class="btn" onclick="verify_submit(); return false;">Submit</button>
+          </div>
+          <div class="buttons horizontal hide" id="verify-submit">
+            <h6>Are you sure?</h6>
+            <button class="btn" type="submit" name="submit">Yes</button>
+            <button class="btn" onclick="decline_verify(); return false;">No</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+  var verify_submit = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+
+  var decline_verify = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide"); 
+  }
+
+  if (!Array.prototype.forEach) {
+    Array.prototype.forEach = function(fun /*, thisp*/) {
+      var len = this.length;
+         
+      if (typeof fun != "function")
+      throw new TypeError();
+
+      var thisp = arguments[1];
+      for (var i = 0; i < len; i++) {
+        if (i in this)
+          fun.call(thisp, this[i], i, this);
+      }
+    };
+  }
+
+  var char_counter = function() {
+    questions = document.querySelectorAll("textarea");
+    console.log(questions);
+    for (var i = 0; i < questions.length; i++) {
+      questions[i].onkeyup = function () {
+        document.querySelector(".count#" + this.id).innerHTML = "Characters left: " + (500 - this.value.length);
+      }
+    }
+  }
+
+  char_counter();
+</script>
 {% endblock %}
