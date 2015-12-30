@@ -40,7 +40,6 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?3">
     <link rel="stylesheet" type="text/css" href="/{% block static_folder %}{% endblock %}/css/style.css?3">
-    <link rel="stylesheet" type="text/css" href="/static/css/responsive-nav.css">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@hackBCA">
     <meta name="twitter:title" content="hackBCA">
@@ -57,7 +56,7 @@
     <meta property="fb:admins" content="1762730074" />
     
     <script type="text/javascript" src="/static/js/modernizr.js"></script>
-    <script type="text/javascript" src="/static/js/responsive-nav.min.js"></script>
+    <script type="text/javascript" src="/static/js/responsive-nav.js"></script>
     {% block header %}{% endblock %}
   </head>
   <body>
@@ -65,9 +64,8 @@
     {{ render_flash_messages() }}
     {% block content %}{% endblock %}
   </body>
-
-  <script>
-    var nav = responsiveNav(".nav-collapse", { animate: true, openPos: "relative" });
-  </script>
+  <!-- // <script src="/static/js/fastclick.js"></script> -->
+  <script src="/static/js/scroll.js"></script>
+  <script src="/static/js/fixed-responsive-nav.js"></script>
   {% block scripts %}{% endblock %}
 </html>
