@@ -12,7 +12,7 @@ class UserEntry(Document):
 	firstname = StringField(required = True)
 	lastname = StringField(required = True)	
 
-	verified = BooleanField(required = False, default = False)
+	confirmed = BooleanField(required = False, default = False)
 
 	status = StringField(default = "Not Started")
 	# In Progress, Submitted, Accepted, Waitlist, Denied

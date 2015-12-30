@@ -66,7 +66,7 @@ def add_user(email, firstname, lastname, password):
 	new_entry = UserEntry(email = email, hashed = hashed, firstname = firstname, lastname = lastname)
 	new_entry.save()
 	
-	validate_email(new_entry)
+	validate_email(email)
 
 def tokenize_email(email):
 	return ts.dumps(email, salt = CONFIG["EMAIL_TOKENIZER_SALT"])
@@ -98,10 +98,11 @@ def change_password(email, password):
 	account.hashed = hashed
 	account.save()
 
-def validate_email(entry):
-	token = tokenize_email(entry.email)
+def validate_email(email):
+	token = tokenize_email(email)
+
 	message = sendgrid.Mail()
-	message.add_to(entry.email)
+	message.add_to(email)
 	message.set_from("noreply@hackbca.com")
 	message.set_subject("hackBCA III - Account Creation Confirmation")
 	message.set_html("<p></p>")
@@ -115,7 +116,7 @@ def validate_email(entry):
 def confirm_email(token):
 	email = detokenize_email(token)
 	entry = UserEntry.objects(email = email)[0]
-	entry.verified = True
+	entry.confirmed = True
 	entry.save()
 
 def get_user_attr(email, attr):

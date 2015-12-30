@@ -70,7 +70,32 @@ def recover_change(token):
 @mod_user.route("/account")
 @login_required
 def account():
+  confirmed = controller.get_user_attr(current_user.email, "confirmed")
+
+  if not confirmed:
+    return redirect("/account/confirm")
+
   return render_template("user.account.html")
+
+@mod_user.route("/account/confirm", methods = ["GET", "POST"])
+@login_required
+def verify():
+  if request.method == "POST":
+    controller.validate_email(current_user.email)
+    flash("Almost there! Confirmation email resent.", "success")
+    return redirect("/")
+
+  confirmed = controller.get_user_attr(current_user.email, "confirmed")
+
+  if confirmed:
+    return redirect("/account")
+  
+  return render_template("user.confirm.html")
+
+@mod_user.route("/account/confirm/<token>")
+def confirm_email(token):
+  controller.confirm_email(token)
+  return redirect("/?status=confirmed")
 
 @mod_user.route("/account/settings", methods = ["GET", "POST"])
 @login_required
@@ -96,7 +121,7 @@ def register():
   if request.method == "POST" and form.validate():
     try:
       controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"])
-      flash("Almost there! Check your inbox for a verification email to confirm your account.", "success")
+      flash("Almost there! Check your inbox for an email to confirm your account.", "success")
       return redirect("/")
     except Exception as e:
       exceptionType = e.args[0]
@@ -133,7 +158,3 @@ def application():
     form = ApplicationForm(obj = user)  
   return render_template("user.application.html", form = form)
 
-@mod_user.route("/confirm/<token>")
-def confirm_email(token):
-  controller.confirm_email(token)
-  return redirect("/?status=confirmed")
