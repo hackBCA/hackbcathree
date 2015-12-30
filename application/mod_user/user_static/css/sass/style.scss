@@ -1,3 +1,6 @@
+$asset_url_prefix: "https://s3.amazonaws.com/hackbcawebsite/";
+// $asset_url_prefix: "/static/local/";
+
 @import "_index.scss";
 @import "_register.scss";
 @import "_login.scss";

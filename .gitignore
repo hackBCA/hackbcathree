@@ -73,5 +73,8 @@ ez_setup.py
 .sass-cache/
 *.css.map
 
+# Local files
+application/static/local/
+
 # Logging
 *.log

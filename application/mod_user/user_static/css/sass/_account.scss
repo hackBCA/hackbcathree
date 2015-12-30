@@ -1,7 +1,7 @@
 #account {
   .container {
     .header {
-      background-image: url(https://s3.amazonaws.com/hackbcawebsite/landing.png);
+      background-image: url($asset_url_prefix + "landing.png");
     }
 
     .info {

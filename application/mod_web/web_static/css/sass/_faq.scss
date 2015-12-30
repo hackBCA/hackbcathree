@@ -2,7 +2,7 @@
   .container {
 
     .header {
-      background-image: url(https://s3.amazonaws.com/hackbcawebsite/faq.jpg);
+      background-image: url($asset_url_prefix + "faq.jpg");
     }
 
     .info {

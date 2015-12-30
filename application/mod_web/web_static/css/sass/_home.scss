@@ -1,6 +1,6 @@
 #home {
   height: 100vh;
-  background-image: url(https://s3.amazonaws.com/hackbcawebsite/landing.png);
+  background-image: url($asset_url_prefix + "landing.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
