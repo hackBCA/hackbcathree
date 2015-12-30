@@ -29,7 +29,7 @@ $blue-fade-color: rgba(150, 211, 220, 0.75);
 }
 
 body {
-  font-family: "Proxima Nova Light";
+  font-family: "Proxima Nova Light", Helvetica;
   color: white;
 }
 
@@ -169,7 +169,9 @@ select {
   -webkit-appearance: none;
    -moz-appearance: none;
    appearance: none;
-   background: url(/static/chevrondown.png) 100% no-repeat;
+   background-image: url(/static/chevrondown.png);
+   background-position: 100%;
+   background-repeat: no-repeat;
    background-size: 50px;
 
    &::-ms-expand {
@@ -181,11 +183,11 @@ select {
   color: rgb(215, 215, 215);
 }
 
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
   color: rgb(215, 215, 215);
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
+::-moz-placeholder {
   color: rgb(215, 215, 215);  
 }
 
@@ -305,12 +307,12 @@ select {
 }
 
 .pure-g {
-  -webkit-justify-content: center; /* Safari */
+  -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: initial;
   text-align: center;
 
   [class *="pure-u"] {
-    font-family: "Proxima Nova Light";
+    font-family: "Proxima Nova Light", Helvetica;
   }
 }

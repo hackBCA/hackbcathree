@@ -1,5 +1,11 @@
 from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, validators, ValidationError
 
+type_account_choices = [
+    ("", "Hacker or Mentor?"),
+    ("hacker", "Hacker"),
+    ("mentor", "Mentor")
+]
+
 class RegistrationForm(Form):
     email = TextField("Email", [
         validators.Required(message = "Enter an email."),
@@ -16,6 +22,7 @@ class RegistrationForm(Form):
         validators.Length(min = 8, message = "Password must be at least 8 characters.")
     ], description = "Password")
     confirm_password = PasswordField("Confirm Password", description = "Confirm Password")
+    type_account = SelectField("Hacker or Mentor?", choices = type_account_choices, description = "Hacker or Mentor?")
 
     def validate_confirm_password(form, field):
         password = form['password'].data
@@ -65,24 +72,27 @@ class ChangePasswordForm(Form):
             raise ValidationError("Passwords must match.")
 
 gender_choices = [
-    ("Male", "Male"), 
-    ("Female", "Female"), 
-    ("NA", "Rather Not Say")
+    ("", "Gender"),
+    ("male", "Male"), 
+    ("female", "Female"),
+    ("rns", "Rather Not Say")
 ]
 
-has_programmed_choices = [
-    ("Yes", "Yes"),
-    ("No", "No")
+beginner_choices = [
+    ("", "Are you a beginner?"),
+    ("yes", "Yes"),
+    ("no", "No")
 ]
 
 ethnicity_choices = [
-    ("White", "White"), 
-    ("African American", "African American"), 
-    ("Asian or Pacific Islander", "Asian or Pacific Islander"), 
-    ("American Indian or Alaskan Native", "American Indian or Alaskan Native"), 
-    ("Multiracial", "Multiracial"), 
-    ("Hispanic origin", "Hispanic origin"), 
-    ("NA", "Rather Not Say")
+    ("white", "White"), 
+    ("african_american", "African American"), 
+    ("asian_pacific", "Asian or Pacific Islander"), 
+    ("american_indian_alaskan_native", "American Indian or Alaskan Native"), 
+    ("multiracial", "Multiracial"), 
+    ("hispanic", "Hispanic origin"),
+    ("other", "Other"),
+    ("rns", "Rather Not Say")
 ]
 
 num_hackathons_choices = [
@@ -91,7 +101,7 @@ num_hackathons_choices = [
     ("2", "2"), 
     ("3", "3"), 
     ("4", "4"), 
-    ("5+", "5+")
+    ("5", "5+")
 ]
 
 grade_choices = [
@@ -101,35 +111,37 @@ grade_choices = [
     ("12", "12th")
 ]
 
-free_response1_prompt = "What do you hope to learn and accomplish?"
+free_response1_prompt = "What do you hope to learn and accomplish at hackBCA?"
 free_response2_prompt = "What is something you’re proud of (it doesn’t have to be tech related)?"
 free_response3_prompt = "Is there anything else you want us to know?"
 
 class ApplicationForm(Form):
-    first_name = TextField("First Name", [
-        validators.Required(message = "You must enter a first name.")
-    ], description = "First Name")
-    last_name = TextField("Last Name", [
-        validators.Required(message = "You must enter a last name.")
-    ], description = "Last Name")
-    email = TextField("Email", [
-        validators.Required(message = "Enter an email."),
-        validators.Email(message = "Invalid email address.")
-    ], description = "Email")
     school = TextField("School Name", [
         validators.Required(message = "Enter your school's name.")
     ], description = "School Name")
 
     gender = SelectField("Gender", choices = gender_choices, description = "Gender")
-    has_programmed = SelectField("Never Programmed?", choices = has_programmed_choices, description = "Never Programmed?")
+    beginner = SelectField("Are you a beginner?", choices = beginner_choices, description = "Are you a beginner?")
     ethnicity = SelectField("Ethnicity", choices = ethnicity_choices, description = "Ethnicity")
     grade = SelectField("Grade", choices = grade_choices, description = "Grade")
     num_hackathons = SelectField("How many hackathons have you attended?", choices = num_hackathons_choices, description = "How many hackathons have you attended?")
 
-    github = TextField("Github", [validators.optional()], description = "Github (Optional)")
-    linkedin = TextField("LinkedIn", [validators.optional()], description = "LinkedIn (Optional)")
-    personal_site = TextField("Personal Site", [validators.optional()], description = "Personal Website (Optional)")
-    other = TextField("other", [validators.optional()], description = "Other (Optional)")
+    github = TextField("Github Link", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Github Link (Optional)")
+    linkedin = TextField("LinkedIn", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "LinkedIn Link (Optional)")
+    personal_site = TextField("Personal Site", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Personal Site Link (Optional)")
+    other = TextField("other", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Other Link (Optional)")
 
     free_response1 = TextAreaField(free_response1_prompt, [
         validators.Required(message = "You must answer this question."),

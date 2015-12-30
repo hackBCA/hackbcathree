@@ -1,7 +1,7 @@
 #sponsors {
   .container {
     .header {
-      background-image: url(https://s3.amazonaws.com/hackbcawebsite/sponsors.jpg);
+      background-image: url($asset_url_prefix + "sponsors.jpg");
     }
     .info {
       text-align: center;

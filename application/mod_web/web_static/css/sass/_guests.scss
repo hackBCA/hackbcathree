@@ -1,7 +1,7 @@
 #guests {
   .container {
     .header {
-      background-image: url(https://s3.amazonaws.com/hackbcawebsite/specialguests.jpg);
+      background-image: url($asset_url_prefix + "specialguests.jpg");
     }
 
     .info {

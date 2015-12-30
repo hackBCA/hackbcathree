@@ -12,16 +12,16 @@ def index():
 			except Exception as e:
 				if(e.args[0] == "EmailExistsError"):
 					flash(e.args[1], "error")
-					return render_template("index.html")
+					return render_template("web.index.html")
 				pass
 			flash("Verification email sent.", "success")
-			return render_template("index.html")
+			return render_template("web.index.html")
 	if request.args.get("status"):
 		status = request.args.get("status")
 		if status == "confirmed":
 			flash("Subscription confirmed.", "success")
-			return render_template("index.html")
-	return render_template("index.html")
+			return render_template("web.index.html")
+	return render_template("web.index.html")
 
 @mod_web.route("/sponsors", methods = ["GET"])
 def sponsors():
@@ -34,4 +34,4 @@ def foward_sponsors():
 #mod_web.route("/confirm/<token>")
 # def confirm_email(token):
 # 	controller.confirm_email(token)
-# 	return redirect("/?status=confirmed");
+# 	return redirect("/?status=confirmed")

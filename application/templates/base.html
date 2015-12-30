@@ -11,13 +11,13 @@
 {% endmacro %}
 
 {% macro render_field(field) %}
-  <div class="form-elt">
+  <div class="form-elt {% if field.errors %}error{% endif %}">
     {% if field.type == "TextAreaField" %}
       <h6>{{ field.label }}</h6>
     {% endif %}
     {{ field(placeholder=field.description) }}
     {% if field.errors %}
-      {{ field.errors[0] }}
+      <p class="error-msg">{{ field.errors[0] }}</p>
     {% endif %}
   </div>
 {% endmacro %}
@@ -30,17 +30,17 @@
     <title>hackBCA III</title>
     <link rel="icon" href="/static/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <!--[if lte IE 8]>
-      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+      <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
     <![endif]-->
     <!--[if gt IE 8]><!-->
-      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+      <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
     <!--<![endif]-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?3">
-    <link rel="stylesheet" type="text/css" href="/user_static/css/style.css?3">
-
+    <link rel="stylesheet" type="text/css" href="/{% block static_folder %}{% endblock %}/css/style.css?3">
+    <link rel="stylesheet" type="text/css" href="/static/css/responsive-nav.css">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@hackBCA">
     <meta name="twitter:title" content="hackBCA">
@@ -57,12 +57,17 @@
     <meta property="fb:admins" content="1762730074" />
     
     <script type="text/javascript" src="/static/js/modernizr.js"></script>
+    <script type="text/javascript" src="/static/js/responsive-nav.min.js"></script>
     {% block header %}{% endblock %}
   </head>
   <body>
+    {% include "navbar.html" %}
     {{ render_flash_messages() }}
     {% block content %}{% endblock %}
   </body>
 
+  <script>
+    var nav = responsiveNav(".nav-collapse", { animate: true, openPos: "relative" });
+  </script>
   {% block scripts %}{% endblock %}
 </html>

@@ -1,4 +1,4 @@
-{% extends "user_base.html" %}
+{% extends "user.base.html" %}
 
 {% block content %}
 <div class="page-container">
@@ -8,6 +8,7 @@
         <div class="head-cover">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
           <h2>Account</h2>
+          <h4>Hey, {{ current_user.firstname }} {{ current_user.lastname }}!</h4>
         </div>
       </div>
       <div class="info {{ status }}">
