@@ -19,7 +19,7 @@ def load_user(user_id):
 	if user_entries.count() != 1:
 		return None
 	currUser = user_entries[0]
-	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname) 
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.hacker) 
 	return user
 
 def get_user(email):
@@ -113,3 +113,33 @@ def confirm_email(token):
 	entry = UserEntry.objects(email = email)[0]
 	entry.verified = True
 	entry.save()
+
+def get_application(email):
+	entries = UserEntry.objects(email = email)
+	
+	if entries.count() == 0:
+		raise Exception("UserDoesNotExistError", "Account with given email does not exist.")
+
+	user = entries[0]
+
+	app = {}
+	for key in application_fields:
+		print(key, ": ", getattr(user, key))
+		if getattr(user, key) is not None:
+			app[key] = getattr(user, key)
+	return app
+
+def save_application(email, app):
+	entries = UserEntry.objects(email = email)
+	
+	if entries.count() == 0:
+		raise Exception("UserDoesNotExistError", "Account with given email does not exist.")
+	
+	user = entries[0]
+
+	for key in app:		
+		if key == "save" or key == "submit":
+			continue
+		setattr(user, key, app[key])
+
+	user.save()
