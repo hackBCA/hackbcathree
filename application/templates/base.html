@@ -3,7 +3,7 @@
     {% if messages %}
       <ul class="flashes">
         {% for category, message in messages %}
-          <li class="{{ category }}"><p>{{ category.capitalize() }}: {{ message }}</p></li>
+          <li class="{{ category }}"><p>{% if category is not "neutral" %}{{ category.capitalize() }}{% endif %}: {{ message }}</p></li>
         {% endfor %}
       </ul>
     {% endif %}
