@@ -126,19 +126,19 @@ class ApplicationForm(Form):
     grade = SelectField("Grade", choices = grade_choices, description = "Grade")
     num_hackathons = SelectField("How many hackathons have you attended?", choices = num_hackathons_choices, description = "How many hackathons have you attended?")
 
-    github = TextField("Github Link", [
+    github_link = TextField("Github Link", [
         validators.optional(),
         validators.URL(message = "Invalid URL.")
     ], description = "Github Link (Optional)")
-    linkedin = TextField("LinkedIn", [
+    linkedin_link = TextField("LinkedIn", [
         validators.optional(),
         validators.URL(message = "Invalid URL.")
     ], description = "LinkedIn Link (Optional)")
-    personal_site = TextField("Personal Site", [
+    site_link = TextField("Personal Site", [
         validators.optional(),
         validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
-    other = TextField("other", [
+    other_link = TextField("other", [
         validators.optional(),
         validators.URL(message = "Invalid URL.")
     ], description = "Other Link (Optional)")

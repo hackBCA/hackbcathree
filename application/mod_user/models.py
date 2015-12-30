@@ -1,24 +1,50 @@
 from flask.ext.login import LoginManager, UserMixin
 from mongoengine import *
 
+application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num_hackathons", "github_link", "linkedin_link", "site_link", "other_link", "free_response1", "free_response2", "free_response3"]
+
+
 #Mongo Object
 class UserEntry(Document):
+	email = StringField(required = True)
+	hashed = StringField(required = True)
+
 	firstname = StringField(required = True)
 	lastname = StringField(required = True)	
-	email = StringField(required = True)
 
 	verified = BooleanField(required = False, default = False)
 
-	hashed = StringField(required = True)
-	def __repr__(self):
-		return ', '.join([self.firstname, self.lastname, self.email])
+	status = StringField(default = "Not Started")
+	# In Progress, Submitted, Accepted, Waitlist, Denied
+
+	hacker = BooleanField(required = True, default = True)
+
+	school = StringField()
+	gender = StringField()
+	beginner = StringField()
+	ethnicity = StringField()
+	grade = StringField()
+	num_hackathons = StringField()
+	
+	github_link = StringField()
+	linkedin_link = StringField()
+	site_link = StringField()
+	other_link = StringField()
+
+	free_response1 = StringField()
+	free_response2 = StringField()
+	free_response3 = StringField()	
+
 
 class User(UserMixin):
-	def __init__(self, uid, email, firstname, lastname):
+	def __init__(self, uid, email, firstname, lastname, hacker, status):
+
 		self.uid = str(uid)
 		self.email = email
 		self.firstname = firstname
 		self.lastname = lastname
+		self.hacker = hacker
+		self.status = status
 
 	def is_authenticated(self):
 		return True
