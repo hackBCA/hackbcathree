@@ -44,6 +44,7 @@
   }
   .js .nav-collapse.closed {
     max-height: 50px;
+    height: 50px;
   }
   .js .nav-collapse.closed p {
     margin: 0;
@@ -205,7 +206,7 @@
   position: relative;
   overflow: hidden;
   width: 60px;
-  height: 55px;
+  height: 50px;
   float: right;
 }
 
@@ -227,8 +228,3 @@
   font-size: 24px;
   content: "\78"; /* Close icon */
 }
-
-
-
-
-
