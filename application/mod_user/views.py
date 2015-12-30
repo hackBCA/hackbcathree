@@ -87,11 +87,9 @@ def verify():
   if request.method == "POST":
     controller.validate_email(email)
     flash("Almost there! Confirmation email resent.", "success")
-    return redirect("/")
+    return redirect("/login")
 
   confirmed = controller.get_user_attr(email, "confirmed")
-
-  print(current_user)
   
   return render_template("user.confirm.html")
 
