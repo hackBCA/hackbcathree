@@ -11,7 +11,7 @@
 {% endmacro %}
 
 {% macro render_field(field) %}
-  <div class="form-elt {% if field.errors %}error{% endif %}">
+  <div class="form-elt{% if field.errors %} error{% endif %}">
     {% if field.type == "TextAreaField" %}
       <h6>{{ field.label }}</h6>
     {% endif %}

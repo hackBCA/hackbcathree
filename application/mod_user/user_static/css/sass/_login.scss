@@ -3,17 +3,52 @@
     .header {
       background-image: url($asset_url_prefix + "whatishackbca.jpg"); 
     }
+
+    .info {
+      input, textarea, select {
+        width: 25%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #login {
+    .container {
+      .info {
+        input, textarea, select {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #login {
+    .container {
+      .header {
+        .head-cover {
+          padding: 15% 0;
+        }
+      }
+
+      .info {
+        input, textarea, select {
+          width: 75%;
+        }
+      }
+    }
   }
 }
 
 @media screen and (max-width: 480px) {
   #login {
     .container {
-      .cover {
-        .content {
-          input {
-            margin-bottom: 5%;
-          }
+      .info {
+        input, textarea, select {
+          width: 100%;
+          margin-bottom: 5%;
         }
       }
     }

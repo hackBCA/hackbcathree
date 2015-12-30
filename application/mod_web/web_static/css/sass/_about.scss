@@ -4,28 +4,45 @@
   .container {
     vertical-align: top;
 
-    .cover {
-      .content {
-        text-align: center;
+    .header {
+      .head-cover {
+        padding: 2.5%;
+      }
+      background-image: url($asset_url_prefix + "whatishackbca.jpg");
+    }
 
-        .header {
+    .info {
+      .images {
+        .i-contain {
+          margin: 2% 0;
 
-          .head-cover {
-            padding: 2.5%;
+          .image {
+            margin: 0 10px;
           }
-          background-image: url($asset_url_prefix + "whatishackbca.jpg");
         }
       }
+    }
+  }
+}
 
-      .info {
-        .images {
-          .i-contain {
-            margin: 2% 0;
+@media screen and (max-width: 1024px) {
+  #about {
+    .container {
+      .header {
+        .head-cover {
+          padding: 12.5% 0;
+        }
+      }
+    }
+  }
+}
 
-            .image {
-              margin: 0 10px;
-            }
-          }
+@media screen and (max-width: 768px) {
+  #about {
+    .container {
+      .header {
+        .head-cover {
+          padding: 25% 0;
         }
       }
     }
