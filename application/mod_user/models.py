@@ -1,7 +1,7 @@
 from flask.ext.login import LoginManager, UserMixin
 from mongoengine import *
 
-application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num_hackathons", "github_link", "linkedin_link", "site_link", "other_link", "resp1", "resp2", "resp3"]
+application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num_hackathons", "github_link", "linkedin_link", "site_link", "other_link", "free_response1", "free_response2", "free_response3"]
 
 #Mongo Object
 class UserEntry(Document):
@@ -12,6 +12,9 @@ class UserEntry(Document):
 	lastname = StringField(required = True)	
 
 	verified = BooleanField(required = False, default = False)
+
+	status = StringField(default = "Not Started")
+	# In Progress, Submitted, Accepted, Waitlist, Denied
 
 	hacker = BooleanField(required = True, default = True)
 
@@ -27,18 +30,19 @@ class UserEntry(Document):
 	site_link = StringField()
 	other_link = StringField()
 
-	resp1 = StringField()
-	resp2 = StringField()
-	resp3 = StringField()	
+	free_response1 = StringField()
+	free_response2 = StringField()
+	free_response3 = StringField()	
 
 
 class User(UserMixin):
-	def __init__(self, uid, email, firstname, lastname, hacker):
+	def __init__(self, uid, email, firstname, lastname, hacker, status):
 		self.uid = str(uid)
 		self.email = email
 		self.firstname = firstname
 		self.lastname = lastname
 		self.hacker = hacker
+		self.status = status
 
 	def is_authenticated(self):
 		return True

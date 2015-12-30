@@ -7,6 +7,10 @@ import sendgrid
 import time
 from itsdangerous import URLSafeTimedSerializer
 
+AuthenticationError = Exception("AuthenticationError", "Invalid credentials.")
+UserExistsError = Exception("UserExistsError", "Email already exists in database.")
+UserDoesNotExistError = Exception("UserDoesNotExistError", "Account with given email does not exist.")
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -19,7 +23,7 @@ def load_user(user_id):
 	if user_entries.count() != 1:
 		return None
 	currUser = user_entries[0]
-	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.hacker) 
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.hacker, currUser.status) 
 	return user
 
 def get_user(email):
@@ -48,7 +52,7 @@ def login(email, password):
 	if user != None:
 		login_user(user)
 	else:
-		raise Exception("AuthenticationError", "Invalid credentials.")
+		raise AuthenticationError
 
 def logout():
 	logout_user()
@@ -56,7 +60,7 @@ def logout():
 def add_user(email, firstname, lastname, password):
 	existingUser = get_user(email)
 	if existingUser is not None:
-		raise Exception("UserExistsError", "Username already exists in database.")
+		raise UserExistsError
 	
 	hashed = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
 	new_entry = UserEntry(email = email, hashed = hashed, firstname = firstname, lastname = lastname)
@@ -73,7 +77,7 @@ def send_recovery_email(email):
 	user = get_user(email)
 
 	if user is None:
-		raise Exception("UserDoesNotExistError", "Account with given email does not exist.")
+		raise UserDoesNotExistError
 
 	token = tokenize_email(email)
 	message = sendgrid.Mail()
@@ -114,32 +118,46 @@ def confirm_email(token):
 	entry.verified = True
 	entry.save()
 
-def get_application(email):
-	entries = UserEntry.objects(email = email)
-	
-	if entries.count() == 0:
-		raise Exception("UserDoesNotExistError", "Account with given email does not exist.")
+def get_user_attr(email, attr):
+	user = get_user(email)
 
-	user = entries[0]
+	if user is None:
+		raise UserDoesNotExistError
+	
+	return getattr(user, attr)
+
+def set_user_attr(email, attr, value):
+	user = get_user(email)
+
+	if user is None:
+		raise UserDoesNotExistError
+	
+	setattr(user, attr, value)
+
+	user.save()
+
+def get_application(email):
+	user = get_user(email)
+	
+	if user is None:
+		raise UserDoesNotExistError
 
 	app = {}
 	for key in application_fields:
-		print(key, ": ", getattr(user, key))
 		if getattr(user, key) is not None:
 			app[key] = getattr(user, key)
 	return app
 
 def save_application(email, app):
-	entries = UserEntry.objects(email = email)
+	user = get_user(email)
 	
-	if entries.count() == 0:
-		raise Exception("UserDoesNotExistError", "Account with given email does not exist.")
-	
-	user = entries[0]
+	if user is None:
+		raise UserDoesNotExistError
 
 	for key in app:		
 		if key == "save" or key == "submit":
 			continue
 		setattr(user, key, app[key])
 
+	user.status = "In Progress"
 	user.save()

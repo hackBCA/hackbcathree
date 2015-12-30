@@ -10,12 +10,12 @@
   {% endwith %}
 {% endmacro %}
 
-{% macro render_field(field) %}
+{% macro render_field(field, disabled = false) %}
   <div class="form-elt {% if field.errors %}error{% endif %}">
     {% if field.type == "TextAreaField" %}
       <h6>{{ field.label }}</h6>
     {% endif %}
-    {{ field(placeholder=field.description) }}
+    {{ field(placeholder=field.description, disabled=disabled) }}
     {% if field.errors %}
       <p class="error-msg">{{ field.errors[0] }}</p>
     {% endif %}

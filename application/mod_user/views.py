@@ -114,13 +114,23 @@ def register():
 def application():
   form = ApplicationForm(request.form)
   if request.method == "POST":
-    if "save" in request.form:
-      controller.save_application(current_user.email, request.form) 
+    try:
+      applicationStatus = controller.get_user_attr(current_user.email, "status")
+
+      if applicationStatus in ["Not Started", "In Progress"]:
+        if "save" in request.form:
+          controller.save_application(current_user.email, request.form) 
+        elif "submit" in request.form:
+          controller.save_application(current_user.email, request.form) 
+          if form.validate():
+            controller.set_user_attr(current_user.email, "status", "Submitted")
+    except Exception as e:
+      if CONFIG["DEBUG"]:
+        raise e
+      flash("Something went wrong.", "error")
   else:
-    applicationData = controller.get_application(current_user.email)
-    for key in applicationData:
-      request.form[key] = applicationData[key]
-    form = ApplicationForm(request.form)  
+    user = controller.get_user(current_user.email)
+    form = ApplicationForm(obj = user)  
   return render_template("user.application.html", form = form)
 
 @mod_user.route("/confirm/<token>")
