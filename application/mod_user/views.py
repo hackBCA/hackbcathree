@@ -4,7 +4,9 @@ from . import user_module as mod_user
 from . import controllers as controller
 from .forms import *
 from application import CONFIG
+from application import cache
 
+@cache.cached()
 @mod_user.route("/login", methods=["GET", "POST"])
 def login():
 	form = LoginForm(request.form)
@@ -29,6 +31,7 @@ def logout():
 	controller.logout()
 	return redirect("/")
 
+@cache.cached()
 @mod_user.route("/forgot", methods = ["GET", "POST"])
 def recover():
 	form = EmailForm(request.form)
@@ -86,6 +89,7 @@ def settings():
 						flash("Something went wrong.", "error")
 	return render_template("user.settings.html", password_form = password_form)
 
+@cache.cached()
 @mod_user.route("/register", methods = ["GET", "POST"])
 def register():
 	form = RegistrationForm(request.form)
