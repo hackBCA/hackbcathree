@@ -1,7 +1,17 @@
 {% extends "user.base.html" %}
 
+{% set nav_bar = [
+  ("/#home", "Home", False),
+  ("/account", "Account", True),
+  ("/account/application", "Application", False),
+  ("/account/settings", "Settings", False),
+  ("/logout", "Logout", False)
+] -%}
+
 {% block content %}
-{% include "navbar.html" %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
 <div class="page-container">
   <div class="page-section" id="account">
     <div class="container">
@@ -9,7 +19,7 @@
         <div class="head-cover">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
           <h2>Account</h2>
-          <h4>Hey, {{ current_user.firstname }} {{ current_user.lastname }}!</h4>
+          <h4>Hey, {{ current_user.firstname }}!</h4>
         </div>
       </div>
       <div class="info {{ status }}">

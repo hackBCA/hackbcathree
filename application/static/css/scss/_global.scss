@@ -126,7 +126,13 @@ p {
 }
 
 a {
-  color: white;
+  color: $blue-color-fallback;
+  color: $blue-color;
+
+  &:hover {
+    color: $blue-fade-color-fallback;
+    color: $blue-fade-color;
+  }
 }
 
 .clearfix:after {

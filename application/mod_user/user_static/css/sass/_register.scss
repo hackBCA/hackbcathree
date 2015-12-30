@@ -1,27 +1,10 @@
 #register {
-  height: 100vh;
-  background-image: url($asset_url_prefix + "whatishackbca.jpg"); 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-attachment: scroll;
-  background-repeat: no-repeat;
-  background-position: center;
-  color: #fff;
-
   .container {
-    background-color: rgba(0, 0, 0, 0.5);
-
-    .cover {
-      .content {
-        padding: 10% 0;
-        text-align: center;
-      }
+    .header {
+      background-image: url($asset_url_prefix + "whatishackbca.jpg"); 
     }
   }
 }
-
 
 @media screen and (max-width: 480px) {
   #register {
