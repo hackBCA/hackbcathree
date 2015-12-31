@@ -1,4 +1,4 @@
-from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, validators, ValidationError
+from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, BooleanField, validators, ValidationError
 
 type_account_choices = [
     ("", "Hacker or Mentor?"),
@@ -164,3 +164,7 @@ class ApplicationForm(Form):
         validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
+
+    mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
+        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
+        ], description = "I agree to the MLH Code of Conduct.")
