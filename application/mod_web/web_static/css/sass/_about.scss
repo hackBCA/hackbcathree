@@ -1,14 +1,16 @@
 #about {
-  background: white;
+  color: #202020;
 
   .container {
     vertical-align: top;
 
     .header {
       .head-cover {
-        padding: 2.5%;
+        padding: 5% 0 0 !important;
+        background: none;
       }
-      background-image: url($asset_url_prefix + "whatishackbca.jpg");
+      // background-image: url($asset_url_prefix + "whatishackbca.jpg");
+
     }
 
     .info {
