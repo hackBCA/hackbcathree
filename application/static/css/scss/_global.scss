@@ -16,32 +16,8 @@ $blue-fade-color: rgba(150, 211, 220, 0.75);
   font-weight: 300;
 }
 
-@font-face {
-  font-family: "Proxima Nova Bold";
-  src: url("/static/fonts/ProximaNova-Bold.otf") format("opentype");
-  font-weight: 400; 
-}
-
-@font-face {
-  font-family: "Proxima Nova ExtraBold";
-  src: url("/static/fonts/ProximaNova-Extrabold.otf") format("opentype");
-  font-weight: 500; 
-}
-
-@font-face {
-  font-family: "Nexa Thin";
-  src: url("/static/fonts/Nexa/NexaThin.otf") format("opentype");
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: "Nexa Light";
-  src: url("/static/fonts/Nexa/Nexa-Light.otf") format("opentype");
-  font-weight: 300;
-}
-
 body {
-  font-family: "Nexa Light", "Proxima Nova Light", Helvetica, sans-serif;
+  font-family: "Proxima Nova Light", Helvetica, sans-serif;
   color: white;
 }
 
