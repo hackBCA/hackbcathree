@@ -22,7 +22,8 @@
         </div>
       </div>
       <div class="info {{ status }}">
-        <h3>Application Status: <span>{{ current_user.status }}</span></h3>
+        <h4>Application Status: <span>{{ current_user.status }}</span></h4>
+        <h4>Application Type: <span>{{ "Hacker" if current_user.hacker else "Mentor" }}</span></h4>
         <div class="buttons horizontal">
           <a href="/account/application" class="btn">{{ "Edit" if current_user.status == "Not Started" or current_user.status == "In Progress" else "View" }} Application</a>
           <a href="/account/settings" class="btn">Account Settings</a>
