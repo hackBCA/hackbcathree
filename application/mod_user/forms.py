@@ -54,6 +54,14 @@ class RecoverForm(Form):
         if len(password) >= 8 and password != field.data:
             raise ValidationError("Passwords must match.")
 
+class ChangeNameForm(Form):
+    firstname = TextField("First Name", [
+        validators.Required(message = "You must enter a first name.")
+    ], description = "First Name")
+    lastname = TextField("Last Name", [
+        validators.Required(message = "You must enter a last name.")
+    ], description = "Last Name")
+
 class ChangePasswordForm(Form):
     password = PasswordField("Password", [
         validators.Required(message = "You must enter your current password."),

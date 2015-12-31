@@ -102,8 +102,18 @@ def confirm_email(token):
 @mod_user.route("/account/settings", methods = ["GET", "POST"])
 @login_required
 def settings():
+  name_form = ChangeNameForm(request.form)
   password_form = ChangePasswordForm(request.form)
-  if request.method == "POST":
+  if request.method == "POST":    
+    if request.form["setting"] == "name" and name_form.validate():
+      try:
+        controller.change_name(current_user.email, request.form["firstname"], request.form["lastname"])
+        flash("Name changed.", "success")
+      except Exception as e:
+        if CONFIG["DEBUG"]:
+          raise e
+        else:
+          flash("Something went wrong.", "error")
     if request.form["setting"] == "password" and password_form.validate():
       if controller.verify_user(current_user.email, request.form["password"]) is not None:
         try:
@@ -114,7 +124,12 @@ def settings():
             raise e
           else:
             flash("Something went wrong.", "error")
-  return render_template("user.settings.html", password_form = password_form)
+      else:
+        flash("Incorrect password.", "error")
+  else:
+    user = controller.get_user(current_user.email)
+    name_form = ChangeNameForm(request.form, obj = user)
+  return render_template("user.settings.html", name_form = name_form, password_form = password_form)
 
 @cache.cached()
 @mod_user.route("/register", methods = ["GET", "POST"])
@@ -163,7 +178,7 @@ def application():
   else:
     user = controller.get_user(current_user.email)
     if current_user.hacker:
-      form = ApplicationForm(request.form)
+      form = ApplicationForm(request.form, obj = user)
     else:
-      form = MentorApplicationForm(request.form)
+      form = MentorApplicationForm(request.form, obj = user)
   return render_template("user.application.html", form = form)

@@ -92,8 +92,24 @@ def send_recovery_email(email):
 
 	status, msg = sg.send(message)
 
+def change_name(email, firstname, lastname):
+	account = get_user(email)
+
+	if account is None:
+		raise UserDoesNotExistError
+
+	account.firstname = firstname
+	account.lastname = lastname
+	account.save()
+
+	login(email) #To update navbar
+
 def change_password(email, password):
 	account = get_user(email)
+
+	if account is None:
+		raise UserDoesNotExistError
+
 	hashed = str(bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()))[2:-1]
 	account.hashed = hashed
 	account.save()
