@@ -265,18 +265,33 @@ select {
   margin: 0;
   padding: 0;
   text-align: center;
-  animation: slide-in 0.75s, slide-out 0.75s;
-  -o-animation: slide-in 0.75s, slide-out 0.75s;
-  -moz-animation: slide-in 0.75s, slide-out 0.75s;
-  -webkit-animation: slide-in 0.75s, slide-out 0.75s;
-  animation-delay: 0s, 3s;
-  -o-animation-delay: 0s, 3s;
-  -moz-animation-delay: 0s, 3s;
-  -webkit-animation-delay: 0s, 3s;
+  animation: slide-in 0.75s;
+  -o-animation: slide-in 0.75s;
+  -moz-animation: slide-in 0.75s;
+  -webkit-animation: slide-in 0.75s;
+  animation-delay: 0s;
+  -o-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  -webkit-animation-delay: 0s;
   animation-fill-mode: forwards; 
   -o-animation-fill-mode: forwards; 
   -moz-animation-fill-mode: forwards; 
   -webkit-animation-fill-mode: forwards; 
+  
+  &.fade-out{
+    animation: slide-out 0.75s;
+    -o-animation: slide-out 0.75s;
+    -moz-animation: slide-out 0.75s;
+    -webkit-animation: slide-out 0.75s;
+    animation-delay: 0s;
+    -o-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+    animation-fill-mode: forwards; 
+    -o-animation-fill-mode: forwards; 
+    -moz-animation-fill-mode: forwards; 
+    -webkit-animation-fill-mode: forwards; 
+  }
 
   li {
     list-style: none;
@@ -295,6 +310,32 @@ select {
 
     &.neutral {
       background-color: #3498db;
+    }
+
+    .close{
+      display: inline-block;
+      top: auto;
+      bottom: auto;
+      position: absolute;  
+      right: 10px;
+      height: 100%;
+
+      .icon-container{
+        position: relative;
+        height: 100%;
+
+        .close-icon{
+          cursor: pointer;
+
+          position: absolute;
+          right: 0px;
+          top: 50%;
+
+          font-size: 24px;
+          height: 24px;
+          margin-top: -12px;
+        }
+      }
     }
 
     p {

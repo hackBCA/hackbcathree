@@ -3,7 +3,7 @@
     {% if messages %}
       <ul class="flashes">
         {% for category, message in messages %}
-          <li class="{{ category }}"><p>{% if category != "neutral" %}{{ category.capitalize()+": " }}{% endif %}{{ message }}</p></li>
+          <li class="{{ category }}"><p>{% if category != "neutral" %}{{ category.capitalize()+": " }}{% endif %}{{ message }}</p><div class="close"><div class="icon-container"><i class="close-icon fa fa-times" onclick="var f = document.getElementsByClassName('flashes')[0]; f.classList.add('fade-out')"></i></div></div></li>
         {% endfor %}
       </ul>
     {% endif %}
