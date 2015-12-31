@@ -25,6 +25,7 @@
       <div class="info">
         <form class="application-form" method="POST" action="">
           <h4>{{ current_user.full_name() }}</h4>
+          <h4>{{ "Hacker" if current_user.hacker else "Mentor" }}</h4>
           {% for field in form %}
             {% if field == form.mlh_terms  %}
               {{ form.mlh_terms.label }}

@@ -17,7 +17,7 @@ class UserEntry(Document):
 	status = StringField(default = "Not Started")
 	# In Progress, Submitted, Accepted, Waitlist, Denied
 
-	hacker = BooleanField(required = True, default = True)
+	hacker = BooleanField(default = True)
 
 	school = StringField()
 	gender = StringField()
@@ -26,15 +26,16 @@ class UserEntry(Document):
 	grade = StringField()
 	num_hackathons = StringField()
 	
+	phone = StringField()
+
 	github_link = StringField()
 	linkedin_link = StringField()
 	site_link = StringField()
 	other_link = StringField()
 
-	free_response1 = StringField()
-	free_response2 = StringField()
-	free_response3 = StringField()	
-
+	free_response1 = StringField() #Mentor: Phone Number
+	free_response2 = StringField() #Mentor: Skills
+	free_response3 = StringField() #Mentor: Workshop		
 
 class User(UserMixin):
 	def __init__(self, uid, email, firstname, lastname, hacker, status):

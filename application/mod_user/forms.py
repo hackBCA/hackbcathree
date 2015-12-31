@@ -118,6 +118,9 @@ free_response1_prompt = "What do you hope to learn and accomplish at hackBCA?"
 free_response2_prompt = "What is something you’re proud of (it doesn’t have to be tech related)?"
 free_response3_prompt = "Is there anything else you want us to know?"
 
+free_response1_prompt_mentor = "Please list languages/frameworks/technologies that you would like to mentor students in."
+free_response2_prompt_mentor = "Would you like to run a workshop? If so, please briefly describe your ideas."
+
 class ApplicationForm(Form):
     school = TextField("School Name", [
         validators.Required(message = "Enter your school's name.")
@@ -161,6 +164,53 @@ class ApplicationForm(Form):
     ], description = "500 character maximum.")
 
     free_response3 = TextAreaField(free_response3_prompt, [
+        validators.Required(message = "You must answer this question."),
+        validators.Length(max = 500, message = "Response must be less than 500 characters long.")
+    ], description = "500 character maximum.")
+
+    mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
+        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
+        ], description = "I agree to the MLH Code of Conduct.", default = False)
+
+class MentorApplicationForm(Form):
+    school = TextField("Company/School Name", [
+        validators.Required(message = "Enter your company/schools's name.")
+    ], description = "Company/School Name")
+
+    phone = TextField("Phone Number", [
+        validators.Required(message = "Enter your preferred contact number."),
+        validators.Regexp("\d{3}-\d{3}-\d{4}", message = "Phone number must be of the form xxx-xxx-xxxx.")
+    ], description = "Phone Number")
+
+    num_hackathons = SelectField("How many hackathons have you mentored at?", [validators.Required(message = "You must select an option.")], choices = num_hackathons_choices, description = "How many hackathons have you mentored at?")
+
+    github_link = TextField("Github Link", [
+        validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Github Link (Optional)")
+    linkedin_link = TextField("LinkedIn", [
+        validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
+        validators.URL(message = "Invalid URL.")
+    ], description = "LinkedIn Link (Optional)")
+    site_link = TextField("Personal Site", [
+        validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Personal Site Link (Optional)")
+    other_link = TextField("other", [
+        validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Other Link (Optional)")
+
+    free_response1 = TextAreaField(free_response1_prompt_mentor, [
+        validators.Required(message = "You must answer this question."),
+        validators.Length(max = 500, message = "Response must be less than 500 characters long.")
+    ], description = "500 character maximum.")
+
+    free_response2 = TextAreaField(free_response2_prompt_mentor, [
         validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
