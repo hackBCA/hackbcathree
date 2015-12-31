@@ -106,6 +106,16 @@ num_hackathons_choices = [
     ("5", "5+")
 ]
 
+num_hackathons_choices_mentor = [
+    ("", "How many hackathons have you mentored at?"),
+    ("0", "0"),
+    ("1", "1"),
+    ("2", "2"),
+    ("3", "3"),
+    ("4", "4"),
+    ("5", "5+")
+]
+
 grade_choices = [
     ("", "What grade are you in?"),
     ("9", "9th"),
@@ -182,7 +192,7 @@ class MentorApplicationForm(Form):
         validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
     ], description = "Phone Number")
 
-    num_hackathons = SelectField("How many hackathons have you mentored at?", [validators.Required(message = "You must select an option.")], choices = num_hackathons_choices, description = "How many hackathons have you mentored at?")
+    num_hackathons = SelectField("How many hackathons have you mentored at?", [validators.Required(message = "You must select an option.")], choices = num_hackathons_choices_mentor, description = "How many hackathons have you mentored at?")
 
     github_link = TextField("Github Link", [
         validators.optional(),
