@@ -27,9 +27,10 @@
         <form class="application-form" method="POST" action="">
           <h4>{{ current_user.full_name() }}</h4>
           {% for field in form %}
-            {% if field.type == "BooleanField"  %}
-              {{ form.mlh_terms.label }} {{form.mlh_terms}}
+            {% if field == form.mlh_terms  %}
+              {{ form.mlh_terms.label }}
               <br>The MLH Code of Conduct is available <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">here.</a> </br>
+              {{ render_field(field, not can_edit) }}
             {% else %}
               {{ render_field(field, not can_edit) }}
             {% endif %}

@@ -167,4 +167,4 @@ class ApplicationForm(Form):
 
     mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
-        ], description = "I agree to the MLH Code of Conduct.")
+        ], description = "I agree to the MLH Code of Conduct.", default = False)
