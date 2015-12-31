@@ -31,7 +31,6 @@ def login():
   return render_template("user.login.html", form = form)
 
 @mod_user.route("/logout", methods=["GET", "POST"])
-@login_required
 def logout():
   controller.logout()
   return redirect("/")
