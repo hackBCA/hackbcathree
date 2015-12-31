@@ -26,8 +26,15 @@
         <form class="application-form" method="POST" action="">
           <h4>{{ current_user.full_name() }}</h4>
           {% for field in form %}
-            {{ render_field(field, not can_edit) }}
+            {% if field == form.mlh_terms  %}
+              {{ form.mlh_terms.label }}
+              <br>The MLH Code of Conduct is available <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">here.</a> </br>
+              {{ render_field(field, not can_edit) }}
+            {% else %}
+              {{ render_field(field, not can_edit) }}
+            {% endif %}
           {% endfor %}
+
           <div class="buttons horizontal">
             <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
             <button class="btn" onclick="verify_submit(); return false;">Submit</button>
@@ -53,7 +60,7 @@
 
   var decline_verify = function() {
     var button_group = document.getElementById("verify-submit");
-    button_group.classList.toggle("hide"); 
+    button_group.classList.toggle("hide");
   }
 
   var char_counter = function() {
