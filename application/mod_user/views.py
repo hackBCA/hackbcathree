@@ -31,7 +31,6 @@ def login():
   return render_template("user.login.html", form = form)
 
 @mod_user.route("/logout", methods=["GET", "POST"])
-@login_required
 def logout():
   controller.logout()
   return redirect("/")
@@ -151,7 +150,8 @@ def application():
         elif "submit" in request.form:
           controller.save_application(current_user.email, request.form) 
           if form.validate():
-            controller.set_user_attr(current_user.email, "status", "Submitted")
+            a = 1
+            #controller.set_user_attr(current_user.email, "status", "Submitted")
     except Exception as e:
       if CONFIG["DEBUG"]:
         raise e

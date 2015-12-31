@@ -56,21 +56,6 @@
     button_group.classList.toggle("hide"); 
   }
 
-  if (!Array.prototype.forEach) {
-    Array.prototype.forEach = function(fun /*, thisp*/) {
-      var len = this.length;
-         
-      if (typeof fun != "function")
-      throw new TypeError();
-
-      var thisp = arguments[1];
-      for (var i = 0; i < len; i++) {
-        if (i in this)
-          fun.call(thisp, this[i], i, this);
-      }
-    };
-  }
-
   var char_counter = function() {
     questions = document.querySelectorAll("textarea");
     console.log(questions);
@@ -78,6 +63,7 @@
       questions[i].onkeyup = function () {
         document.querySelector(".count#" + this.id).innerHTML = "Characters left: " + (500 - this.value.length);
       }
+      document.querySelector(".count#" + questions[i].id).innerHTML = "Characters left: " + (500 - questions[i].value.length);
     }
   }
 
