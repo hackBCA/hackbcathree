@@ -179,7 +179,7 @@ class MentorApplicationForm(Form):
 
     phone = TextField("Phone Number", [
         validators.Required(message = "Enter your preferred contact number."),
-        validators.Regexp("\d{3}-\d{3}-\d{4}", message = "Phone number must be of the form xxx-xxx-xxxx.")
+        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
     ], description = "Phone Number")
 
     num_hackathons = SelectField("How many hackathons have you mentored at?", [validators.Required(message = "You must select an option.")], choices = num_hackathons_choices, description = "How many hackathons have you mentored at?")
