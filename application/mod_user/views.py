@@ -155,6 +155,7 @@ def application():
           controller.save_application(current_user.email, request.form)
           if form.validate():
             a = 1
+            flash("Application Submitted", "success")
             #controller.set_user_attr(current_user.email, "status", "Submitted")
     except Exception as e:
       if CONFIG["DEBUG"]:
