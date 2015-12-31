@@ -71,12 +71,36 @@
           }
 
           .error-msg {
-            // display: none;
             margin-top: 0;
           }
         }
         .buttons {
           margin-bottom: 2%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page-container {
+    .page-section {
+      .container {
+        .header {
+          .head-cover {
+            padding: 17.5% 0;
+          }
+        }
+
+        .info {
+          .form-elt {
+            input, textarea, select {
+              margin-bottom: 5%;
+            }
+            textarea {
+              max-width: 100%;
+            }
+          }
         }
       }
     }
