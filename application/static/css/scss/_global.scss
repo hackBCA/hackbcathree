@@ -28,25 +28,37 @@ $blue-fade-color: rgba(150, 211, 220, 0.75);
   font-weight: 500; 
 }
 
+@font-face {
+  font-family: "Nexa Thin";
+  src: url("/static/fonts/Nexa/NexaThin.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Nexa Light";
+  src: url("/static/fonts/Nexa/Nexa-Light.otf") format("opentype");
+  font-weight: 300;
+}
+
 body {
-  font-family: "Proxima Nova Light", Helvetica;
+  font-family: "Nexa Light", "Proxima Nova Light", Helvetica;
   color: white;
 }
 
-@mixin animation($name, $duration, $delay, $fill-mode) {
-  -webkit-animation: $name $duration $delay $fill-mode;
-  -moz-animation: $name $duration $delay $fill-mode;
-  -ms-animation: $name $duration $delay $fill-mode;
-  -o-animation: $name $duration $delay $fill-mode;
-  animation: $name $duration $delay $fill-mode;
+@mixin animation($args...) {
+  -webkit-animation: $args;
+  -moz-animation: $args;
+  -ms-animation: $args;
+  -o-animation: $args;
+  animation: $args;
 }
 
-@mixin transition($name, $duration, $function) {
-  -webkit-transition: $name $duration $function;
-  -moz-transition: $name $duration $function;
-  -ms-transition: $name $duration $function;
-  -o-transition: $name $duration $function;
-  transition: $name $duration $function;
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
 }
 
 h1 {
