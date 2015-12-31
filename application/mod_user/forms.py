@@ -73,7 +73,7 @@ class ChangePasswordForm(Form):
 
 gender_choices = [
     ("", "Gender"),
-    ("male", "Male"), 
+    ("male", "Male"),
     ("female", "Female"),
     ("rns", "Rather Not Say")
 ]
@@ -85,29 +85,32 @@ beginner_choices = [
 ]
 
 ethnicity_choices = [
-    ("white", "White"), 
-    ("african_american", "African American"), 
-    ("asian_pacific", "Asian or Pacific Islander"), 
-    ("american_indian_alaskan_native", "American Indian or Alaskan Native"), 
-    ("multiracial", "Multiracial"), 
+    ("", "Ethnicity"),
+    ("white", "White"),
+    ("african_american", "African American"),
+    ("asian_pacific", "Asian or Pacific Islander"),
+    ("american_indian_alaskan_native", "American Indian or Alaskan Native"),
+    ("multiracial", "Multiracial"),
     ("hispanic", "Hispanic origin"),
     ("other", "Other"),
     ("rns", "Rather Not Say")
 ]
 
 num_hackathons_choices = [
-    ("0", "0"), 
-    ("1", "1"), 
-    ("2", "2"), 
-    ("3", "3"), 
-    ("4", "4"), 
+    ("", "How many hackathons have you been to?"),
+    ("0", "0"),
+    ("1", "1"),
+    ("2", "2"),
+    ("3", "3"),
+    ("4", "4"),
     ("5", "5+")
 ]
 
 grade_choices = [
-    ("9", "9th"), 
-    ("10", "10th"), 
-    ("11", "11th"), 
+    ("", "What grade are you in?"),
+    ("9", "9th"),
+    ("10", "10th"),
+    ("11", "11th"),
     ("12", "12th")
 ]
 
