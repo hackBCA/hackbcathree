@@ -121,31 +121,52 @@
 
 @media screen and (min-width: 40em) {
   .nav-collapse {
-    /*float: right;*/
     width: 100%;
   }
 }
 
-.nav-collapse li {
+.nav-collapse .menu-item {
   float: left;
   width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  .nav-collapse li a p {
+    padding: 0 10px !important;
+  }
+
+  .nav-collapse li a p span {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 40em) {
   .nav-collapse ul {
     text-align: center;
+    height: 50px;
   }
-  .nav-collapse li {
-    float: none;
-    display: inline-block;
-    width: 12.5%;
-    margin-right: -4px;
+  .nav-collapse .menu-item {
+    float: left;
+    width: auto;
+  }
+
+  .nav-collapse .account-item {
+    float: right;
+    width: auto;
+  }
+
+  .nav-collapse .account-item {
+    background-color: #036193;
+    background-color: rgba(3, 97, 147, 0.5);
+  }
+
+  .nav-collapse li a p {
+    padding: 0 20px;
   }
 }
 
 .nav-collapse a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  /*border-top: 1px solid white;*/
   text-decoration: none;
   padding: 0.7em 1em;
   color: #fff;
@@ -166,11 +187,8 @@
 
 @media screen and (min-width: 40em) {
   .nav-collapse a {
-    /*border-left: 1px solid white;*/
-    /*padding: 1.02em 2em;*/
     padding: 0;
     text-align: center;
-    /*border-top: 0;*/
     float: left;
     margin: 0;
   }

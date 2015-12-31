@@ -1,14 +1,29 @@
 {% extends "user.base.html" %}
 
-{% block content %}
+{% set nav_bar = [
+  ("/#home", "Home", False)
+] -%}
 
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
 <div class="page-container">
   <div class="page-section" id="confirm">
-    <form method="POST" action="" style="color:black;">
-      You haven't yet confirmed your email address. Please check your inbox!
-
-      To resend the confirmation email, <button class="btn" type="submit">click here</button>. 
-    </form>
+    <div class="container">
+      <div class="header">
+        <div class="head-cover">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h2>Confirm</h2>
+        </div>
+      </div>
+      <div class="info">
+        <form method="POST" action="">
+          <p>You haven't yet confirmed your email address. Please check your inbox!</p>
+          <p>To resend the confirmation email, <button class="btn" type="submit">click here</button>.</p>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

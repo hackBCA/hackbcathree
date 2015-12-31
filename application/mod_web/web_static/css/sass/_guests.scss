@@ -5,12 +5,17 @@
     }
 
     .info {
-      .guest {
-        margin: 2% 10px 0 10px;
+      .pure-g {
+        -webkit-justify-content: center;
+        justify-content: center;
+        
+        .guest {
+          margin: 2% 10px 0 10px;
 
-        img {
-          width: 200px;
-          height: 200px;
+          img {
+            width: 200px;
+            height: 200px;
+          }
         }
       }
     }

@@ -5,6 +5,11 @@
     }
     .info {
       text-align: center;
+
+      .pure-g {
+        -webkit-justify-content: center;
+        justify-content: center;
+      }
     }
   }
 }

@@ -2,10 +2,8 @@
 
 {% set nav_bar = [
   ("/#home", "Home", False),
-  ("/account", "Account", False),
   ("/account/application", "Application", False),
-  ("/account/settings", "Settings", True),
-  ("/logout", "Logout", False)
+  ("/account/settings", "Settings", True)
 ] -%}
 
 {% block content %}
@@ -18,7 +16,8 @@
       <div class="header">
         <div class="head-cover">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
-          <h3>Account Settings</h3>
+          <h2>Account Settings</h2>
+          <h4>Edit your settings here!</h4>
         </div>
       </div>
       <div class="info">
