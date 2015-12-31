@@ -21,6 +21,16 @@
         </div>
       </div>
       <div class="info">
+        <h5>Change your name</h5>
+        <form method="POST" action="/account/settings">
+          <input type="hidden" name="setting" value="name"/>
+          {% for field in name_form %}
+            {{ render_field(field) }}
+          {% endfor %}
+          <div class="buttons">
+            <button class="btn" type="submit">Update Name</button>
+          </div>
+        </form>
         <h5>Change your password</h5>
         <form method="POST" action="/account/settings">
           <input type="hidden" name="setting" value="password"/>
