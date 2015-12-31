@@ -120,11 +120,11 @@ class ApplicationForm(Form):
         validators.Required(message = "Enter your school's name.")
     ], description = "School Name")
 
-    gender = SelectField("Gender", choices = gender_choices, description = "Gender")
-    beginner = SelectField("Are you a beginner?", choices = beginner_choices, description = "Are you a beginner?")
-    ethnicity = SelectField("Ethnicity", choices = ethnicity_choices, description = "Ethnicity")
-    grade = SelectField("Grade", choices = grade_choices, description = "Grade")
-    num_hackathons = SelectField("How many hackathons have you attended?", choices = num_hackathons_choices, description = "How many hackathons have you attended?")
+    gender = SelectField("Gender", [validators.Required(message = "You must select an option.")], choices = gender_choices, description = "Gender")
+    beginner = SelectField("Are you a beginner?", [validators.Required(message = "You must select an option.")], choices = beginner_choices, description = "Are you a beginner?")
+    ethnicity = SelectField("Ethnicity", [validators.Required(message = "You must select an option.")], choices = ethnicity_choices, description = "Ethnicity")
+    grade = SelectField("Grade", [validators.Required(message = "You must select an option.")], choices = grade_choices, description = "Grade")
+    num_hackathons = SelectField("How many hackathons have you attended?", [validators.Required(message = "You must select an option.")], choices = num_hackathons_choices, description = "How many hackathons have you attended?")
 
     github_link = TextField("Github Link", [
         validators.optional(),
