@@ -7,6 +7,12 @@
           background-image: url($asset_url_prefix + "whenandwhere.jpg");
         }
 
+        .info {
+          .where {
+            margin: 0;
+          }
+        }
+
         #map-container {
           width: 100%;
           height: 400px;
