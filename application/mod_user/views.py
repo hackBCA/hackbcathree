@@ -95,7 +95,7 @@ def verify():
 
 @mod_user.route("/account/confirm/<token>")
 def confirm_email(token):
-  session.pop("email")
+  session.pop("email", None)
   controller.confirm_email(token)
   flash("Account confirmed!", "success")
   return redirect("/?status=confirmed")
