@@ -79,6 +79,7 @@
       questions[i].onkeyup = function () {
         document.querySelector(".count#" + this.id).innerHTML = "Characters left: " + (500 - this.value.length);
       }
+      document.querySelector(".count#" + questions[i].id).innerHTML = "Characters left: " + (500 - questions[i].value.length);
     }
   }
 
