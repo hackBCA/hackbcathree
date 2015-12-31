@@ -1,4 +1,4 @@
-from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, validators, ValidationError
+from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, BooleanField, validators, ValidationError
 
 type_account_choices = [
     ("", "Hacker or Mentor?"),
@@ -131,18 +131,22 @@ class ApplicationForm(Form):
 
     github_link = TextField("Github Link", [
         validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Github Link (Optional)")
     linkedin_link = TextField("LinkedIn", [
         validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "LinkedIn Link (Optional)")
     site_link = TextField("Personal Site", [
         validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
     other_link = TextField("other", [
         validators.optional(),
+        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Other Link (Optional)")
 
@@ -160,3 +164,7 @@ class ApplicationForm(Form):
         validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
+
+    mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
+        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
+        ], description = "I agree to the MLH Code of Conduct.", default = False)

@@ -11,10 +11,10 @@ from application import cache
 def login():
   form = LoginForm(request.form)
   if request.method == "POST" and form.validate():
-    try:  
+    try:
       if controller.verify_user(request.form["email"], request.form["password"]) is None:
         flash("Invalid email and/or password.", "error")
-      else:    
+      else:
         confirmed = controller.get_user_attr(request.form["email"], "confirmed")
 
         if not confirmed:
@@ -89,7 +89,7 @@ def verify():
     return redirect("/login")
 
   confirmed = controller.get_user_attr(email, "confirmed")
-  
+
   return render_template("user.confirm.html")
 
 @mod_user.route("/account/confirm/<token>")
@@ -146,9 +146,10 @@ def application():
 
       if applicationStatus in ["Not Started", "In Progress"]:
         if "save" in request.form:
-          controller.save_application(current_user.email, request.form) 
+          controller.save_application(current_user.email, request.form)
+          flash("Application Saved", "success")
         elif "submit" in request.form:
-          controller.save_application(current_user.email, request.form) 
+          controller.save_application(current_user.email, request.form)
           if form.validate():
             a = 1
             #controller.set_user_attr(current_user.email, "status", "Submitted")
@@ -158,6 +159,5 @@ def application():
       flash("Something went wrong.", "error")
   else:
     user = controller.get_user(current_user.email)
-    form = ApplicationForm(obj = user)  
+    form = ApplicationForm(obj = user)
   return render_template("user.application.html", form = form)
-
