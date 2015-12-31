@@ -278,7 +278,7 @@ select {
   -moz-animation-fill-mode: forwards; 
   -webkit-animation-fill-mode: forwards; 
   
-  &.fade-out{
+  &.fade-out {
     animation: slide-out 0.75s;
     -o-animation: slide-out 0.75s;
     -moz-animation: slide-out 0.75s;
@@ -312,19 +312,19 @@ select {
       background-color: #3498db;
     }
 
-    .close{
+    .close {
       display: inline-block;
       top: auto;
       bottom: auto;
       position: absolute;  
-      right: 10px;
+      right: 12px;
       height: 100%;
 
-      .icon-container{
+      .icon-container {
         position: relative;
         height: 100%;
 
-        .close-icon{
+        .close-icon {
           cursor: pointer;
 
           position: absolute;
@@ -345,6 +345,13 @@ select {
       color: #fff;
       display: inline-block;
       vertical-align: bottom;
+
+      @media screen and (max-width: 768px) {
+        padding: 2.5% 5%;
+      }
+      @media screen and (max-width: 480px) {
+        padding: 5% 5%; 
+      }
     }
   }
 }
