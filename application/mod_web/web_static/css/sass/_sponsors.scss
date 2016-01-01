@@ -6,9 +6,24 @@
     .info {
       text-align: center;
 
-      .pure-g {
-        -webkit-justify-content: center;
-        justify-content: center;
+      .tier {
+        margin-bottom: 2.5%;
+
+        h3 {
+          margin-bottom: 2.5%;
+        }
+
+        .pure-g {
+          -webkit-justify-content: center;
+          justify-content: center;
+          
+          a {
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+        }
       }
     }
   }
