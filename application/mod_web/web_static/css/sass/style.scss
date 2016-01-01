@@ -7,13 +7,6 @@ $blue-fade-color: rgba(150, 211, 220, 0.75);
 $asset_url_prefix: "https://s3.amazonaws.com/hackbcawebsite/";
 // $asset_url_prefix: "/static/local/";
 
-@mixin cover_fade($image, $args...) {
-  background-image: -webkit-linear-gradient($args) url(image);
-  background-image:    -moz-linear-gradient($args) url(image);
-  background-image:      -o-linear-gradient($args) url(image);
-  background-image:         linear-gradient($args) url(image);
-}
-
 @import "_index.scss";
 @import "_home.scss";
 @import "_about.scss";

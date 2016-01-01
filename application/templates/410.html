@@ -1,4 +1,4 @@
-{% extends "user.base.html" %}
+{% extends "base.html" %}
 
 {% set nav_bar = [
   ("/#home", "Home", False)
@@ -9,20 +9,12 @@
   {% include "navbar.html" %}
 {% endwith %}
 <div class="full-page-container">
-  <div class="page-section" id="register">
+  <div class="page-section" id="error">
     <div class="container">
       <div class="cover">
         <div class="content">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
-          <h2>Register</h2>
-          <form method="POST" action="">
-            {% for field in form %}
-              {{ render_field(field) }}
-            {% endfor %}
-            <div class="buttons">
-              <button class="btn" type="submit">Register!</button>
-            </div>
-          </form>
+          <h2>410: Gone</h2>
         </div>
       </div>
     </div>

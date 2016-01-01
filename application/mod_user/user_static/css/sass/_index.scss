@@ -35,7 +35,7 @@
       .info {
         padding: 5%;
         text-align: center;
-        color: #000;
+        color: #202020;
 
         .form-elt {
           input, textarea, select {
@@ -76,6 +76,90 @@
         }
         .buttons {
           margin-bottom: 2%;
+        }
+      }
+    }
+  }
+}
+
+.full-page-container {
+  .page-section {
+    height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    display: table;
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.5);
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      .cover {
+        .content {
+          color: #fff;
+          input, textarea, select {
+            width: 25%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .full-page-container {
+    .page-section {
+      .container {
+        .cover {
+          .content {
+            input, textarea, select {
+              width: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .full-page-container {
+    .page-section {
+      .container {
+        .cover {
+          .content {
+            input, textarea, select {
+              width: 75%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .full-page-container {
+    .page-section {
+      .container {
+        .cover {
+          .content {
+            input, textarea, select {
+              width: 100%;
+            }
+          }
         }
       }
     }

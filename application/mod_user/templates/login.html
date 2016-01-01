@@ -8,25 +8,23 @@
 {% with nav_bar = nav_bar %}
   {% include "navbar.html" %}
 {% endwith %}
-<div class="page-container">
+<div class="full-page-container">
   <div class="page-section" id="login">
     <div class="container">
-      <div class="header">
-        <div class="head-cover">
+      <div class="cover">
+        <div class="content">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
           <h2>Login</h2>
+          <form method="POST" action="">
+            {% for field in form %}
+              {{ render_field(field) }}
+            {% endfor %}
+            <div class="buttons">
+              <button class="btn" type="submit">Login!</button>
+            </div>
+            <a href="/forgot"><p>Forgot your password?</p></a>
+          </form>
         </div>
-      </div>
-      <div class="info">
-        <a href="/forgot"><p>Forgot your password?</p></a>
-        <form method="POST" action="">
-          {% for field in form %}
-            {{ render_field(field) }}
-          {% endfor %}
-          <div class="buttons">
-            <button class="btn" type="submit">Login!</button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
