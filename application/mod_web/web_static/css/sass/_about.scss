@@ -9,8 +9,6 @@
         padding: 5% 0 0 !important;
         background: none;
       }
-      // background-image: url($asset_url_prefix + "whatishackbca.jpg");
-
     }
 
     .info {
@@ -22,6 +20,10 @@
             margin: 0 10px;
           }
         }
+      }
+
+      .program {
+        margin-bottom: 2.5%;
       }
     }
   }
