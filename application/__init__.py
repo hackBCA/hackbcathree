@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from mongoengine import register_connection
 import jinja2
 from flask.ext.cache import Cache
@@ -43,7 +43,7 @@ except FileNotFoundError:
 CONFIG = app.config
 
 # MongoLab
-register_connection(
+register_connection (
     alias = "default", 
     name = CONFIG["DB_NAME"],
     username = CONFIG["DB_USERNAME"],
@@ -54,6 +54,23 @@ register_connection(
 
 # Cache
 cache = Cache(app,config={"CACHE_TYPE": "simple", "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 7})
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+@app.errorhandler(403)
+def page_not_found(e):
+    return render_template("403.html"), 403
+
+@app.errorhandler(410)
+def page_not_found(e):
+    return render_template("410.html"), 410
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("500.html"), 500
 
 from application.mod_web import web_module
 app.register_blueprint(web_module)
