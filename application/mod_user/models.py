@@ -35,7 +35,9 @@ class UserEntry(Document):
 
 	free_response1 = StringField() #Mentor: Phone Number
 	free_response2 = StringField() #Mentor: Skills
-	free_response3 = StringField() #Mentor: Workshop		
+	free_response3 = StringField() #Mentor: Workshop	
+
+	mlh_terms = StringField()	
 
 class User(UserMixin):
 	def __init__(self, uid, email, firstname, lastname, type_account, status):

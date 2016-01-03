@@ -169,9 +169,10 @@ def application():
         elif "submit" in request.form:
           controller.save_application(current_user.email, request.form)
           if form.validate():
-            a = 1
             flash("Application Submitted", "success")
-            #controller.set_user_attr(current_user.email, "status", "Submitted")
+            controller.set_user_attr(current_user.email, "status", "Submitted")
+          else:
+            flash("Please correct any errors in your application.", "error")
     except Exception as e:
       if CONFIG["DEBUG"]:
         raise e
