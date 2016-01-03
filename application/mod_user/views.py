@@ -154,10 +154,10 @@ def register():
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required
 def application():
-  if current_user.type_account == "hacker":
-    form = ApplicationForm(request.form)
-  else:
+  if current_user.type_account == "mentor":
     form = MentorApplicationForm(request.form)
+  else:
+    form = ApplicationForm(request.form)
   if request.method == "POST":
     try:
       applicationStatus = controller.get_user_attr(current_user.email, "status")
@@ -181,10 +181,10 @@ def application():
       flash("Something went wrong.", "error")
   else:
     user = controller.get_user(current_user.email)
-    if current_user.type_account == "hacker":
-      form = ApplicationForm(request.form, obj = user)
-    else:
+    if current_user.type_account == "mentor":
       form = MentorApplicationForm(request.form, obj = user)
+    else:
+      form = ApplicationForm(request.form, obj = user)
   return render_template("user.application.html", form = form)
 
   
