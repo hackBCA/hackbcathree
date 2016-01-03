@@ -17,7 +17,7 @@ class UserEntry(Document):
 	status = StringField(default = "Not Started")
 	# In Progress, Submitted, Accepted, Waitlist, Denied
 
-	hacker = BooleanField(default = True)
+	type_account = StringField(required = True, default = "Hacker")
 
 	school = StringField()
 	gender = StringField()
@@ -38,13 +38,13 @@ class UserEntry(Document):
 	free_response3 = StringField() #Mentor: Workshop		
 
 class User(UserMixin):
-	def __init__(self, uid, email, firstname, lastname, hacker, status):
+	def __init__(self, uid, email, firstname, lastname, type_account, status):
 
 		self.uid = str(uid)
 		self.email = email
 		self.firstname = firstname
 		self.lastname = lastname
-		self.hacker = hacker
+		self.type_account = type_account
 		self.status = status
 
 	def is_authenticated(self):

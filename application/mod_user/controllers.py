@@ -23,7 +23,7 @@ def load_user(user_id):
 	if user_entries.count() != 1:
 		return None
 	currUser = user_entries[0]
-	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.hacker, currUser.status) 
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status) 
 	return user
 
 def get_user(email):

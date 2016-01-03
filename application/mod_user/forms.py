@@ -22,7 +22,7 @@ class RegistrationForm(Form):
         validators.Length(min = 8, message = "Password must be at least 8 characters.")
     ], description = "Password")
     confirm_password = PasswordField("Confirm Password", description = "Confirm Password")
-    type_account = SelectField("Hacker or Mentor?", choices = type_account_choices, description = "Hacker or Mentor?")
+    type_account = SelectField("Hacker or Mentor?", [validators.Required(message = "Please select an account type.")], choices = type_account_choices, description = "Hacker or Mentor?")
 
     def validate_confirm_password(form, field):
         password = form['password'].data
