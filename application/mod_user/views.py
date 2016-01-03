@@ -137,7 +137,7 @@ def register():
   form = RegistrationForm(request.form)
   if request.method == "POST" and form.validate():
     try:
-      controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"])
+      controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"], request.form["type_account"])
       flash("Almost there! Check your inbox for an email to confirm your account.", "success")
       return redirect("/")
     except Exception as e:
@@ -186,3 +186,5 @@ def application():
     else:
       form = MentorApplicationForm(request.form, obj = user)
   return render_template("user.application.html", form = form)
+
+  

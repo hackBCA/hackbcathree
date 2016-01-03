@@ -17,7 +17,7 @@ class UserEntry(Document):
 	status = StringField(default = "Not Started")
 	# In Progress, Submitted, Accepted, Waitlist, Denied
 
-	type_account = StringField(required = True, default = "Hacker")
+	type_account = StringField(required = True, default = "hacker")
 
 	school = StringField()
 	gender = StringField()
