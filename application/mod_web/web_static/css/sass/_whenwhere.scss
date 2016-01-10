@@ -21,3 +21,32 @@
     }
   }  
 }
+
+
+@media screen and (max-width: 768px) {
+  #whenwhere {
+    .container {
+      .cover {
+        .content {
+          #map-container {
+            height: 300px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #whenwhere {
+    .container {
+      .cover {
+        .content {
+          #map-container {
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -37,79 +37,99 @@ body {
   transition: $args;
 }
 
+body {
+  font-size: 16px;
+}
+
 h1 {
-  font-size: 108px;
+  font-size: 6em;
   margin: 10px 0;
   font-weight: 400;
 }
 
 h2 {
-  font-size: 72px;
+  font-size: 4.5em;
   margin: 10px 0;
   font-weight: 400;
 }
 
 h3 {
-  font-size: 48px;
+  font-size: 3em;
   margin: 10px 0;
   font-weight: 400;
 }
 
 h4 {
-  font-size: 36px;
+  font-size: 2.5em;
   margin: 10px 0;
   font-weight: 400;
 }
 
 h5 {
-  font-size: 32px;
+  font-size: 2em;
   margin: 10px 0;
   font-weight: 400;
 }
 
 h6 {
-  font-size: 24px;
+  font-size: 1.5em;
   margin: 10px 0;
   font-weight: 400;
   font-weight: bold;
 }
 
 p {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 
 .logo {
-  width: 200px;
-  height: 200px;
+  width: 12.5em;
+  height: 12.5em;
 }
 
-@media screen and (max-width: 768px) {
-  h1 {font-size: 72px;}
-  h2 {font-size: 48px;}
-  h3 {font-size: 36px;}
-  h4 {font-size: 32px;}
-  h5 {font-size: 24px;}
-  h6 {font-size: 20px;}
-  p {font-size: 16px;}
+@media screen and (max-width: 64em) {
+  h1 {font-size: 4.5em;}
+  h2 {font-size: 3em;}
+  h3 {font-size: 2.25em;}
+  h4 {font-size: 2em;}
+  h5 {font-size: 1.5em;}
+  h6 {font-size: 1.25em;}
+  p {font-size: 1em;}
 
   .logo {
-    width: 150px;
-    height: 150px;
+    width: 9.375em;
+    height: 9.375em;
   }
 }
 
-@media screen and (max-width: 480px) {
-  h1 {font-size: 48px;}
-  h2 {font-size: 36px;}
-  h3 {font-size: 32px;}
-  h4 {font-size: 24px;}
-  h5 {font-size: 20px;}
-  h6 {font-size: 18px;}
-  p {font-size: 16px;}
+
+@media screen and (max-width: 48em) {
+  h1 {font-size: 4.5em;}
+  h2 {font-size: 3em;}
+  h3 {font-size: 2.25em;}
+  h4 {font-size: 2em;}
+  h5 {font-size: 1.5em;}
+  h6 {font-size: 1.25em;}
+  p {font-size: 1em;}
 
   .logo {
-    width: 100px;
-    height: 100px;
+    width: 9.375em;
+    height: 9.375em;
+  }
+}
+
+@media screen and (max-width: 30em) {
+  h1 {font-size: 3em;}
+  h2 {font-size: 2.25em;}
+  h3 {font-size: 2em;}
+  h4 {font-size: 1.5em;}
+  h5 {font-size: 1.25em;}
+  h6 {font-size: 1.125em;}
+  p {font-size: 1em;}
+
+  .logo {
+    width: 6.25em;
+    height: 6.25em;
   }
 }
 
@@ -131,23 +151,6 @@ a {
   content: "";
   display: table;
   clear: both;
-}
-
-.mlh {
-  #trust_badge {
-    position: fixed;
-    top: 0;
-    right: 10px;
-    max-width: 100px;
-    width: 10%;
-    min-width: 60px;
-    display: block;
-    z-index: 10000;
-
-    img {
-      width: 100%;
-    }
-  }
 }
 
 input, textarea, select {
@@ -192,33 +195,6 @@ select {
 :-ms-input-placeholder {  
   color: rgb(215, 215, 215);  
 }
-
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@-moz-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@-ms-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@-o-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-
 
 @-webkit-keyframes slide-in {
   from { bottom: -100px; }
@@ -361,7 +337,7 @@ select {
   text-align: center;
 
   [class *="pure-u"] {
-    font-family: "Proxima Nova Light", Helvetica;
+    font-family: "Proxima Nova Light", Helvetica, sans-serif;
   }
 }
 
@@ -391,8 +367,12 @@ select {
       position: relative;
 
       .cover {
+        padding: 5% 0;
+
         .content {
           color: #fff;
+          margin-top: 50px;
+
           input, textarea, select {
             width: 25%;
           }
