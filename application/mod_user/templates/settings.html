@@ -43,20 +43,21 @@
             <button class="btn" type="submit">Change Password</button>
           </div>
         </form>
-        <h5>Change your account type</h5>
-        <form id="type_account-form" method="POST" action="/account/settings">
-          <input type="hidden" name="setting" value="type_account"/>
-          {% for field in account_type_form %}
-            {{ render_field(field, disabled = not can_edit) }}
-          {% endfor %}
-          <button class="btn" id="change-account_type" onclick="verify_submit(); return false;" disabled>Change Account Type</button>
-          <div class="horizontal hide" id="verify-submit">
-            <h6>Are you sure?</h6>
-            <h6>Your current application will be cleared.</h6>
-            <button class="btn" type="submit" {{ "disabled" if not can_edit }}>Yes</button>
-            <button class="btn" onclick="decline_submit(); return false;" {{ "disabled" if not can_edit }}>No</button>
-          </div>
-        </form>
+        <div class="{{'hide' if current_user.status == 'Submitted'}}">
+          <h5>Change your account type</h5>
+          <form id="type_account-form" method="POST" action="/account/settings">
+            <input type="hidden" name="setting" value="type_account"/>
+            <input type="hidden" name="type_account" value="{{ 'hacker' if current_user.type_account == 'mentor' else 'mentor' }}"/>
+
+            <button class="btn" id="change-account_type" onclick="verify_submit(); return false;">Change to {{ "Hacker" if current_user.type_account == "mentor" else "Mentor" }}</button>
+            <div class="horizontal hide" id="verify-submit">
+              <h6>Are you sure?</h6>
+              <h6>Your current application will be cleared.</h6>
+              <button class="btn" type="submit" {{ "disabled" if not can_edit }}>Yes</button>
+              <button class="btn" onclick="decline_submit(); return false;" {{ "disabled" if not can_edit }}>No</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -73,17 +74,6 @@
   var decline_submit = function() {
     var button_group = document.getElementById("verify-submit");
     button_group.classList.toggle("hide");
-  }
-
-  document.getElementById("type_account").onchange = function(){
-    var btn = document.getElementById("change-account_type");
-    if(this.value == "{{ current_user.type_account }}"){
-      decline_submit();
-      btn.setAttribute("disabled", "disabled");
-    }
-    else{
-      btn.removeAttribute("disabled");
-    }
   }
 </script>
 {% endblock %}

@@ -105,7 +105,7 @@ def confirm_email(token):
 def settings():
   name_form = ChangeNameForm(request.form)
   password_form = ChangePasswordForm(request.form)
-  account_type_form  = ChangeAccountTypeForm(request.form)
+
   if request.method == "POST":    
     if request.form["setting"] == "name" and name_form.validate():
       try:
@@ -128,7 +128,7 @@ def settings():
             flash("Something went wrong.", "error")
       else:
         flash("Incorrect password.", "error")
-    if request.form["setting"] == "type_account" and account_type_form.validate():
+    if request.form["setting"] == "type_account":
       if current_user.status == "Submitted":
         flash("Application already submitted.", "error")
       else:
@@ -143,9 +143,8 @@ def settings():
 
   user = controller.get_user(current_user.email)
   name_form = ChangeNameForm(obj = user)
-  account_type_form = ChangeAccountTypeForm(obj = user)
 
-  return render_template("user.settings.html", name_form = name_form, password_form = password_form, account_type_form = account_type_form)
+  return render_template("user.settings.html", name_form = name_form, password_form = password_form)
 
 @cache.cached()
 @mod_user.route("/register", methods = ["GET", "POST"])
