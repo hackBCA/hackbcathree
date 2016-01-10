@@ -5,6 +5,7 @@ from . import controllers as controller
 from .forms import *
 from application import CONFIG
 from application import cache
+import re
 
 @cache.cached()
 @mod_user.route("/login", methods=["GET", "POST"])
@@ -104,6 +105,7 @@ def confirm_email(token):
 def settings():
   name_form = ChangeNameForm(request.form)
   password_form = ChangePasswordForm(request.form)
+
   if request.method == "POST":    
     if request.form["setting"] == "name" and name_form.validate():
       try:
@@ -126,9 +128,22 @@ def settings():
             flash("Something went wrong.", "error")
       else:
         flash("Incorrect password.", "error")
-  else:
-    user = controller.get_user(current_user.email)
-    name_form = ChangeNameForm(request.form, obj = user)
+    if request.form["setting"] == "type_account":
+      if current_user.status == "Submitted":
+        flash("Application already submitted.", "error")
+      else:
+        try:
+          controller.change_account_type(current_user.email, request.form["type_account"])
+          flash("Account type changed.", "success")
+        except Exception as e:
+          if CONFIG["DEBUG"]:
+            raise e
+          else:
+            flash("Something went wrong.", "error")
+
+  user = controller.get_user(current_user.email)
+  name_form = ChangeNameForm(obj = user)
+
   return render_template("user.settings.html", name_form = name_form, password_form = password_form)
 
 @cache.cached()
@@ -168,6 +183,7 @@ def application():
           flash("Application Saved", "success")
         elif "submit" in request.form:
           controller.save_application(current_user.email, request.form)
+
           if form.validate():
             flash("Application Submitted", "success")
             controller.set_user_attr(current_user.email, "status", "Submitted")

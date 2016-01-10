@@ -36,9 +36,9 @@
             {% endif %}
           {% endfor %}
 
-          <div class="buttons horizontal">
+          <div class="buttons horizontal {{'hide' if not can_edit}}">
             <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
-            <button class="btn" onclick="verify_submit(); return false;">Submit</button>
+            <button class="btn" onclick="verify_submit(); return false;" {{ "disabled" if not can_edit }}>Submit</button>
           </div>
           <div class="buttons horizontal hide" id="verify-submit">
             <h6>Are you sure?</h6>
