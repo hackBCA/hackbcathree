@@ -6,7 +6,6 @@ from application import cache
 @cache.cached()
 @mod_web.route("/", methods = ["GET", "POST"])
 def index():
-	print("hi")
 	return render_template("web.index.html")
 
 @cache.cached()
