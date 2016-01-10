@@ -79,6 +79,16 @@ class ChangePasswordForm(Form):
         if len(password) >= 8 and password != field.data:
             raise ValidationError("Passwords must match.")
 
+class ChangeAccountTypeForm(Form):
+    type_account_choices = [
+        ("hacker", "Hacker"),       
+        ("mentor", "Mentor")
+    ]
+
+    type_account = SelectField("Hacker or Mentor?", [validators.Required(message = "Please select an account type.")], choices = type_account_choices, description = "Hacker or Mentor?")
+
+
+
 gender_choices = [
     ("", "Gender"),
     ("male", "Male"),
