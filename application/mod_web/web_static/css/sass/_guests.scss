@@ -1,0 +1,54 @@
+#guests {
+  .container {
+    .header {
+      background-image: url($asset_url_prefix + "specialguests.jpg");
+    }
+
+    .info {
+      .pure-g {
+        -webkit-justify-content: center;
+        justify-content: center;
+        
+        .guest {
+          margin: 2% 10px 0 10px;
+
+          img {
+            width: 200px;
+            height: auto;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #guests {
+    .container {
+      .info {
+        .guest {
+
+          img {
+            width: 150px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #guests {
+    .container {
+      .info {
+        .guest {
+
+          img {
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+}

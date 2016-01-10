@@ -1,0 +1,48 @@
+{% extends "user.base.html" %}
+
+{% set nav_bar = [
+  ("/#home", "Home", False),
+  ("/account/application", "Application", False),
+  ("/account/settings", "Settings", True)
+] -%}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+<div class="page-container">
+  <div class="page-section" id="settings">
+    <div class="container">
+      <div class="header">
+        <div class="head-cover">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h2>Account Settings</h2>
+          <h4>Edit your settings here!</h4>
+        </div>
+      </div>
+      <div class="info">
+        <h5>Change your name</h5>
+        <form method="POST" action="/account/settings">
+          <input type="hidden" name="setting" value="name"/>
+          {% for field in name_form %}
+            {{ render_field(field) }}
+          {% endfor %}
+          <div class="buttons">
+            <button class="btn" type="submit">Update Name</button>
+          </div>
+        </form>
+        <h5>Change your password</h5>
+        <form method="POST" action="/account/settings">
+          <input type="hidden" name="setting" value="password"/>
+          {% for field in password_form %}
+            {{ render_field(field) }}
+          {% endfor %}
+          <div class="buttons">
+            <button class="btn" type="submit">Change Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

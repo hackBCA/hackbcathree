@@ -1,0 +1,24 @@
+#contact {
+  .container {
+    .header {
+      background-image: url($asset_url_prefix + "contact.jpg");
+
+      .links {
+        -webkit-justify-content: center;
+        justify-content: center;
+        
+        .link {
+          margin-top: 2%;
+
+          i {
+            color: #fff;
+
+            &:hover {
+              color: #c8c8c8;
+            }
+          }
+        }
+      }
+    }
+  }
+}

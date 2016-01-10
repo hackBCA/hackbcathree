@@ -1,0 +1,30 @@
+#home {
+  height: 100vh;
+  background-image: url($asset_url_prefix + "landing.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+
+  .container {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .cover {
+      padding: 0 0 0 10%;
+      margin-top: 50px;
+
+      .content {
+        color: #fff;
+
+        #title {
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+}

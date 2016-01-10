@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% set nav_bar = [
+  ("/#home", "Home", False)
+] -%}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+<div class="full-page-container">
+  <div class="page-section" id="error">
+    <div class="container">
+      <div class="cover">
+        <div class="content">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h2>404: Page Not Found</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+.footer-info {
+  padding: 1% 0;
+  background-color: #222322;
+  color: #fff;
+  text-align: center;
+
+  p {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+
+    &#credit {
+      padding-right: 2%;
+
+      .fa-heart {
+        color: #e74c3c;
+      }
+    }
+
+    &#right-space {
+      padding-right: 1%;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer-info {
+    padding: 5% 0;
+  }
+}
