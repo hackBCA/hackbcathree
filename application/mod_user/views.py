@@ -63,7 +63,7 @@ def recover_change(token):
   if request.method == "POST" and form.validate():
     try:
       controller.change_password(email, request.form["password"])
-      flash("Password changed.", "sucess")
+      flash("Password changed.", "success")
       return redirect("/")
     except Exception as e:
       if CONFIG["DEBUG"]:
@@ -97,7 +97,7 @@ def verify():
 def confirm_email(token):
   session.pop("email", None)
   controller.confirm_email(token)
-  flash("Account confirmed!", "success")
+  flash("Account confirmed! Login to start your application!", "success")
   return redirect("/?status=confirmed")
 
 @mod_user.route("/account/settings", methods = ["GET", "POST"])
@@ -153,7 +153,7 @@ def register():
   if request.method == "POST" and form.validate():
     try:
       controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"], request.form["type_account"])
-      flash("Almost there! Check your inbox for an email to confirm your account.", "success")
+      flash("Check your inbox for an email to confirm your account!", "success")
       return redirect("/")
     except Exception as e:
       exceptionType = e.args[0]
