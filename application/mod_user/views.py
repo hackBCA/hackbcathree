@@ -62,7 +62,7 @@ def recover_change(token):
   if request.method == "POST" and form.validate():
     try:
       controller.change_password(email, request.form["password"])
-      flash("Password changed.", "sucess")
+      flash("Password changed.", "success")
       return redirect("/")
     except Exception as e:
       if CONFIG["DEBUG"]:
