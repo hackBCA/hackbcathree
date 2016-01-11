@@ -55,6 +55,9 @@ register_connection (
 # Cache
 cache = Cache(app,config={"CACHE_TYPE": "simple", "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 7})
 
+@app.errorhandler(401)
+def error(e):
+    return render_template("401.html"), 401
 
 @app.errorhandler(404)
 def error(e):
