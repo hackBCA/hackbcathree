@@ -10,6 +10,8 @@
 {% with nav_bar = nav_bar %}
   {% include "navbar.html" %}
 {% endwith %}
+
+{% set can_edit = (current_user.status in ["Not Started", "In Progress"]) %}
 <div class="page-container">
   <div class="page-section" id="settings">
     <div class="container">
@@ -22,17 +24,17 @@
       </div>
       <div class="info">
         <h5>Change your name</h5>
-        <form method="POST" action="/account/settings">
+        <form id="name-form" method="POST" action="/account/settings">
           <input type="hidden" name="setting" value="name"/>
           {% for field in name_form %}
             {{ render_field(field) }}
           {% endfor %}
           <div class="buttons">
-            <button class="btn" type="submit">Update Name</button>
+            <button class="btn" type="submit">Change Name</button>
           </div>
         </form>
         <h5>Change your password</h5>
-        <form method="POST" action="/account/settings">
+        <form id="password-form" method="POST" action="/account/settings">
           <input type="hidden" name="setting" value="password"/>
           {% for field in password_form %}
             {{ render_field(field) }}
@@ -41,8 +43,37 @@
             <button class="btn" type="submit">Change Password</button>
           </div>
         </form>
+        <div class="{{'hide' if current_user.status == 'Submitted'}}">
+          <h5>Change your account type</h5>
+          <form id="type_account-form" method="POST" action="/account/settings">
+            <input type="hidden" name="setting" value="type_account"/>
+            <input type="hidden" name="type_account" value="{{ 'hacker' if current_user.type_account == 'mentor' else 'mentor' }}"/>
+
+            <button class="btn" id="change-account_type" onclick="verify_submit(); return false;">Change to {{ "Hacker" if current_user.type_account == "mentor" else "Mentor" }}</button>
+            <div class="horizontal hide" id="verify-submit">
+              <h6>Are you sure?</h6>
+              <h6>Your current application will be cleared.</h6>
+              <button class="btn" type="submit" {{ "disabled" if not can_edit }}>Yes</button>
+              <button class="btn" onclick="decline_submit(); return false;" {{ "disabled" if not can_edit }}>No</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+  var verify_submit = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+
+  var decline_submit = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+</script>
 {% endblock %}

@@ -3,5 +3,74 @@
     .header {
       background-image: url($asset_url_prefix + "whatishackbca.jpg"); 
     }
+
+    .info {
+      .form-elt {
+        input, textarea, select {
+          width: 50%;
+        }
+
+        textarea {
+          max-width: 50%;
+          height: 200px;
+        }
+
+        p {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #settings {
+    .container {
+      .info {
+        .form-elt {
+          input, textarea, select {
+            width: 75%;
+          }
+
+          textarea {
+            max-width: 75%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #settings {
+    .container {
+      .info {
+        .form-elt {
+          input, textarea, select {
+            width: 85%;
+          }
+          textarea {
+            max-width: 85%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #settings {
+    .container {
+      .info {
+        .form-elt {
+          input, textarea, select {
+            width: 100%;
+          }
+          textarea {
+            max-width: 100%;
+          }
+        }
+      }
+    }
   }
 }
