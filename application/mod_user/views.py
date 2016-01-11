@@ -9,6 +9,9 @@ from application import cache
 @cache.cached()
 @mod_user.route("/login", methods=["GET", "POST"])
 def login():
+  if current_user.is_authenticated:
+    return redirect("/account")    
+
   form = LoginForm(request.form)
   if request.method == "POST" and form.validate():
     try:
@@ -134,6 +137,9 @@ def settings():
 @cache.cached()
 @mod_user.route("/register", methods = ["GET", "POST"])
 def register():
+  if current_user.is_authenticated:
+    return redirect("/account")
+
   form = RegistrationForm(request.form)
   if request.method == "POST" and form.validate():
     try:
