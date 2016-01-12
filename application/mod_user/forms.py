@@ -82,7 +82,7 @@ gender_choices = [
     ("", "Gender"),
     ("male", "Male"),
     ("female", "Female"),
-    ("Other", "Other"),
+    ("other", "Other"),
     ("rns", "Rather Not Say")
 ]
 
