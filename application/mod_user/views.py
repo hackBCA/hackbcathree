@@ -9,6 +9,9 @@ from application import cache
 @cache.cached()
 @mod_user.route("/login", methods=["GET", "POST"])
 def login():
+  if current_user.is_authenticated:
+    return redirect("/account")    
+
   form = LoginForm(request.form)
   if request.method == "POST" and form.validate():
     try:
@@ -62,7 +65,7 @@ def recover_change(token):
   if request.method == "POST" and form.validate():
     try:
       controller.change_password(email, request.form["password"])
-      flash("Password changed.", "sucess")
+      flash("Password changed.", "success")
       return redirect("/")
     except Exception as e:
       if CONFIG["DEBUG"]:
@@ -96,7 +99,7 @@ def verify():
 def confirm_email(token):
   session.pop("email", None)
   controller.confirm_email(token)
-  flash("Account confirmed!", "success")
+  flash("Account confirmed! Login to start your application!", "success")
   return redirect("/?status=confirmed")
 
 @mod_user.route("/account/settings", methods = ["GET", "POST"])
@@ -126,6 +129,19 @@ def settings():
             flash("Something went wrong.", "error")
       else:
         flash("Incorrect password.", "error")
+    if request.form["setting"] == "type_account":
+      if current_user.status == "Submitted":
+        flash("Application already submitted.", "error")
+      else:
+        try:
+          controller.change_account_type(current_user.email, request.form["type_account"])
+          flash("Account type changed.", "success")
+        except Exception as e:
+          if CONFIG["DEBUG"]:
+            raise e
+          else:
+            flash("Something went wrong.", "error")
+
   else:
     user = controller.get_user(current_user.email)
     name_form = ChangeNameForm(request.form, obj = user)
@@ -134,11 +150,14 @@ def settings():
 @cache.cached()
 @mod_user.route("/register", methods = ["GET", "POST"])
 def register():
+  if current_user.is_authenticated:
+    return redirect("/account")
+
   form = RegistrationForm(request.form)
   if request.method == "POST" and form.validate():
     try:
       controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"], request.form["type_account"])
-      flash("Almost there! Check your inbox for an email to confirm your account.", "success")
+      flash("Check your inbox for an email to confirm your account!", "success")
       return redirect("/")
     except Exception as e:
       exceptionType = e.args[0]
@@ -170,7 +189,8 @@ def application():
           controller.save_application(current_user.email, request.form)
           if form.validate():
             flash("Application Submitted", "success")
-            controller.set_user_attr(current_user.email, "status", "Submitted")
+            if not CONFIG["DEBUG"]:
+              controller.set_user_attr(current_user.email, "status", "Submitted")
             
             controller.login(current_user.email) #To immediately update application status and disable the form
           else:

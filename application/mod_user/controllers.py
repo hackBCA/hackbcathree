@@ -114,6 +114,20 @@ def change_password(email, password):
 	account.hashed = hashed
 	account.save()
 
+def change_account_type(email, account_type):
+	account = get_user(email)
+
+	if account.type_account == account_type:
+		return
+
+	account.type_account = account_type
+
+	clear_application(account.email)
+
+	account.save()
+
+	login(email)
+
 def validate_email(email):
 	token = tokenize_email(email)
 
@@ -150,6 +164,17 @@ def set_user_attr(email, attr, value):
 		raise UserDoesNotExistError
 	
 	setattr(user, attr, value)
+
+	user.save()
+
+def clear_application(email):
+	user = get_user(email)
+
+	if user is None:
+		raise UserDoesNotExistError
+
+	for key in application_fields:
+		setattr(user, key, None)
 
 	user.save()
 

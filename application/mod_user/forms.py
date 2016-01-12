@@ -1,7 +1,7 @@
-from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, BooleanField, validators, ValidationError
+from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, BooleanField, validators, ValidationError, RadioField
+import re
 
 type_account_choices = [
-    ("", "Hacker or Mentor?"),
     ("hacker", "Hacker"),
     ("mentor", "Mentor")
 ]
@@ -22,7 +22,7 @@ class RegistrationForm(Form):
         validators.Length(min = 8, message = "Password must be at least 8 characters.")
     ], description = "Password")
     confirm_password = PasswordField("Confirm Password", description = "Confirm Password")
-    type_account = SelectField("Hacker or Mentor?", [validators.Required(message = "Please select an account type.")], choices = type_account_choices, description = "Hacker or Mentor?")
+    type_account = RadioField("Hacker or Mentor?", [validators.Required(message = "Please select an account type.")], choices = type_account_choices, description = "Hacker or Mentor?")
 
     def validate_confirm_password(form, field):
         password = form['password'].data
@@ -83,6 +83,7 @@ gender_choices = [
     ("", "Gender"),
     ("male", "Male"),
     ("female", "Female"),
+    ("other", "Other"),
     ("rns", "Rather Not Say")
 ]
 
@@ -145,6 +146,7 @@ class ApplicationForm(Form):
     ], description = "School Name")
 
     gender = SelectField("Gender", [validators.Required(message = "You must select an option.")], choices = gender_choices, description = "Gender")
+    other_gender = TextField("Other Gender", [validators.optional()], description = "Other Gender")
     beginner = SelectField("Are you a beginner?", [validators.Required(message = "You must select an option.")], choices = beginner_choices, description = "Are you a beginner?")
     ethnicity = SelectField("Ethnicity", [validators.Required(message = "You must select an option.")], choices = ethnicity_choices, description = "Ethnicity")
     grade = SelectField("Grade", [validators.Required(message = "You must select an option.")], choices = grade_choices, description = "Grade")
@@ -152,22 +154,18 @@ class ApplicationForm(Form):
 
     github_link = TextField("Github Link", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Github Link (Optional)")
     linkedin_link = TextField("LinkedIn", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "LinkedIn Link (Optional)")
     site_link = TextField("Personal Site", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
     other_link = TextField("other", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Other Link (Optional)")
 
@@ -186,9 +184,33 @@ class ApplicationForm(Form):
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
 
-    mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
+    mlh_terms = BooleanField("I agree", [
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
         ], description = "I agree to the MLH Code of Conduct.", default = False)
+
+    def validate(self): #Man I love validators.URL
+        links = ["github_link", "linkedin_link", "site_link", "other_link"]
+        originalValues = {}
+
+        for link in links: #Temporarily prefix all links with http:// if they are missing it
+            attr = getattr(self, link)
+            val = attr.data
+            originalValues[link] = val
+            if re.match("^(http|https)://", val) is None:
+                val = "http://" + val
+            attr.data = val
+            setattr(self, link, attr)
+
+        rv = Form.validate(self)
+
+        for link in links: #Revert link values back to actual values
+            attr = getattr(self, link)
+            attr.data = originalValues[link]
+            setattr(self, link, attr)
+
+        if not rv:
+            return False
+        return True
 
 class MentorApplicationForm(Form):
     school = TextField("Company/School Name", [
@@ -204,22 +226,18 @@ class MentorApplicationForm(Form):
 
     github_link = TextField("Github Link", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Github Link (Optional)")
     linkedin_link = TextField("LinkedIn", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "LinkedIn Link (Optional)")
     site_link = TextField("Personal Site", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
     other_link = TextField("other", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Other Link (Optional)")
 
@@ -233,6 +251,30 @@ class MentorApplicationForm(Form):
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
 
-    mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
+    mlh_terms = BooleanField("I agree",[
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
         ], description = "I agree to the MLH Code of Conduct.", default = False)
+
+    def validate(self):
+        links = ["github_link", "linkedin_link", "site_link", "other_link"]
+        originalValues = {}
+
+        for link in links: #Temporarily prefix all links with http:// if they are missing it
+            attr = getattr(self, link)
+            val = attr.data
+            originalValues[link] = val
+            if re.match("^(http|https)://", val) is None:
+                val = "http://" + val
+            attr.data = val
+            setattr(self, link, attr)
+
+        rv = Form.validate(self)
+
+        for link in links: #Revert link values back to actual values
+            attr = getattr(self, link)
+            attr.data = originalValues[link]
+            setattr(self, link, attr)
+
+        if not rv:
+            return False
+        return True
