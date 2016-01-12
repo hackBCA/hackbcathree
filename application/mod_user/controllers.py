@@ -126,6 +126,8 @@ def change_account_type(email, account_type):
 
 	account.save()
 
+	login(email)
+
 def validate_email(email):
 	token = tokenize_email(email)
 
