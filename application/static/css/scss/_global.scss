@@ -87,6 +87,13 @@ p {
   height: 12.5em;
 }
 
+@media screen and (max-width: 85.375em) {
+  .logo {
+    width: 10em;
+    height: 10em;
+  }
+}
+
 @media screen and (max-width: 64em) {
   h1 {font-size: 4.5em;}
   h2 {font-size: 3em;}
@@ -209,8 +216,8 @@ select {
         margin-right: 0;
       }
 
-      input[type=radio] {
-        width: auto !important;
+      input[type="radio"] {
+        width: auto;
         margin-left: -100000px;
 
         &:empty {
@@ -239,6 +246,68 @@ select {
           ~ label {
             color: #202020;
             background-color: rgba(255, 255, 255, 0.5);
+          }
+        }
+      }
+    }
+    &.checkboxes {
+      li {
+        background-color: #c8c8c8;
+        color: #fff;
+        width: 12%;
+        @media screen and (max-width: 1366px) { width: 25%; }
+        @media screen and (max-width: 1024px) { width: 35%; }
+        @media screen and (max-width: 768px) { width: 45%; }
+        @media screen and (max-width: 480px) { width: 50%; }
+
+        input[type="checkbox"] {
+          width: auto !important;
+          margin-left: -100000px;
+
+          ~ label {
+            position: relative;
+            float: left;
+            padding: 15px 30px;
+            width: 100%;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-size: 20px;
+            
+            &:before {
+              position: absolute;
+              display: block;
+              content:'\2714';
+              color: #c8c8c8;
+              left: 0;
+              content: '';
+              width: 2em;
+            }
+          }
+
+          &:hover:not(:checked) {
+            ~ label {
+              background-color: rgba(200, 200, 200, 0.25);
+
+              &:before {
+                content:'\2714';
+                color: #2ecc71;
+              }
+            }
+          }
+
+          &:checked {
+            ~ label {
+              color: #fff;
+              background-color: #2ecc71;
+
+              &:before {
+                content:'\2714';
+                color: #fff;
+              }
+            }
           }
         }
       }
@@ -307,32 +376,10 @@ select {
   margin: 0;
   padding: 0;
   text-align: center;
-  animation: slide-in 0.75s;
-  -o-animation: slide-in 0.75s;
-  -moz-animation: slide-in 0.75s;
-  -webkit-animation: slide-in 0.75s;
-  animation-delay: 0s;
-  -o-animation-delay: 0s;
-  -moz-animation-delay: 0s;
-  -webkit-animation-delay: 0s;
-  animation-fill-mode: forwards; 
-  -o-animation-fill-mode: forwards; 
-  -moz-animation-fill-mode: forwards; 
-  -webkit-animation-fill-mode: forwards; 
+  @include animation(slide-in 0.75s 0s forwards);
   
   &.fade-out {
-    animation: slide-out 0.75s;
-    -o-animation: slide-out 0.75s;
-    -moz-animation: slide-out 0.75s;
-    -webkit-animation: slide-out 0.75s;
-    animation-delay: 0s;
-    -o-animation-delay: 0s;
-    -moz-animation-delay: 0s;
-    -webkit-animation-delay: 0s;
-    animation-fill-mode: forwards; 
-    -o-animation-fill-mode: forwards; 
-    -moz-animation-fill-mode: forwards; 
-    -webkit-animation-fill-mode: forwards; 
+    @include animation(slide-out 0.75s 0s forwards);  
   }
 
   li {
@@ -433,7 +480,7 @@ select {
       position: relative;
 
       .cover {
-        padding: 5% 0;
+        padding: 2.5% 5%;
 
         .content {
           color: #fff;

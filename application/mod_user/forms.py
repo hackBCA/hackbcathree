@@ -82,6 +82,7 @@ gender_choices = [
     ("", "Gender"),
     ("male", "Male"),
     ("female", "Female"),
+    ("Other", "Other"),
     ("rns", "Rather Not Say")
 ]
 
@@ -144,6 +145,7 @@ class ApplicationForm(Form):
     ], description = "School Name")
 
     gender = SelectField("Gender", [validators.Required(message = "You must select an option.")], choices = gender_choices, description = "Gender")
+    other_gender = TextField("Other Gender", [validators.optional()], description = "Other Gender")
     beginner = SelectField("Are you a beginner?", [validators.Required(message = "You must select an option.")], choices = beginner_choices, description = "Are you a beginner?")
     ethnicity = SelectField("Ethnicity", [validators.Required(message = "You must select an option.")], choices = ethnicity_choices, description = "Ethnicity")
     grade = SelectField("Grade", [validators.Required(message = "You must select an option.")], choices = grade_choices, description = "Grade")
@@ -185,7 +187,7 @@ class ApplicationForm(Form):
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
 
-    mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
+    mlh_terms = BooleanField("I agree", [
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
         ], description = "I agree to the MLH Code of Conduct.", default = False)
 
