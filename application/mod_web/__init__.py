@@ -4,7 +4,7 @@ web_module = Blueprint(
     "web", 
     __name__, 
     url_prefix = "",
-    template_folder = "web_templates",
+    template_folder = "templates",
     static_folder = "web_static"
 )
 

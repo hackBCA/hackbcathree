@@ -1,0 +1,54 @@
+#about {
+  color: #202020;
+
+  .container {
+    vertical-align: top;
+
+    .header {
+      .head-cover {
+        padding: 5% 0 0 !important;
+        background: none;
+      }
+    }
+
+    .info {
+      .images {
+        .i-contain {
+          margin: 2% 0;
+
+          .image {
+            margin: 0 10px;
+          }
+        }
+      }
+
+      .program {
+        margin-bottom: 2.5%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #about {
+    .container {
+      .header {
+        .head-cover {
+          padding: 12.5% 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #about {
+    .container {
+      .header {
+        .head-cover {
+          padding: 25% 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+#faq {
+  .container {
+
+    .header {
+      background-image: url($asset_url_prefix + "faq.jpg");
+    }
+
+    .info {
+      text-align: left;
+      .pure-g {
+
+        .q-contain {
+          .question {
+            text-align: left;
+            margin: 0 10px;
+          }
+        }
+      }
+
+      #ask {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{% extends "user.base.html" %}
+
+{% set nav_bar = [
+  ("/#home", "Home", False),
+  ("/account/application", "Application", False),
+  ("/account/settings", "Settings", False)
+] -%}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+
+<div class="page-container">
+  <div class="page-section" id="account">
+    <div class="container">
+      <div class="header">
+        <div class="head-cover">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h2>Account</h2>
+          <h4>Hey, {{ current_user.firstname }}!</h4>
+        </div>
+      </div>
+      <div class="info {{ status }}">
+        <h4>Application Status: <span>{{ current_user.status }}</span></h4>
+        <h4>Application Type: <span>{{ current_user.type_account.capitalize() }}</span></h4>
+        <div class="buttons horizontal">
+          <a href="/account/application" class="btn">{{ "Edit" if current_user.status == "Not Started" or current_user.status == "In Progress" else "View" }} Application</a>
+          <a href="/account/settings" class="btn">Account Settings</a>
+          <a href="/logout" class="btn">Logout</a>
+        </div>
+        <p>Have a question? Shoot us an email at <a href="mailto:contact@hackbca.com">contact@hackbca.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+#account {
+  .container {
+    .header {
+      background-image: url($asset_url_prefix + "landing.png");
+    }
+
+    .info {
+
+      h2 {
+        margin-bottom: 2%;
+      }
+
+      .buttons {
+        margin-bottom: 2%;
+      }
+
+      .message {
+        display: none;
+        margin-bottom: 2%;
+      }
+
+      &.complete {
+
+        span {
+          background-color: #2ecc71;
+        }
+
+        .message {
+          display: block;
+        }
+      }
+
+      &.incomplete {
+        span {
+          background-color: #f39c12;
+        }
+      }
+
+      &.not-started {
+        span {
+          background-color: #e74c3c;
+        }
+      }
+    }
+  }
+}

@@ -16,7 +16,7 @@ def validate_email(entry):
 	message.set_html("<p></p>")
 
 	message.add_filter("templates", "enable", "1")
-	message.add_filter("templates", "template_id", "47174e8a-880e-4bde-978b-6b42caae71af")
+	message.add_filter("templates", "template_id", CONFIG["SENDGRID_MAILING_LIST_CONFIRM_TEMPLATE"])
 	message.add_substitution("token", token)	
 
 	status, msg = sg.send(message)

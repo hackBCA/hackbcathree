@@ -1,0 +1,109 @@
+{% extends "user.base.html" %}
+
+{% set nav_bar = [
+  ("/#home", "Home", False),
+  ("/account/application", "Application", True),
+  ("/account/settings", "Settings", False)
+] -%}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+
+{% set can_edit = (current_user.status in ["Not Started", "In Progress"]) %}
+<div class="page-container">
+  <div class="page-section" id="application">
+    <div class="container">
+      <div class="header">
+        <div class="head-cover">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h2>Application</h2>
+          <h4>Tell us about yourself!</h4>
+        </div>
+      </div>
+      <div class="info">
+        <form class="application-form" method="POST" action="">
+          <h4>{{ current_user.full_name() }}</h4>
+          <h4>{{ current_user.type_account.capitalize() }}</h4>
+          {% for field in form %}
+            {% if field == form.other_gender %}
+              <div class="form-elt {% if field.errors %}error{% endif %}">
+                {{ field(placeholder = field.description, disabled = not can_edit, class = "hide") }}
+                {% if field.errors %}
+                  <p class="error-msg">{{ field.errors[0] }}</p>
+                {% endif %}
+              </div>
+            {% elif field == form.mlh_terms  %}
+              <div class="form-elt {% if field.errors %}error{% endif %}">
+                <h6>{{ field.description }}</h6>
+                <p>The MLH Code of Conduct is available <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">here</a>.</p>
+                <ul class="checkboxes">
+                  <li>
+                    {{ field(disabled = not can_edit) }}
+                    {{ field.label }}
+                  </li>
+                </ul>
+                {% if field.errors %}
+                  <p class="error-msg">{{ field.errors[0] }}</p>
+                {% endif %}
+              </div>
+            {% else %}
+              {{ render_field(field, not can_edit) }}
+            {% endif %}
+          {% endfor %}
+
+          <div class="buttons horizontal {{'hide' if not can_edit}}">
+            <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
+            <button class="btn" onclick="verify_submit(); return false;" {{ "disabled" if not can_edit }}>Submit</button>
+          </div>
+          <div class="buttons horizontal hide" id="verify-submit">
+            <h6>Are you sure?</h6>
+            <button class="btn" type="submit" name="submit" {{ "disabled" if not can_edit }}>Yes</button>
+            <button class="btn" onclick="decline_verify(); return false;">No</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+  var verify_submit = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+
+  var decline_verify = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+
+  var char_counter = function() {
+    questions = document.querySelectorAll("textarea");
+    for (var i = 0; i < questions.length; i++) {
+      questions[i].onkeyup = function () {
+        document.querySelector(".count#" + this.id).innerHTML = "Characters left: " + (500 - this.value.length);
+      }
+      document.querySelector(".count#" + questions[i].id).innerHTML = "Characters left: " + (500 - questions[i].value.length);
+    }
+  }
+  char_counter();
+
+  var gender_onchange = function() {
+    var gender = document.querySelector(".form-elt #gender");  
+    var index = gender.selectedIndex;
+    if (index === 3) {
+      document.querySelector(".form-elt #other_gender").classList.remove("hide");
+    } else {
+      document.querySelector(".form-elt #other_gender").classList.add("hide");
+    }
+  }
+  var gender_field = document.querySelector(".form-elt #gender");
+  gender_field.onchange = gender_onchange;
+
+  gender_onchange();
+</script>
+{% endblock %}
