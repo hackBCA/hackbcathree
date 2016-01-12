@@ -108,8 +108,10 @@
 
       .cover {
         .content {
-          input, textarea, select {
-            width: 25%;
+          .form-elt {
+            input, textarea, select {
+              width: 25%;
+            }
           }
         }
       }
@@ -123,8 +125,10 @@
       .container {
         .cover {
           .content {
-            input, textarea, select {
-              width: 50%;
+            .form-elt {
+              input, textarea, select {
+                width: 50%;
+              }
             }
           }
         }
@@ -139,8 +143,10 @@
       .container {
         .cover {
           .content {
-            input, textarea, select {
-              width: 75%;
+           .form-elt {
+              input, textarea, select {
+                width: 75%;
+              }
             }
           }
         }
@@ -155,8 +161,10 @@
       .container {
         .cover {
           .content {
-            input, textarea, select {
-              width: 100%;
+            .form-elt {
+              input, textarea, select {
+                width: 100%;
+              }
             }
           }
         }

@@ -31,4 +31,7 @@
     background-color: $blue-fade-color;
     color: #fff;
   }
+  &:disabled {
+    background-color: #505050;
+  }
 }

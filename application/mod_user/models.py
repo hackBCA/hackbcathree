@@ -1,7 +1,7 @@
 from flask.ext.login import LoginManager, UserMixin
 from mongoengine import *
 
-application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num_hackathons", "github_link", "linkedin_link", "site_link", "other_link", "free_response1", "free_response2", "free_response3"]
+application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num_hackathons", "phone", "github_link", "linkedin_link", "site_link", "other_link", "free_response1", "free_response2", "free_response3", "mlh_terms"]
 
 
 #Mongo Object
@@ -15,7 +15,7 @@ class UserEntry(Document):
 	confirmed = BooleanField(required = False, default = False)
 
 	status = StringField(default = "Not Started")
-	# In Progress, Submitted, Accepted, Waitlist, Denied
+	# In Progress, Submitted, Accepted, Waitlist
 
 	type_account = StringField(required = True, default = "hacker")
 
