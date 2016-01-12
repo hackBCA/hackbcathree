@@ -8,6 +8,11 @@
       .form-elt {
         input, textarea, select {
           width: 50%;
+          color: #202020;
+        }
+
+        select:first-child {
+          color: #fff;
         }
 
         textarea {
