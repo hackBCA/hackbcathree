@@ -160,7 +160,7 @@ class ApplicationForm(Form):
     ], description = "LinkedIn Link (Optional)")
     site_link = TextField("Personal Site", [
         validators.optional(),
-validators.URL(message = "Invalid URL.")
+        validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
     other_link = TextField("other", [
         validators.optional(),
@@ -232,7 +232,7 @@ class MentorApplicationForm(Form):
     ], description = "LinkedIn Link (Optional)")
     site_link = TextField("Personal Site", [
         validators.optional(),
-validators.URL(message = "Invalid URL.")
+        validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
     other_link = TextField("other", [
         validators.optional(),
