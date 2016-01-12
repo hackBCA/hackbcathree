@@ -1,4 +1,5 @@
 from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, BooleanField, validators, ValidationError, RadioField
+import re
 
 type_account_choices = [
     ("hacker", "Hacker"),
@@ -153,22 +154,18 @@ class ApplicationForm(Form):
 
     github_link = TextField("Github Link", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Github Link (Optional)")
     linkedin_link = TextField("LinkedIn", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "LinkedIn Link (Optional)")
     site_link = TextField("Personal Site", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
-        validators.URL(message = "Invalid URL.")
+validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
     other_link = TextField("other", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Other Link (Optional)")
 
@@ -191,6 +188,30 @@ class ApplicationForm(Form):
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
         ], description = "I agree to the MLH Code of Conduct.", default = False)
 
+    def validate(self): #Man I love validators.URL
+        links = ["github_link", "linkedin_link", "site_link", "other_link"]
+        originalValues = {}
+
+        for link in links: #Temporarily prefix all links with http:// if they are missing it
+            attr = getattr(self, link)
+            val = attr.data
+            originalValues[link] = val
+            if re.match("^(http|https)://", val) is None:
+                val = "http://" + val
+            attr.data = val
+            setattr(self, link, attr)
+
+        rv = Form.validate(self)
+
+        for link in links: #Revert link values back to actual values
+            attr = getattr(self, link)
+            attr.data = originalValues[link]
+            setattr(self, link, attr)
+
+        if not rv:
+            return False
+        return True
+
 class MentorApplicationForm(Form):
     school = TextField("Company/School Name", [
         validators.Required(message = "Enter your company/schools's name.")
@@ -205,22 +226,18 @@ class MentorApplicationForm(Form):
 
     github_link = TextField("Github Link", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Github Link (Optional)")
     linkedin_link = TextField("LinkedIn", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "LinkedIn Link (Optional)")
     site_link = TextField("Personal Site", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
-        validators.URL(message = "Invalid URL.")
+validators.URL(message = "Invalid URL.")
     ], description = "Personal Site Link (Optional)")
     other_link = TextField("other", [
         validators.optional(),
-        validators.Regexp("^(http|https)://", message = "Please add 'https://' or 'http://' to the beginning of the URL."),
         validators.URL(message = "Invalid URL.")
     ], description = "Other Link (Optional)")
 
@@ -237,3 +254,27 @@ class MentorApplicationForm(Form):
     mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
         ], description = "I agree to the MLH Code of Conduct.", default = False)
+
+    def validate(self):
+        links = ["github_link", "linkedin_link", "site_link", "other_link"]
+        originalValues = {}
+
+        for link in links: #Temporarily prefix all links with http:// if they are missing it
+            attr = getattr(self, link)
+            val = attr.data
+            originalValues[link] = val
+            if re.match("^(http|https)://", val) is None:
+                val = "http://" + val
+            attr.data = val
+            setattr(self, link, attr)
+
+        rv = Form.validate(self)
+
+        for link in links: #Revert link values back to actual values
+            attr = getattr(self, link)
+            attr.data = originalValues[link]
+            setattr(self, link, attr)
+
+        if not rv:
+            return False
+        return True
