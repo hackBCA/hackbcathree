@@ -129,6 +129,19 @@ def settings():
             flash("Something went wrong.", "error")
       else:
         flash("Incorrect password.", "error")
+    if request.form["setting"] == "type_account":
+      if current_user.status == "Submitted":
+        flash("Application already submitted.", "error")
+      else:
+        try:
+          controller.change_account_type(current_user.email, request.form["type_account"])
+          flash("Account type changed.", "success")
+        except Exception as e:
+          if CONFIG["DEBUG"]:
+            raise e
+          else:
+            flash("Something went wrong.", "error")
+
   else:
     user = controller.get_user(current_user.email)
     name_form = ChangeNameForm(request.form, obj = user)
