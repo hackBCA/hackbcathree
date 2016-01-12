@@ -190,9 +190,12 @@ def application():
         elif "submit" in request.form:
           controller.save_application(current_user.email, request.form)
 
+          modifiedFormData = {}
+
           if form.validate():
             flash("Application Submitted", "success")
-            controller.set_user_attr(current_user.email, "status", "Submitted")
+            if not CONFIG["DEBUG"]:
+              controller.set_user_attr(current_user.email, "status", "Submitted")
             
             controller.login(current_user.email) #To immediately update application status and disable the form
           else:
