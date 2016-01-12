@@ -251,7 +251,7 @@ validators.URL(message = "Invalid URL.")
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
 
-    mlh_terms = BooleanField("I agree to the MLH Code of Conduct",[
+    mlh_terms = BooleanField("I agree",[
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
         ], description = "I agree to the MLH Code of Conduct.", default = False)
 
