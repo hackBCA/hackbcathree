@@ -27,7 +27,7 @@ def load_user(user_id):
 	return user
 
 def get_user(email):
-	entries = UserEntry.objects(email = email)
+	entries = UserEntry.objects(email = email.lower())
 
 	if entries.count() == 1:
 		return entries[0]
@@ -63,7 +63,7 @@ def add_user(email, firstname, lastname, password, type_account):
 		raise UserExistsError
 	
 	hashed = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
-	new_entry = UserEntry(email = email, hashed = hashed, firstname = firstname, lastname = lastname, type_account = type_account)
+	new_entry = UserEntry(email = email.lower(), hashed = hashed, firstname = firstname, lastname = lastname, type_account = type_account)
 	new_entry.save()
 	
 	validate_email(email)
@@ -145,7 +145,7 @@ def validate_email(email):
 
 def confirm_email(token):
 	email = detokenize_email(token)
-	entry = UserEntry.objects(email = email)[0]
+	entry = UserEntry.objects(email = email.lower())[0]
 	entry.confirmed = True
 	entry.save()
 
