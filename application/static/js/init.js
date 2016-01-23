@@ -1,4 +1,4 @@
-var bg = document.querySelector("body");
+var bg = document.body;
 
 function onResizeEventHandler() {
     bg.setAttribute("height", document.documentElement.getAttribute("height"));
