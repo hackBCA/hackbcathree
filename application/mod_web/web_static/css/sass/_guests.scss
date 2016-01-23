@@ -14,8 +14,17 @@
 
           img {
             width: 200px;
-            height: auto;
+            height: 200px;
             display: inline-block;
+          }
+
+          .name {
+            margin-bottom: 0;
+            font-weight: bold;
+          }
+
+          p {
+            margin-top: 0;
           }
         }
       }
@@ -27,25 +36,13 @@
   #guests {
     .container {
       .info {
-        .guest {
+        .pure-g {
+          .guest {
 
-          img {
-            width: 150px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #guests {
-    .container {
-      .info {
-        .guest {
-
-          img {
-            width: 100px;
+            img {
+              width: 150px;
+              height: 150px;
+            }
           }
         }
       }
