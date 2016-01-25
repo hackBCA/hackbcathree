@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from mongoengine import register_connection
 import jinja2
 from flask.ext.cache import Cache
@@ -57,7 +57,7 @@ cache = Cache(app,config={"CACHE_TYPE": "simple", "CACHE_DEFAULT_TIMEOUT": 60 * 
 
 @app.errorhandler(401)
 def error(e):
-    return render_template("401.html"), 401
+    return redirect("/login")
 
 @app.errorhandler(404)
 def error(e):
