@@ -18,9 +18,16 @@
           justify-content: center;
           
           a {
-            img {
-              width: 100%;
-              height: auto;
+            div {
+              float: none;
+              height: 200px;
+              background-position: center center !important;
+              background-origin: content-box !important;
+              padding: 0 30px !important;
+              background-size: contain !important;
+              background-repeat: no-repeat !important;
+
+              @media screen and (max-width: 1024px) { height: 150px; }
             }
           }
         }
@@ -28,3 +35,4 @@
     }
   }
 }
+
