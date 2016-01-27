@@ -59,7 +59,7 @@
           </div>
           <div class="buttons horizontal hide" id="verify-submit">
             <h6>Are you sure?</h6>
-            <button class="btn" type="submit" name="submit" {{ "disabled" if not can_edit }}>Yes</button>
+            <button class="btn" type="submit" name="submit" onClick="check_phone"{{ "disabled" if not can_edit }}>Yes</button>
             <button class="btn" onclick="decline_verify(); return false;">No</button>
           </div>
         </form>
@@ -71,6 +71,14 @@
 
 {% block scripts %}
 <script type="text/javascript">
+    
+  var check_phone = function(){
+      var phone = document.getElementById("phone");
+      if((phone.length == 10)||(phone.length == 11)||(phone.length == 12)){
+          var numbers = a.match(/\\d+\\.?\\d*/g);
+          
+      }
+  }
   var verify_submit = function() {
     var button_group = document.getElementById("verify-submit");
     button_group.classList.toggle("hide");
@@ -80,7 +88,7 @@
     var button_group = document.getElementById("verify-submit");
     button_group.classList.toggle("hide");
   }
-
+  
   var char_counter = function() {
     questions = document.querySelectorAll("textarea");
     for (var i = 0; i < questions.length; i++) {
