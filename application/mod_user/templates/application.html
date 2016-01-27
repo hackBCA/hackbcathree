@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="info">
-        <form class="application-form" method="POST" action="">
+        <form class="application-form" method="POST" action="" onSubmut = checkPhone();>
           <h4>{{ current_user.full_name() }}</h4>
           <h4>{{ current_user.type_account.capitalize() }}</h4>
           {% for field in form %}
@@ -55,7 +55,7 @@
 
           <div class="buttons horizontal {{'hide' if not can_edit}}">
             <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
-            <button class="btn" onclick="verify_submit(); return false; check_phone();" {{ "disabled" if not can_edit }}>Submit</button>
+            <button class="btn" onclick="verify_submit(); return false;" {{ "disabled" if not can_edit }}>Submit</button>
           </div>
           <div class="buttons horizontal hide" id="verify-submit">
             <h6>Are you sure?</h6>
@@ -76,9 +76,7 @@
       var phone = document.getElementById("phone");
       if((phone.length == 10)||(phone.length == 11)||(phone.length == 12)){
           var numbers = a.match(/\\d+\\.?\\d*/g);
-      }
-      else{
-          
+          document.getElementById("phone").value = numbers;
       }
   }
   var verify_submit = function() {
