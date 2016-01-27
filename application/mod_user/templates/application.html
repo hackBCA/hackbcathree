@@ -74,8 +74,8 @@
     
   var check_phone = function(){
       var phone = document.getElementById("phone");
-      if((phone.length == 10)||(phone.length == 11)||(phone.length == 12)){
-          var numbers = a.match(/\\d+\\.?\\d*/g);
+      var numbers = a.match(/\\d+\\.?\\d*/g);
+      if((numbers.length == 10)||(numbers.length == 11)||(numbers.length == 12)){
           document.getElementById("phone").value = numbers;
       }
   }
