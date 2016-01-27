@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="info">
-        <form class="application-form" method="POST" action="" onSubmut = checkPhone();>
+        <form class="application-form" method="POST" action="" onSubmit = onsubmit=check_phone();>
           <h4>{{ current_user.full_name() }}</h4>
           <h4>{{ current_user.type_account.capitalize() }}</h4>
           {% for field in form %}
@@ -74,8 +74,9 @@
     
   var check_phone = function(){
       var phone = document.getElementById("phone");
-      var numbers = a.match(/\\d+\\.?\\d*/g);
-      console.log(numbers)
+      console.log(phone.value)
+      var numbers = phone.value.replace(/\D/g, '');
+      console.log(numbers);
       if((numbers.length == 10)||(numbers.length == 11)||(numbers.length == 12)){
           document.getElementById("phone").value = numbers;
       }
@@ -83,6 +84,7 @@
   var verify_submit = function() {
     var button_group = document.getElementById("verify-submit");
     button_group.classList.toggle("hide");
+    console.log("ON SUBMIT!")
   }
 
   var decline_verify = function() {
