@@ -55,11 +55,11 @@
 
           <div class="buttons horizontal {{'hide' if not can_edit}}">
             <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
-            <button class="btn" onclick="verify_submit(); return false;" {{ "disabled" if not can_edit }}>Submit</button>
+            <button class="btn" onclick="verify_submit(); return false; check_phone();" {{ "disabled" if not can_edit }}>Submit</button>
           </div>
           <div class="buttons horizontal hide" id="verify-submit">
             <h6>Are you sure?</h6>
-            <button class="btn" type="submit" name="submit" onClick="check_phone"{{ "disabled" if not can_edit }}>Yes</button>
+            <button class="btn" type="submit" name="submit" {{ "disabled" if not can_edit }}>Yes</button>
             <button class="btn" onclick="decline_verify(); return false;">No</button>
           </div>
         </form>
@@ -76,6 +76,8 @@
       var phone = document.getElementById("phone");
       if((phone.length == 10)||(phone.length == 11)||(phone.length == 12)){
           var numbers = a.match(/\\d+\\.?\\d*/g);
+      }
+      else{
           
       }
   }
