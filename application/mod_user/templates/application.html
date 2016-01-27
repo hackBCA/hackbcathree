@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="info">
-        <form class="application-form" method="POST" action="" onSubmit = onsubmit=check_phone();>
+        <form class="application-form" method="POST" action="" onSubmit = check_phone();>
           <h4>{{ current_user.full_name() }}</h4>
           <h4>{{ current_user.type_account.capitalize() }}</h4>
           {% for field in form %}
@@ -74,11 +74,60 @@
     
   var check_phone = function(){
       var phone = document.getElementById("phone");
-      console.log(phone.value)
       var numbers = phone.value.replace(/\D/g, '');
-      console.log(numbers);
       if((numbers.length == 10)||(numbers.length == 11)||(numbers.length == 12)){
-          document.getElementById("phone").value = numbers;
+          var finalstr = "";
+          var working = numbers.split('');
+          if(numbers.length == 10){
+              finalstr+=working[0];
+              finalstr+=working[1];
+              finalstr+=working[2];
+              finalstr+="-";
+              finalstr+=working[3];
+              finalstr+=working[4];
+              finalstr+=working[5];
+              finalstr+="-"
+              finalstr+=working[6];
+              finalstr+=working[7];
+              finalstr+=working[8];
+              finalstr+=working[9];
+          }
+          else if(numbers.length == 11){
+              finalstr+="+"
+              finalstr+=working[0];
+              finalstr+="-"
+              finalstr+=working[1];
+              finalstr+=working[2];
+              finalstr+=working[3];
+              finalstr+="-";
+              finalstr+=working[4];
+              finalstr+=working[5];
+              finalstr+=working[6];
+              finalstr+="-"
+              finalstr+=working[7];
+              finalstr+=working[8];
+              finalstr+=working[9];
+              finalstr+=working[10];
+          }
+          else if(numbers.length == 12){
+              finalstr+="+"
+              finalstr+=working[0];
+              finalstr+=working[1];
+              finalstr+="-"
+              finalstr+=working[2];
+              finalstr+=working[3];
+              finalstr+=working[4];
+              finalstr+="-";
+              finalstr+=working[5];
+              finalstr+=working[6];
+              finalstr+=working[7];
+              finalstr+="-"
+              finalstr+=working[8];
+              finalstr+=working[9];
+              finalstr+=working[10];
+              finalstr+=working[11];
+          }
+          document.getElementById("phone").value = finalstr;
       }
   }
   var verify_submit = function() {
