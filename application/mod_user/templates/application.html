@@ -75,7 +75,7 @@
   var check_phone = function(){
       var phone_number = document.getElementById("phone");
       var numbers = phone_number.value.replace(/\D/g, '');
-      if((numbers.length == 10) || (numbers.length == 11) || (numbers.length == 12)){
+      if(numbers.length == 10 || numbers.length == 11 || numbers.length == 12){
           var finalstr = "";
           if(numbers.length == 10){
               finalstr += numbers.substr(0,3);
