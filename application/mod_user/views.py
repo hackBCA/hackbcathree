@@ -25,6 +25,8 @@ def login():
           return redirect("/account/confirm")
         else:
           controller.login(request.form["email"])
+          if request.args.get("next") is not None:
+            return redirect(request.args.get("next"))
           return redirect("/account")
     except Exception as e:
       if(CONFIG["DEBUG"]):
