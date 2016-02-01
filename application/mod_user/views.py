@@ -100,7 +100,7 @@ def confirm_email(token):
   session.pop("email", None)
   controller.confirm_email(token)
   flash("Account confirmed! Login to start your application!", "success")
-  return redirect("/?status=confirmed")
+  return redirect("/account/application")
 
 @mod_user.route("/account/settings", methods = ["GET", "POST"])
 @login_required
