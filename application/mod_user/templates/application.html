@@ -78,31 +78,13 @@
       if(numbers.length == 10 || numbers.length == 11 || numbers.length == 12){
           var finalstr = "";
           if(numbers.length == 10){
-              finalstr += numbers.substr(0,3);
-              finalstr += "-";
-              finalstr += numbers.substr(3,3);
-              finalstr += "-"
-              finalstr += numbers.substr(6,4);
+              finalstr += numbers.substr(0,3) + "-" + numbers.substr(3,3) + "-" + numbers.substr(6,4);
           } 
           else if(numbers.length == 11){
-              finalstr += "+"
-              finalstr += numbers.substr(0,1);
-              finalstr += "-"
-              finalstr += numbers.substr(1,3);
-              finalstr += "-";
-              finalstr += numbers.substr(4,3);
-              finalstr += "-"
-              finalstr += numbers.substr(7,4);
+              finalstr += "+" + numbers.substr(0,1) + "-" + numbers.substr(1,3) + "-" + numbers.substr(4,3) + "-" + numbers.substr(7,4);
            }
            else if(numbers.length == 12){
-              finalstr += "+"
-              finalstr += numbers.substr(0,2);
-              finalstr += "-"
-              finalstr += numbers.substr(2,3);
-              finalstr += "-";
-              finalstr += numbers.substr(5,3);
-              finalstr += "-"
-              finalstr += numbers.substr(8,4);
+              finalstr += "+" + numbers.substr(0,2) + "-" + numbers.substr(2,3) + "-" + numbers.substr(5,3) + "-" + numbers.substr(8,4);
            }
            document.getElementById("phone").value = finalstr;
       }
