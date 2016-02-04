@@ -71,7 +71,7 @@ def add_user(email, firstname, lastname, password, type_account):
 def tokenize_email(email):
 	return ts.dumps(email, salt = CONFIG["EMAIL_TOKENIZER_SALT"])
 def detokenize_email(token):
-	return ts.loads(token, salt = CONFIG["EMAIL_TOKENIZER_SALT"], max_age = 86400)
+	return ts.loads(token, salt = CONFIG["EMAIL_TOKENIZER_SALT"], max_age = 86400 * 60)
 
 def send_recovery_email(email):
 	user = get_user(email)
