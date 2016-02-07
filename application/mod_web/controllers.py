@@ -11,7 +11,7 @@ def validate_email(entry):
 	token = ts.dumps(entry.email, salt = CONFIG["EMAIL_TOKENIZER_SALT"])
 	message = sendgrid.Mail()
 	message.add_to(entry.email)
-	message.set_from("noreply@hackbca.com")
+	message.set_from("contact@hackbca.com")
 	message.set_subject("hackBCA III - Mailing List Subscription Confirmation")
 	message.set_html("<p></p>")
 

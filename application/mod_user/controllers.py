@@ -82,7 +82,7 @@ def send_recovery_email(email):
 	token = tokenize_email(email)
 	message = sendgrid.Mail()
 	message.add_to(email)
-	message.set_from("noreply@hackbca.com")
+	message.set_from("contact@hackbca.com")
 	message.set_subject("hackBCA III - Account Recovery")
 	message.set_html("<p></p>")
 
@@ -133,7 +133,7 @@ def validate_email(email):
 
 	message = sendgrid.Mail()
 	message.add_to(email)
-	message.set_from("noreply@hackbca.com")
+	message.set_from("contact@hackbca.com")
 	message.set_subject("hackBCA III - Account Creation Confirmation")
 	message.set_html("<p></p>")
 
