@@ -21,7 +21,7 @@ def foward_sponsors():
 
 @mod_web.route("/chaperones", methods = ["GET"])
 def chaperones():
-    return redirect("http://goo.gl/forms/2qajpSQMR4")
+    return redirect("https://docs.google.com/forms/d/13l1ToVeDeBSEF4OBdHt6gSbYan8xnMFVG6BTRcKrEQw/viewform")
 
 #mod_web.route("/confirm/<token>")
 # def confirm_email(token):
