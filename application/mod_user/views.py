@@ -93,6 +93,8 @@ def verify():
     flash("Almost there! Confirmation email resent.", "neutral")
     return redirect("/login")
 
+  controller.logout();
+
   confirmed = controller.get_user_attr(email, "confirmed")
 
   return render_template("user.confirm.html")
@@ -181,11 +183,36 @@ def register():
           flash("Something went wrong.", "error")
   return render_template("user.register.html", form = form)
 
+@cache.cached()
+@mod_user.route("/scholarship", methods = ["GET", "POST"])
+def scholarship():
+  if current_user.is_authenticated:
+    return redirect("/account")
+
+  form = ScholarshipRegistrationForm(request.form)
+  if request.method == "POST" and form.validate():
+    try:
+      controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"], "scholarship")
+      flash("Check your inbox for an email to confirm your account!", "success")
+      return redirect("/")
+    except Exception as e:
+      exceptionType = e.args[0]
+      if exceptionType == "UserExistsError":
+        flash("A user with that email already exists.", "error")
+      else:
+        if CONFIG["DEBUG"]:
+          raise e
+        else:
+          flash("Something went wrong.", "error")
+  return render_template("user.scholarship.html", form = form)
+
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required
 def application():
   if current_user.type_account == "mentor":
     form = MentorApplicationForm(request.form)
+  elif current_user.type_account == "scholarship":
+    form = ScholarshipApplicationForm(request.form)
   else:
     form = ApplicationForm(request.form)
   if request.method == "POST":
@@ -214,6 +241,8 @@ def application():
     user = controller.get_user(current_user.email)
     if current_user.type_account == "mentor":
       form = MentorApplicationForm(request.form, obj = user)
+    elif current_user.type_account == "scholarship":
+      form = ScholarshipApplicationForm(request.form, obj = user)
     else:
       form = ApplicationForm(request.form, obj = user)
   return render_template("user.application.html", form = form)
