@@ -128,6 +128,10 @@ def change_account_type(email, account_type):
 
 	login(email)
 
+def delete_account(email):
+	account = get_user(email)
+	account.delete()
+
 def validate_email(email):
 	token = tokenize_email(email)
 
