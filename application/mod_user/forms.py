@@ -29,6 +29,28 @@ class RegistrationForm(Form):
         if len(password) >= 8 and password != field.data:
             raise ValidationError("Passwords must match.")
 
+class ScholarshipRegistrationForm(Form):
+    email = TextField("Email", [
+        validators.Required(message = "Enter an email."),
+        validators.Email(message = "Invalid email address.")
+    ], description = "Email")
+    first_name = TextField("First Name", [
+        validators.Required(message = "You must enter a first name.")
+    ], description = "First Name")
+    last_name = TextField("Last Name", [
+        validators.Required(message = "You must enter a last name.")
+    ], description = "Last Name")
+    password = PasswordField("Password", [
+        validators.Required(message = "You must enter a password."),
+        validators.Length(min = 8, message = "Password must be at least 8 characters.")
+    ], description = "Password")
+    confirm_password = PasswordField("Confirm Password", description = "Confirm Password")
+
+    def validate_confirm_password(form, field):
+        password = form['password'].data
+        if len(password) >= 8 and password != field.data:
+            raise ValidationError("Passwords must match.")
+
 class LoginForm(Form):
     email = TextField("Email", [
         validators.Required(message = "Enter an email."),
@@ -133,6 +155,25 @@ grade_choices = [
     ("12", "12th")
 ]
 
+intended_major_choices = [
+    ("", "What is your intended major in college?"),
+    ("computer science", "Computer Science"),
+    ("engineering", "Engineering"),
+    ("other", "Other"),
+    ("unknown", "Unknown")
+]
+reduced_lunch_choices = [
+    ("", "Do you receive free or reduced lunch?"),
+    ("yes", "Yes"),
+    ("no", "No")
+]
+hear_about_us_choices = [
+    ("", "How did you hear about us?"),
+    ("c/i", "C/I"),
+    ("school", "School"),
+    ("other", "Other")
+]
+
 free_response1_prompt = "What do you hope to learn and accomplish at hackBCA?"
 free_response2_prompt = "What is something you’re proud of (it doesn’t have to be tech related)?"
 free_response3_prompt = "Is there anything else you want us to know?"
@@ -146,7 +187,7 @@ class ApplicationForm(Form):
     ], description = "School Name")
 
     gender = SelectField("Gender", [validators.Required(message = "You must select an option.")], choices = gender_choices, description = "Gender")
-    other_gender = TextField("Other Gender", [validators.optional()], description = "Other Gender")
+    other_gender = TextField("Other Gender", description = "Other Gender")
     beginner = SelectField("Are you a beginner?", [validators.Required(message = "You must select an option.")], choices = beginner_choices, description = "Are you a beginner?")
     ethnicity = SelectField("Ethnicity", [validators.Required(message = "You must select an option.")], choices = ethnicity_choices, description = "Ethnicity")
     grade = SelectField("Grade", [validators.Required(message = "You must select an option.")], choices = grade_choices, description = "Grade")
@@ -211,6 +252,100 @@ class ApplicationForm(Form):
         if not rv:
             return False
         return True
+
+    def validate_other_gender(form, field):
+        if form['gender'].data == 'other' and field.data == "":
+            raise ValidationError("Enter your gender.")
+
+class ScholarshipApplicationForm(Form):
+    school = TextField("School Name", [
+        validators.Required(message = "Enter your school's name.")
+    ], description = "School Name")
+
+    gender = SelectField("Gender", [validators.Required(message = "You must select an option.")], choices = gender_choices, description = "Gender")
+    other_gender = TextField("Other Gender", description = "Other Gender")
+    beginner = SelectField("Are you a beginner?", [validators.Required(message = "You must select an option.")], choices = beginner_choices, description = "Are you a beginner?")
+    ethnicity = SelectField("Ethnicity", [validators.Required(message = "You must select an option.")], choices = ethnicity_choices, description = "Ethnicity")
+    grade = SelectField("Grade", [validators.Required(message = "You must select an option.")], choices = grade_choices, description = "Grade")
+    num_hackathons = SelectField("How many hackathons have you attended?", [validators.Required(message = "You must select an option.")], choices = num_hackathons_choices, description = "How many hackathons have you attended?")
+
+    github_link = TextField("Github Link", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Github Link (Optional)")
+    linkedin_link = TextField("LinkedIn", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "LinkedIn Link (Optional)")
+    site_link = TextField("Personal Site", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Personal Site Link (Optional)")
+    other_link = TextField("other", [
+        validators.optional(),
+        validators.URL(message = "Invalid URL.")
+    ], description = "Other Link (Optional)")
+
+    intended_major = SelectField("What is your intended major in college?", [validators.Required(message = "You must select an option.")], choices = intended_major_choices, description = "What is your intended major in college?")
+    other_intended_major = TextField("Intended Major", description = "Intended Major")
+
+    reduced_lunch = SelectField("Do you receive free or reduced lunch?", [validators.Required(message = "You must select an option.")], choices = reduced_lunch_choices, description = "Do you receive free or reduced lunch?")
+
+    hear_about_us = SelectField("How did you hear about us?", [validators.Required(message = "You must select an option.")], choices = hear_about_us_choices, description = "How did you hear about us?")
+    other_hear_about_us = TextField("How did you hear about us?", description = "How did you hear about us?")    
+
+    free_response1 = TextAreaField(free_response1_prompt, [
+        validators.Required(message = "You must answer this question."),
+        validators.Length(max = 500, message = "Response must be less than 500 characters long.")
+    ], description = "500 character maximum.")
+
+    free_response2 = TextAreaField(free_response2_prompt, [
+        validators.Required(message = "You must answer this question."),
+        validators.Length(max = 500, message = "Response must be less than 500 characters long.")
+    ], description = "500 character maximum.")
+
+    free_response3 = TextAreaField(free_response3_prompt, [
+        validators.Required(message = "You must answer this question."),
+        validators.Length(max = 500, message = "Response must be less than 500 characters long.")
+    ], description = "500 character maximum.")
+
+    mlh_terms = BooleanField("I agree", [
+        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
+        ], description = "I agree to the MLH Code of Conduct.", default = False)
+
+    def validate(self): #Man I love validators.URL
+        links = ["github_link", "linkedin_link", "site_link", "other_link"]
+        originalValues = {}
+
+        for link in links: #Temporarily prefix all links with http:// if they are missing it
+            attr = getattr(self, link)
+            val = attr.data
+            originalValues[link] = val
+            if re.match("^(http|https)://", val) is None:
+                val = "http://" + val
+            attr.data = val
+            setattr(self, link, attr)
+
+        rv = Form.validate(self)
+
+        for link in links: #Revert link values back to actual values
+            attr = getattr(self, link)
+            attr.data = originalValues[link]
+            setattr(self, link, attr)
+
+        if not rv:
+            return False
+        return True
+
+    def validate_other_gender(form, field):
+        if form['gender'].data == 'other' and field.data == "":
+            raise ValidationError("Enter your gender.")
+    def validate_other_intended_major(form, field):
+        if form['intended_major'].data == 'other' and field.data == "":
+            raise ValidationError("Enter your intended major.")
+    def validate_other_hear_about_us(form, field):
+        if form['hear_about_us'].data == 'other' and field.data == "":
+            raise ValidationError("How did you hear about us?")
 
 class MentorApplicationForm(Form):
     school = TextField("Company/School Name", [

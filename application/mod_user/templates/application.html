@@ -27,9 +27,9 @@
           <h4>{{ current_user.full_name() }}</h4>
           <h4>{{ current_user.type_account.capitalize() }}</h4>
           {% for field in form %}
-            {% if field == form.other_gender %}
+            {% if field == form.other_gender or field == form.other_intended_major or field == form.other_hear_about_us %}
               <div class="form-elt {% if field.errors %}error{% endif %}">
-                {{ field(placeholder = field.description, disabled = not can_edit, class = "hide") }}
+                {{ field(placeholder = field.description, disabled = not can_edit, class = "other-field hide") }}
                 {% if field.errors %}
                   <p class="error-msg">{{ field.errors[0] }}</p>
                 {% endif %}
@@ -110,18 +110,21 @@
   }
   char_counter();
 
-  var gender_onchange = function() {
-    var gender = document.querySelector(".form-elt #gender");  
-    var index = gender.selectedIndex;
-    if (index === 3) {
-      document.querySelector(".form-elt #other_gender").classList.remove("hide");
-    } else {
-      document.querySelector(".form-elt #other_gender").classList.add("hide");
+  var otherElts = document.querySelectorAll(".other-field");
+  for(var i = 0; i < otherElts.length; i++){
+    var baseField = otherElts[i].id.substr(6);
+    var selectElt = document.querySelector("#" + baseField);
+    selectElt.onchange = function(){
+      console.log(".other-field #other_" + this.id);
+      var otherElt = document.querySelector(".other-field#other_" + this.id);
+      if(this.value == "other" && otherElt.classList.contains("hide")){
+        otherElt.classList.remove("hide");
+      }
+      else{
+        otherElt.classList.add("hide");
+      }
     }
+    selectElt.onchange();
   }
-  var gender_field = document.querySelector(".form-elt #gender");
-  gender_field.onchange = gender_onchange;
-
-  gender_onchange();
 </script>
 {% endblock %}
