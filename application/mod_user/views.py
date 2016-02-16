@@ -143,7 +143,16 @@ def settings():
             raise e
           else:
             flash("Something went wrong.", "error")
-
+    if request.form["setting"] == "delete_account":
+      try:
+        controller.delete_account(current_user.email)
+        flash("Account deleted.", "success")
+        return redirect("/")
+      except Exception as e:
+        if CONFIG["DEBUG"]:
+          raise e
+        else:
+          flash("Something went wrong.", "error")
   else:
     user = controller.get_user(current_user.email)
     name_form = ChangeNameForm(request.form, obj = user)

@@ -58,6 +58,17 @@
             </div>
           </form>
         </div>
+        <h5>Delete your account</h5>
+        <form id="delete_account-form" method="POST" action="/account/settings">
+          <input type="hidden" name="setting" value="delete_account"/>
+          <button class="btn" id="delete-account" onclick="toggle_delete(); return false;">Delete Account</button>
+          <div class="horizontal hide" id="verify-delete">
+            <h6>Are you sure?</h6>
+            <h6>Your account and application will be deleted.</h6>
+            <button class="btn" type="submit">Yes</button>
+            <button class="btn" onclick="toggle_delete(); return false;">No</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -73,6 +84,11 @@
 
   var decline_submit = function() {
     var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+
+  var toggle_delete = function() {
+    var button_group = document.getElementById("verify-delete");
     button_group.classList.toggle("hide");
   }
 </script>
