@@ -10,6 +10,7 @@ from itsdangerous import URLSafeTimedSerializer
 AuthenticationError = Exception("AuthenticationError", "Invalid credentials.")
 UserExistsError = Exception("UserExistsError", "Email already exists in database.")
 UserDoesNotExistError = Exception("UserDoesNotExistError", "Account with given email does not exist.")
+GenericMongoError = Exception("GenericMongoError")
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -19,19 +20,24 @@ ts = URLSafeTimedSerializer(CONFIG["SECRET_KEY"])
 
 @login_manager.user_loader
 def load_user(user_id):	
-	user_entries = UserEntry.objects(id = user_id)
-	if user_entries.count() != 1:
-		return None
-	currUser = user_entries[0]
+	try:
+		user_entries = UserEntry.objects(id = user_id)
+		if user_entries.count() != 1:
+			return None
+		currUser = user_entries[0]
+	except Exception:
+		raise GenericMongoError
 	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status) 
 	return user
 
 def get_user(email):
-	entries = UserEntry.objects(email = email.lower())
-
-	if entries.count() == 1:
-		return entries[0]
-	return None
+	try:
+		entries = UserEntry.objects(email = email.lower())
+		if entries.count() == 1:
+			return entries[0]
+		return None
+	except Exception:
+		raise GenericMongoError
 
 def verify_user(email, password):
 	currUser = get_user(email)
@@ -149,9 +155,12 @@ def validate_email(email):
 
 def confirm_email(token):
 	email = detokenize_email(token)
-	entry = UserEntry.objects(email = email.lower())[0]
-	entry.confirmed = True
-	entry.save()
+	try:
+		entry = UserEntry.objects(email = email.lower())[0]
+		entry.confirmed = True
+		entry.save()
+	except Exception:
+		raise GenericMongoError
 
 def get_user_attr(email, attr):
 	user = get_user(email)
