@@ -423,7 +423,7 @@ class MentorApplicationForm(Form):
             return False
         return True
 
-class ConfirmationForm(form):
+class ConfirmationForm(Form):
 
     phone = TextField("Phone Number", [
         validators.Required(message = "Enter your preferred contact number."),
@@ -443,33 +443,33 @@ class ConfirmationForm(form):
     emergency_contact_phone1 = TextField("Phone Number", [
         validators.Required(message = "Enter your emergency contact's phone number."),
         validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
-    ], description = "Phone Number")
+    ], description = "Emergency Contact #1 Phone Number")
 
     emergency_contact_name2 = TextField("Full Name", [
         validators.Required(message = "Enter your second emergency contact's name")
-    ], description = "Emergency Contact #1 Name")
+    ], description = "Emergency Contact #2 Name")
 
     emergency_contact_relation2 = TextField("Relatonship", [
         validators.Required(message = "What is your relationship with your emergency contact?")
-    ], description = "Emergency Contact #1 Relatonship")
+    ], description = "Emergency Contact #2 Relatonship")
 
     emergency_contact_phone2 = TextField("Phone Number", [
         validators.Required(message = "Enter your emergency contact's phone number."),
         validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
-    ], description = "Phone Number")
+    ], description = "Emergency Contact #2 Phone Number")
 
-    food_allergies = TextField("Allergies", [
+    food_allergies = TextAreaField("Allergies", [
         validators.optional(),
     ], description = "Do you have any allergies?")
 
-    medical_information = TextField("Medical Information", [
+    medical_information = TextAreaField("Medical Information", [
         validators.optional(),
     ], description = "Are there any other medical issues that we should know about?")
 
     hackbca_rules = BooleanField("I agree",[
         validators.Required(message = "Please read and agree to our rules.")
-        ], description = "I agree to the rules set forth by hackBCA.", default = False)
+    ], description = "I agree to the rules set forth by hackBCA.", default = False)
 
     mlh_terms = BooleanField("I agree",[
         validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
-        ], description = "I agree to the MLH Code of Conduct.", default = False)
+    ], description = "I agree to the MLH Code of Conduct.", default = False)
