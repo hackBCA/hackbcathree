@@ -155,6 +155,15 @@ grade_choices = [
     ("12", "12th")
 ]
 
+shirt_sizes = [
+    ("", "Whats your shirt size?"),
+    ("XS", "Extra Small"),
+    ("S", "Small"),
+    ("M", "Medium"),
+    ("L", "Large"),
+    ("XL", "Extra Large")
+]
+
 intended_major_choices = [
     ("", "What is your intended major in college?"),
     ("computer science", "Computer Science"),
@@ -292,7 +301,7 @@ class ScholarshipApplicationForm(Form):
     reduced_lunch = SelectField("Do you receive free or reduced lunch?", [validators.Required(message = "You must select an option.")], choices = reduced_lunch_choices, description = "Do you receive free or reduced lunch?")
 
     hear_about_us = SelectField("How did you hear about us?", [validators.Required(message = "You must select an option.")], choices = hear_about_us_choices, description = "How did you hear about us?")
-    other_hear_about_us = TextField("How did you hear about us?", description = "How did you hear about us?")    
+    other_hear_about_us = TextField("How did you hear about us?", description = "How did you hear about us?")
 
     free_response1 = TextAreaField(free_response1_prompt, [
         validators.Required(message = "You must answer this question."),
@@ -413,3 +422,54 @@ class MentorApplicationForm(Form):
         if not rv:
             return False
         return True
+
+class ConfirmationForm(form):
+
+    phone = TextField("Phone Number", [
+        validators.Required(message = "Enter your preferred contact number."),
+        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
+    ], description = "Phone Number")
+
+    t_shirt_size = SelectField("Whats your shirt size?", [validators.Required(message = "You must select an option.")], choices = shirt_sizes, description = "Whats your shirt size?")
+
+    emergency_contact_name1 = TextField("Full Name", [
+        validators.Required(message = "Enter your first emergency contact's name")
+    ], description = "Emergency Contact #1 Name")
+
+    emergency_contact_relation1 = TextField("Relatonship", [
+        validators.Required(message = "What is your relationship with your emergency contact?")
+    ], description = "Emergency Contact #1 Relatonship")
+
+    emergency_contact_phone1 = TextField("Phone Number", [
+        validators.Required(message = "Enter your emergency contact's phone number."),
+        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
+    ], description = "Phone Number")
+
+    emergency_contact_name2 = TextField("Full Name", [
+        validators.Required(message = "Enter your second emergency contact's name")
+    ], description = "Emergency Contact #1 Name")
+
+    emergency_contact_relation2 = TextField("Relatonship", [
+        validators.Required(message = "What is your relationship with your emergency contact?")
+    ], description = "Emergency Contact #1 Relatonship")
+
+    emergency_contact_phone2 = TextField("Phone Number", [
+        validators.Required(message = "Enter your emergency contact's phone number."),
+        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
+    ], description = "Phone Number")
+
+    food_allergies = TextField("Allergies", [
+        validators.optional(),
+    ], description = "Do you have any allergies?")
+
+    medical_information = TextField("Medical Information", [
+        validators.optional(),
+    ], description = "Are there any other medical issues that we should know about?")
+
+    hackbca_rules = BooleanField("I agree",[
+        validators.Required(message = "Please read and agree to our rules.")
+        ], description = "I agree to the rules set forth by hackBCA.", default = False)
+
+    mlh_terms = BooleanField("I agree",[
+        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
+        ], description = "I agree to the MLH Code of Conduct.", default = False)

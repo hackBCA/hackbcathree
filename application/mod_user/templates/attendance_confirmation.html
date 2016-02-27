@@ -1,0 +1,31 @@
+{% extends "user.base.html" %}
+
+{% set nav_bar = [
+  ("/#home", "Home", False)
+] -%}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+<div class="full-page-container">
+  <div class="page-section" id="register">
+    <div class="container">
+      <div class="cover">
+        <div class="content">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h3>Attendance Confirmation</h3>
+          <form method="POST" action="">
+            {% for field in form %}
+              {{ render_field(field) }}
+            {% endfor %}
+            <div class="buttons">
+              <button class="btn" type="submit">Confirm!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
