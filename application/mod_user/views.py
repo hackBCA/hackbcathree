@@ -208,9 +208,34 @@ def scholarship():
 
 @cache.cached()
 @mod_user.route("/confirmation", methods = ["GET", "POST"])
+@login_required
 def confirm_attendance():
     form = ConfirmationForm(request.form)
-    return render_template("user.attendance_confirmation.html", methods = ["GET", "POST"], form = form)
+    if request.method == "POST":
+      try:
+        applicationStatus = controller.get_user_attr(current_user.email, "status")
+
+        if applicationStatus in ["Not Started", "In Progress"]:
+          if "save" in request.form:
+            controller.save_application(current_user.email, request.form)
+            flash("RSVP Saved", "success")
+          elif "submit" in request.form:
+            controller.save_application(current_user.email, request.form)
+            if form.validate():
+              flash("RSVP Submitted", "success")
+              if not CONFIG["DEBUG"]:
+                controller.set_user_attr(current_user.email, "status", "Submitted")
+
+              controller.login(current_user.email) #To immediately update application status and disable the form
+            else:
+              flash("Please correct any errors in your application.", "error")
+      except Exception as e:
+        if CONFIG["DEBUG"]:
+          raise e
+        flash("Something went wrong.", "error")
+    else:
+        form = ConfirmationForm(request.form)
+    return render_template("user.attendance_confirmation.html", form = form)
 
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required

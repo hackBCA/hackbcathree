@@ -1,31 +1,136 @@
 {% extends "user.base.html" %}
 
 {% set nav_bar = [
-  ("/#home", "Home", False)
+  ("/#home", "Home", False),
+  ("/account/application", "Application", True),
+  ("/account/settings", "Settings", False)
 ] -%}
 
 {% block content %}
 {% with nav_bar = nav_bar %}
   {% include "navbar.html" %}
 {% endwith %}
-<div class="full-page-container">
-  <div class="page-section" id="register">
+
+{% set can_edit = (current_user.status in ["Not Started", "In Progress"]) %}
+<div class="page-container">
+  <div class="page-section" id="application">
     <div class="container">
-      <div class="cover">
-        <div class="content">
+      <div class="header">
+        <div class="head-cover">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
-          <h3>Attendance Confirmation</h3>
-          <form method="POST" action="">
-            {% for field in form %}
-              {{ render_field(field) }}
-            {% endfor %}
-            <div class="buttons">
-              <button class="btn" type="submit">Confirm!</button>
-            </div>
-          </form>
+          <h2>RSVP</h2>
+          <h4>Tell us if you're coming to hackBCA III</h4>
         </div>
+      </div>
+      <div class="info">
+        <form class="application-form" method="POST" action="" onSubmit = "check_phone();">
+          <h4>{{ current_user.full_name() }}</h4>
+          <h4>{{ current_user.type_account.capitalize() }}</h4>
+          {% for field in form %}
+            {% if field == form.hackbca_rules %}
+              <div class="form-elt {% if field.errors %}error{% endif %}">
+                <h6>{{ field.description }}</h6>
+                <p>Our rules can be found <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">here</a>.</p> <!-- Change Link to hackBCA Rules once created -->
+                <ul class="checkboxes">
+                  <li>
+                    {{ field(disabled = not can_edit) }}
+                    {{ field.label }}
+                  </li>
+                </ul>
+                {% if field.errors %}
+                  <p class="error-msg">{{ field.errors[0] }}</p>
+                {% endif %}
+              </div>
+            {% elif field == form.attending  %}
+              <div class="form-elt {% if field.errors %}error{% endif %}">
+                <h6>{{ field.description }}</h6>
+                <ul class="checkboxes">
+                  <li>
+                    {{ field(disabled = not can_edit) }}
+                    {{ field.label }}
+                  </li>
+                </ul>
+                {% if field.errors %}
+                  <p class="error-msg">{{ field.errors[0] }}</p>
+                {% endif %}
+              </div>
+            {% else %}
+              {{ render_field(field, not can_edit) }}
+            {% endif %}
+          {% endfor %}
+
+          <div class="buttons horizontal {{'hide' if not can_edit}}">
+            <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
+            <button class="btn" onclick="verify_submit(); return false;" {{ "disabled" if not can_edit }}>Submit</button>
+          </div>
+          <div class="buttons horizontal hide" id="verify-submit">
+            <h6>Are you sure?</h6>
+            <button class="btn" type="submit" name="submit" {{ "disabled" if not can_edit }}>Yes</button>
+            <button class="btn" onclick="decline_verify(); return false;">No</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+  var check_phone = function(){
+      var phone_number = document.getElementById("phone");
+      var numbers = phone_number.value.replace(/\D/g, '');
+      if(numbers.length == 10 || numbers.length == 11 || numbers.length == 12){
+          var finalstr = "";
+          if(numbers.length == 10){
+              finalstr += numbers.substr(0,3) + "-" + numbers.substr(3,3) + "-" + numbers.substr(6,4);
+          }
+          else if(numbers.length == 11){
+              finalstr += "+" + numbers.substr(0,1) + "-" + numbers.substr(1,3) + "-" + numbers.substr(4,3) + "-" + numbers.substr(7,4);
+           }
+           else if(numbers.length == 12){
+              finalstr += "+" + numbers.substr(0,2) + "-" + numbers.substr(2,3) + "-" + numbers.substr(5,3) + "-" + numbers.substr(8,4);
+           }
+           document.getElementById("phone").value = finalstr;
+      }
+  }
+  var verify_submit = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+
+  var decline_verify = function() {
+    var button_group = document.getElementById("verify-submit");
+    button_group.classList.toggle("hide");
+  }
+
+  var char_counter = function() {
+    questions = document.querySelectorAll("textarea");
+    for (var i = 0; i < questions.length; i++) {
+      questions[i].onkeyup = function () {
+        document.querySelector(".count#" + this.id).innerHTML = "Characters left: " + (250 - this.value.length);
+      }
+      document.querySelector(".count#" + questions[i].id).innerHTML = "Characters left: " + (250 - questions[i].value.length);
+    }
+  }
+  char_counter();
+
+  var otherElts = document.querySelectorAll(".other-field");
+  for(var i = 0; i < otherElts.length; i++){
+    var baseField = otherElts[i].id.substr(6);
+    var selectElt = document.querySelector("#" + baseField);
+    selectElt.onchange = function(){
+      console.log(".other-field #other_" + this.id);
+      var otherElt = document.querySelector(".other-field#other_" + this.id);
+      if(this.value == "other" && otherElt.classList.contains("hide")){
+        otherElt.classList.remove("hide");
+      }
+      else{
+        otherElt.classList.add("hide");
+      }
+    }
+    selectElt.onchange();
+  }
+</script>
 {% endblock %}

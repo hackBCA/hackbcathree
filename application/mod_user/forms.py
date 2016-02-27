@@ -425,6 +425,10 @@ class MentorApplicationForm(Form):
 
 class ConfirmationForm(Form):
 
+    attending = BooleanField("Attending", [
+        validators.Required(message = "Please tell us if you are planning on attending hackBCA III.")
+    ], description = "Are you planning on attending?")
+
     phone = TextField("Phone Number", [
         validators.Required(message = "Enter your preferred contact number."),
         validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
@@ -469,7 +473,3 @@ class ConfirmationForm(Form):
     hackbca_rules = BooleanField("I agree",[
         validators.Required(message = "Please read and agree to our rules.")
     ], description = "I agree to the rules set forth by hackBCA.", default = False)
-
-    mlh_terms = BooleanField("I agree",[
-        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
-    ], description = "I agree to the MLH Code of Conduct.", default = False)
