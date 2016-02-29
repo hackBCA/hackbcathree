@@ -30,7 +30,7 @@
             {% if field == form.hackbca_rules %}
               <div class="form-elt {% if field.errors %}error{% endif %}">
                 <h6>{{ field.description }}</h6>
-                <p>Our rules can be found <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">here</a>.</p> <!-- Change Link to hackBCA Rules once created -->
+                <p>Our rules can be found <a href="http://mlh.io/docs/mlh-code-of-conduct.pdf">here</a>.</p> <!-- Change Link to hackBCA Rules once created -->
                 <ul class="checkboxes">
                   <li>
                     {{ field(disabled = not can_edit) }}
@@ -44,6 +44,20 @@
             {% elif field == form.attending  %}
               <div class="form-elt {% if field.errors %}error{% endif %}">
                 <h6>{{ field.description }}</h6>
+                <ul class="checkboxes">
+                  <li>
+                    {{ field(disabled = not can_edit) }}
+                    {{ field.label }}
+                  </li>
+                </ul>
+                {% if field.errors %}
+                  <p class="error-msg">{{ field.errors[0] }}</p>
+                {% endif %}
+              </div>
+            {% elif field == form.mlh_terms %}
+              <div class="form-elt {% if field.errors %}error{% endif %}">
+                <h6>{{ field.description }}</h6>
+                <p>The MLH Code of Conduct is available <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">here</a>.</p>
                 <ul class="checkboxes">
                   <li>
                     {{ field(disabled = not can_edit) }}

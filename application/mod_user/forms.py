@@ -468,8 +468,12 @@ class ConfirmationForm(Form):
 
     medical_information = TextAreaField("Medical Information", [
         validators.optional(),
-    ], description = "Are there any other medical issues that we should know about?")
+    ], description = "Are there any other medical issues that we should know about? (ex. Other allergies, illnesses, etc.)")
 
     hackbca_rules = BooleanField("I agree",[
         validators.Required(message = "Please read and agree to our rules.")
     ], description = "I agree to the rules set forth by hackBCA.", default = False)
+
+    mlh_terms = BooleanField("I agree",[
+        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
+    ], description = "I agree to the MLH Code of Conduct.", default = False)

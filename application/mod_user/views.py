@@ -206,12 +206,12 @@ def scholarship():
           flash("Something went wrong.", "error")
   return render_template("user.scholarship.html", form = form)
 
-@cache.cached()
 @mod_user.route("/confirmation", methods = ["GET", "POST"])
 @login_required
 def confirm_attendance():
     form = ConfirmationForm(request.form)
     if request.method == "POST":
+      print (request.form['attending'])
       try:
         applicationStatus = controller.get_user_attr(current_user.email, "status")
 
@@ -234,7 +234,8 @@ def confirm_attendance():
           raise e
         flash("Something went wrong.", "error")
     else:
-        form = ConfirmationForm(request.form)
+      user = controller.get_user(current_user.email)
+      form = ConfirmationForm(request.form, obj = user)
     return render_template("user.attendance_confirmation.html", form = form)
 
 @mod_user.route("/account/application", methods = ["GET", "POST"])
