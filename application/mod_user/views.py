@@ -211,10 +211,8 @@ def scholarship():
 def confirm_attendance():
     form = ConfirmationForm(request.form)
     if request.method == "POST":
-      print (request.form['attending'])
       try:
         applicationStatus = controller.get_user_attr(current_user.email, "status")
-
         if applicationStatus in ["Not Started", "In Progress"]:
           if "save" in request.form:
             controller.save_application(current_user.email, request.form)
