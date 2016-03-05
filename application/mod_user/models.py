@@ -54,6 +54,8 @@ class UserEntry(Document):
 	review3 = IntField()
 	reviewer3 = StringField()
 
+	meta = { "strict" : False }
+
 
 class User(UserMixin):
 	def __init__(self, uid, email, firstname, lastname, type_account, status):
