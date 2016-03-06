@@ -23,7 +23,15 @@ def load_user(user_id):
 	if user_entries.count() != 1:
 		return None
 	currUser = user_entries[0]
-	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status) 
+
+	if not currUser.rsvp:
+		attending = "Undecided"
+	else:
+		attending = currUser.attending
+
+	checked_in = currUser.checked_in == "Checked in"	
+
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status, currUser.decision, attending, checked_in) 
 	return user
 
 def get_user(email):
@@ -194,7 +202,7 @@ def get_application(email):
 			app[key] = getattr(user, key)
 	return app
 
-def save_application(email, app):
+def save_form_data(email, app):
 	user = get_user(email)
 	
 	if user is None:
@@ -205,5 +213,4 @@ def save_application(email, app):
 			continue
 		setattr(user, key, app[key])
 
-	user.status = "In Progress"
 	user.save()

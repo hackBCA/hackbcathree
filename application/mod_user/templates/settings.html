@@ -1,11 +1,5 @@
 {% extends "user.base.html" %}
 
-{% set nav_bar = [
-  ("/#home", "Home", False),
-  ("/account/application", "Application", False),
-  ("/account/settings", "Settings", True)
-] -%}
-
 {% block content %}
 {% with nav_bar = nav_bar %}
   {% include "navbar.html" %}
@@ -64,7 +58,7 @@
           <button class="btn" id="delete-account" onclick="toggle_delete(); return false;">Delete Account</button>
           <div class="horizontal hide" id="verify-delete">
             <h6>Are you sure?</h6>
-            <h6>Your account and application will be deleted.</h6>
+            <h6>Your account and all data associated with it will be deleted.</h6>
             <button class="btn" type="submit">Yes</button>
             <button class="btn" onclick="toggle_delete(); return false;">No</button>
           </div>

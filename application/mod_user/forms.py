@@ -1,6 +1,8 @@
 from wtforms import Form, TextField, PasswordField, SelectField, TextAreaField, BooleanField, validators, ValidationError, RadioField
 import re
 
+phone_regex = "(\+\d+-?)?((\(?\d{3}\)?)|(\d{3}))-?\d{3}-?\d{4}$"
+
 type_account_choices = [
     ("hacker", "Hacker"),
     ("mentor", "Mentor")
@@ -156,7 +158,7 @@ grade_choices = [
 ]
 
 shirt_sizes = [
-    ("", "Whats your shirt size?"),
+    ("", "What is your shirt size?"),
     ("XS", "Extra Small"),
     ("S", "Small"),
     ("M", "Medium"),
@@ -423,44 +425,77 @@ class MentorApplicationForm(Form):
             return False
         return True
 
-class ConfirmationForm(Form):
+attending_choices = [
+    ("Attending", "Yes, I'll be there!"),
+    ("Not Attending", "No, I can't make it.")
+]
 
-    attending = BooleanField("Attending", [
-        validators.Required(message = "Please tell us if you are planning on attending hackBCA III.")
-    ], description = "Are you planning on attending?")
+class RsvpForm(Form):
+    attending = RadioField("Are you attending hackBCA III?", [validators.Required(message = "Please tell us if you are attending hackBCA III.")], choices = attending_choices)
+
+    address = TextField("Hometown and State", [validators.required("Please enter your hometown and state.")], description = "Hometown and State")
+
+    school = TextField("Confirm your school", [validators.required("Please confirm your school.")], description = "School Confirmation")
 
     phone = TextField("Phone Number", [
         validators.Required(message = "Enter your preferred contact number."),
-        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
+        validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
     ], description = "Phone Number")
 
-    t_shirt_size = SelectField("Whats your shirt size?", [validators.Required(message = "You must select an option.")], choices = shirt_sizes, description = "Whats your shirt size?")
+
+    t_shirt_size = SelectField("What is your shirt size?", [validators.Required(message = "You must select an option.")], choices = shirt_sizes, description = "What is your shirt size?")
 
     emergency_contact_name1 = TextField("Full Name", [
-        validators.Required(message = "Enter your first emergency contact's name")
+        validators.Required(message = "Enter the name of your first emergency contact.")
     ], description = "Emergency Contact #1 Name")
 
     emergency_contact_relation1 = TextField("Relatonship", [
-        validators.Required(message = "What is your relationship with your emergency contact?")
+        validators.Required(message = "Enter your relationship to your emergency contact.")
     ], description = "Emergency Contact #1 Relatonship")
 
     emergency_contact_phone1 = TextField("Phone Number", [
         validators.Required(message = "Enter your emergency contact's phone number."),
-        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
+        validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
     ], description = "Emergency Contact #1 Phone Number")
 
     emergency_contact_name2 = TextField("Full Name", [
-        validators.Required(message = "Enter your second emergency contact's name")
+        validators.Required(message = "Enter the name of your second emergency contact.")
     ], description = "Emergency Contact #2 Name")
 
     emergency_contact_relation2 = TextField("Relatonship", [
-        validators.Required(message = "What is your relationship with your emergency contact?")
+        validators.Required(message = "Enter your relationship to your emergency contact.")
     ], description = "Emergency Contact #2 Relatonship")
 
     emergency_contact_phone2 = TextField("Phone Number", [
         validators.Required(message = "Enter your emergency contact's phone number."),
-        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
+        validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
     ], description = "Emergency Contact #2 Phone Number")
+
+    food_allergies = TextAreaField("Allergies", [
+        validators.optional(),
+    ], description = "Do you have any allergies?")
+
+    medical_information = TextAreaField("Medical Information", [
+        validators.optional(),
+    ], description = "Are there any other medical issues that we should know about? (ex. Other allergies, illnesses, etc.)")
+
+    hackbca_rules = BooleanField("I agree",[
+        validators.Required(message = "Please read and agree to our rules.")
+    ], description = "I agree to the rules set forth by hackBCA.", default = False)
+
+    mlh_terms = BooleanField("I agree",[
+        validators.Required(message = "Please read and agree to the MLH Code of Conduct.")
+    ], description = "I agree to the MLH Code of Conduct.", default = False)
+
+class MentorRsvpForm(Form):
+    attending = RadioField("Are you attending hackBCA III?", [validators.Required(message = "Please tell us if you are attending hackBCA III.")], choices = attending_choices)
+
+    phone = TextField("Phone Number", [
+        validators.Required(message = "Enter your preferred contact number."),
+        validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
+    ], description = "Phone Number")
+
+    t_shirt_size = SelectField("What is your shirt size?", [validators.Required(message = "You must select an option.")], choices = shirt_sizes, description = "What is your shirt size?")
 
     food_allergies = TextAreaField("Allergies", [
         validators.optional(),

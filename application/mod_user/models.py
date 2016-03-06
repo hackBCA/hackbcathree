@@ -6,6 +6,10 @@ application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num
 
 #Mongo Object
 class UserEntry(Document):
+	meta = {
+		"strict": False
+	}
+
 	email = StringField(required = True)
 	hashed = StringField(required = True)
 
@@ -47,7 +51,10 @@ class UserEntry(Document):
 
 	mlh_terms = StringField()
 
+	decision = StringField()
 	attending = StringField()
+	rsvp = BooleanField(default = False) #Has the user submitted their rsvp form?
+
 	phone = StringField()
 	t_shirt_size = StringField()
 
@@ -63,8 +70,10 @@ class UserEntry(Document):
 	medical_information = StringField()
 	hackbca_rules = StringField()
 
+	checked_in = StringField()
+
 class User(UserMixin):
-	def __init__(self, uid, email, firstname, lastname, type_account, status):
+	def __init__(self, uid, email, firstname, lastname, type_account, status, decision, attending, checked_in):
 
 		self.uid = str(uid)
 		self.email = email
@@ -72,6 +81,9 @@ class User(UserMixin):
 		self.lastname = lastname
 		self.type_account = type_account
 		self.status = status
+		self.decision = decision
+		self.attending = attending
+		self.checked_in = checked_in
 
 	def is_authenticated(self):
 		return True

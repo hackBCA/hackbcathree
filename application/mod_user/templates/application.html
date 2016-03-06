@@ -1,11 +1,5 @@
 {% extends "user.base.html" %}
 
-{% set nav_bar = [
-  ("/#home", "Home", False),
-  ("/account/application", "Application", True),
-  ("/account/settings", "Settings", False)
-] -%}
-
 {% block content %}
 {% with nav_bar = nav_bar %}
   {% include "navbar.html" %}
@@ -49,7 +43,7 @@
                 {% endif %}
               </div>
             {% else %}
-              {{ render_field(field, not can_edit) }}
+              {{ render_field(field, not can_edit, 500) }}
             {% endif %}
           {% endfor %}
 

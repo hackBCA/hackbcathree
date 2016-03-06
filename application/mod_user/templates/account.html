@@ -1,11 +1,5 @@
 {% extends "user.base.html" %}
 
-{% set nav_bar = [
-  ("/#home", "Home", False),
-  ("/account/application", "Application", False),
-  ("/account/settings", "Settings", False)
-] -%}
-
 {% block content %}
 {% with nav_bar = nav_bar %}
   {% include "navbar.html" %}
@@ -22,12 +16,33 @@
         </div>
       </div>
       <div class="info {{ status }}">
-        <h4>Application Status: <span>{{ current_user.status }}</span></h4>
-        <h4>Application Type: <span>{{ current_user.type_account.capitalize() }}</span></h4>
+        {% if action == "attending" %}
+          {% if current_user.attending == "Attending" %}
+            <h6>You're all set.<br />Join us in our <a href="https://www.facebook.com/groups/1141112885955022/">Facebook participants group</a> and <a href="https://www.facebook.com/events/1576121956040553/">on our event page</a>!</h6>
+          {% elif current_user.attending == "Not Attending" %}
+            <h6>Bummer. Hopefully we'll see you next year!</h6>
+          {% elif current_user.attending == "Expired" %}
+            <h6>Bummer. You didn't respond, so we had to offer your spot to someone else. Hopefully we'll see you next year!</h6>
+          {% endif %}
+          <br />
+        {% endif %}
+        {% if action == "decision" %}
+          {% if current_user.decision == "Accepted" %}
+            <h6>We would love to have you at hackBCA III{{ " as a mentor" if current_user.type_account == "mentor"}}! Please confirm your attendance <a href="/account/rsvp">here</a>.</h6>
+          {% elif current_user.decision == "Waitlisted" %}
+            <h6>Sorry, you've been put on our waitlist. :(<br />Don't worry, though. There's still a very high chance you'll be able to come to hackBCA III!</h6>
+          {% endif %}
+        {% endif %}
+        {% if action == "apply" %}
+          <h5>Account Type: <span>{{ current_user.type_account.capitalize() }}</span></h5>
+          <h5>Application Status: <span>{{ current_user.status }}</span></h5>
+        {% endif %}
         <div class="buttons horizontal">
-          <a href="/account/application" class="btn">{{ "Edit" if current_user.status == "Not Started" or current_user.status == "In Progress" else "View" }} Application</a>
-          <a href="/account/settings" class="btn">Account Settings</a>
-          <a href="/logout" class="btn">Logout</a>
+          {% if action == "apply" %}
+            <a href="/account/application" class="btn">{{ "Edit" if current_user.status == "Not Started" or current_user.status == "In Progress" else "View" }} Application</a>
+          {% elif action == "decision" %}
+            <a href="/account/rsvp" class="btn">RSVP</a>
+          {% endif %}  
         </div>
         <p>Have a question? Shoot us an email at <a href="mailto:contact@hackbca.com">contact@hackbca.com</a>.</p>
       </div>
