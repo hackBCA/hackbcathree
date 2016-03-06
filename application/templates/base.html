@@ -67,6 +67,13 @@
   <body>
     {{ render_flash_messages() }}
     {% block content %}{% endblock %}
+    <div class="page-container">
+      <section>
+        <div class="page-section" id="footer">
+          {% include "footer.html" %}
+        </div>
+      </section>
+    </div>
   </body>
   <script src="/static/js/scroll.js"></script>
   <script src="/static/js/fixed-responsive-nav.js"></script>
