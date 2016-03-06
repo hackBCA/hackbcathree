@@ -63,12 +63,20 @@
   <script type="text/javascript">
     setSilly = function() {
       var members = document.getElementsByClassName("member");
+      var lol = new Audio("https://s3.amazonaws.com/hackbcawebsite/lol.mp3");
       for (var i = 0; i < members.length; i++) {
         members[i].addEventListener("mouseenter", function(event) {
           event.target.src = event.target.dataset.silly;
+          if (event.target.dataset.silly.indexOf("robert_kim") > -1) {
+            lol.play();
+          }
         });
         members[i].addEventListener("mouseout", function(event) {
           event.target.src = event.target.dataset.img;
+          if (event.target.dataset.silly.indexOf("robert_kim") > -1) {
+            lol.pause();
+            lol.currentTime = 0;
+          }
         });
       }
     }
