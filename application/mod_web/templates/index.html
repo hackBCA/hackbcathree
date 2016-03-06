@@ -2,7 +2,6 @@
 
 {% set nav_bar = [
   ("#home", "Home", True),
-  ("/team", "Team", False),
   ("#about", "About", False),
   ("#whenwhere", "Info", False),
   ("#faq", "FAQ", False),
@@ -45,13 +44,6 @@
     <section>
       <div class="page-section" id="sponsors">
         {% include "web.sponsors.html" %}
-      </div>
-    </section>
-    <section>
-      <div class="page-section" id="footer">
-        {% with nav_bar = nav_bar %}
-          {% include "web.footer.html" %}
-        {% endwith %}
       </div>
     </section>
   </div>

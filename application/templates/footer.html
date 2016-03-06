@@ -1,17 +1,24 @@
+{% set links = [
+  ("/", "Home"),
+  ("/team", "Team")
+] -%}
+
 <div class="container">
   <div class="info">
     <div class="pure-g">
       <div class="section pure-u-xl-1-4 pure-u-lg-1-4 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-1">
-        <a class="scroll-link " href="#home" data-scroll><img id="sitemap-logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png"></a>
+        <a class="scroll-link " href="/" data-scroll><img id="sitemap-logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png"></a>
         <p>&#169; 2016 hackBCA</p>
         <a href="mailto:contact@hackbca.com"><p>contact@hackBCA.com</p></a>
       </div>
       <div class="section pure-u-xl-1-4 pure-u-lg-1-4 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-1">
-        {% for href, caption, active in nav_bar %}
+        {% for href, caption in links %}
           <a class="scroll-link" href="{{ href|e }}" data-scroll><p>{{ caption|e }}</p></a>
         {% endfor %}
         {% if current_user.is_authenticated %}
           <a href="/account"><p>Account</p></a>
+          <a href="/account/application"><p>Application</p></a>
+          <a href="/account/settings"><p>Settings</p></a>
           <a href="/logout"><p>Logout</p></a>
         {% else %}
           <a href="/register"><p>Register</p></a>

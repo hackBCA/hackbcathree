@@ -2,109 +2,12 @@
 
 {% set nav_bar = [
   ("/#home", "Home", True),
-  ("/team", "Team", False),
   ("/#about", "About", False),
   ("/#whenwhere", "Info", False),
   ("/#faq", "FAQ", False),
   ("/#guests", "Guests", False),
   ("/#sponsors", "Sponsors", False)
 ] -%}
-
-{% set board = [
-  {"name": "Kenneth Rhee", "fileslug": "kenneth_rhee.jpg", "sillyslug": "kenneth_rhee_silly.jpg", "desc": "Director"},
-  {"name": "Sarah Nathanson", "fileslug": "sarah_nathanson.jpg", "sillyslug": "sarah_nathanson_silly.jpg", "desc": "Junior Director"},
-  {"name": "Kenneth Li", "fileslug": "kenny_li.jpg", "sillyslug": "kenny_li_silly.jpg", "desc": "Director of Finance"},
-  {"name": "Eric Kong", "fileslug": "eric_kong.jpg", "sillyslug": "eric_kong_silly.jpg", "desc": "Director of Logistics"},
-  {"name": "Justin Shetty", "fileslug": "justin_shetty.jpg", "sillyslug": "justin_shetty_silly.jpg", "desc": "Director of Logistics"},
-  {"name": "Su Min Kim", "fileslug": "sumin_kim.jpg", "sillyslug": "sumin_kim_silly.jpg", "desc": "Director of Outreach"},
-  {"name": "Rikako Onuma", "fileslug": "profile.png", "sillyslug": "profile.png", "desc": "Director of Outreach"},
-  {"name": "Hyobin Yim", "fileslug": "hyobin_yim.jpg", "sillyslug": "hyobin_yim_silly.jpg", "desc": "Director of Promotions"},
-  {"name": "Liam Rahav", "fileslug": "liam_rahav.jpg", "sillyslug": "liam_rahav_silly.jpg", "desc": "Director of Sponsors"},
-  {"name": "Robert Kim", "fileslug": "robert_kim.jpg", "sillyslug": "robert_kim_silly.jpg", "desc": "Director of Technology"},
-  {"name": "Jack Neus", "fileslug": "jack_neus.jpg", "sillyslug": "jack_neus_silly.jpg", "desc": "Director of Technology"}
-] -%}
-
-{% set finance_team = 
-  {
-    "name": "Finance Team",
-    "members": [
-      {"name": "Seongwoo Cho", "fileslug": "seongwoo_cho.jpg", "sillyslug": "seongwoo_cho_silly.jpg"},
-      {"name": "Amber Chan", "fileslug": "amber_chan.jpg", "sillyslug": "amber_chan_silly.jpg"},
-      {"name": "Sophia Kotik", "fileslug": "sophia_kotik.jpg", "sillyslug": "sophia_kotik_silly.jpg"},
-      {"name": "Aakash Kakadiya", "fileslug": "aakash_kakadiya.jpg", "sillyslug": "aakash_kakadiya_silly.jpg"}
-    ]
-  } 
--%}
-
-{% set logistics_team = 
-  {
-    "name": "Logistics Team", 
-    "members": [
-      {"name": "Cache Angus", "fileslug": "cache_angus.jpg", "sillyslug": "cache_angus_silly.jpg"},
-      {"name": "Daniel Gu", "fileslug": "daniel_gu.jpg", "sillyslug": "daniel_gu_silly.jpg"},
-      {"name": "Josh Mendelsohn", "fileslug": "josh_mendelsohn.jpg", "sillyslug": "josh_mendelsohn_silly.jpg"},
-      {"name": "Evan Shi", "fileslug": "evan_shi.jpg", "sillyslug": "evan_shi_silly.jpg"},
-      {"name": "Brandon Uber", "fileslug": "brandon_uber.jpg", "sillyslug": "brandon_uber.jpg"},
-      {"name": "Danny Yim", "fileslug": "danny_yim.jpg", "sillyslug": "danny_yim_silly.jpg"}
-    ] 
-  } 
--%}
-
-{% set outreach_team = 
-  {
-    "name": "Outreach Team", 
-    "members": [
-      {"name": "Julie Ha", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Nick Kassoy", "fileslug": "nick_kassoy.jpg", "sillyslug": "nick_kassoy_silly.jpg"},
-      {"name": "Iris Kim", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Youjung Lee", "fileslug": "youjung_lee.jpg", "sillyslug": "youjung_lee_silly.jpg"},
-      {"name": "Jefferson Xu", "fileslug": "jefferson_xu.jpg", "sillyslug": "jefferson_xu_silly.jpg"}
-    ] 
-  } 
--%}
-
-{% set promotions_team = 
-  {
-    "name": "Promotions Team", 
-    "members": [
-      {"name": "Natalie Duerr", "fileslug": "natalie_duerr.jpg", "sillyslug": "natalie_duerr_silly.jpg"},
-      {"name": "Soomin Kim", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Reuben Meijia", "fileslug": "reuben_meijia.jpg", "sillyslug": "reuben_meijia_silly.jpg"},
-      {"name": "Jay Mo", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Jessica Zhu", "fileslug": "jessica_zhu.jpg", "sillyslug": "jessica_zhu_silly.jpg"}
-    ] 
-  } 
--%}
-
-{% set sponsors_team = 
-  {
-    "name": "Sponsors Team", 
-    "members": [
-      {"name": "June Hong", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Katie Katz", "fileslug": "katie_katz.jpg", "sillyslug": "katie_katz_silly.jpg"},
-      {"name": "Sean Kim", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Luke LaScala", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Tim Lupo", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Madaline McCluskey", "fileslug": "profile.png", "sillyslug": "profile.png"}
-    ] 
-  } 
--%}
-
-{% set tech_team = 
-  {
-    "name": "Tech Team", 
-    "members": [
-      {"name": "Jordan Lee", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "James Lepone", "fileslug": "james_lepone.jpg", "sillyslug": "james_lepone_silly.jpg"},
-      {"name": "Kaushik Mahadevan", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Eric Patel", "fileslug": "profile.png", "sillyslug": "profile.png"},
-      {"name": "Abiram Srithiran", "fileslug": "abiram_srithiran.jpg", "sillyslug": "abiram_srithiran.jpg"},
-      {"name": "Victor Wang", "fileslug": "victor_wang.jpg", "sillyslug": "victor_wang_silly.jpg"}
-    ] 
-  } 
--%}
-
-{% set teams = [finance_team, logistics_team, outreach_team, promotions_team, sponsors_team, tech_team] -%}
 
 {% block header %}{% endblock %}
 
@@ -124,12 +27,12 @@
           <div class="team">
             <h3 class="team-title">The Board</h3>
             <div class="pure-g center">
-              {% for b in board %}
+              {% for b in board.members %}
                 <div class="pure-u-xl-1-4 pure-u-lg-1-3 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-1">
                   <div class="p-contain">
-                    <img class="member pure-img" src="https://s3.amazonaws.com/hackbcawebsite/team/{{ b.fileslug }}" data-img="{{ b.fileslug }}" data-silly="{{ b.sillyslug }}">
-                    <h5>{{ b.name }}</h5>
-                    <p>{{ b.desc }}</p>
+                    <img class="member pure-img" src="{{ b.img_slug }}" data-img="{{ b.img_slug }}" data-silly="{{ b.silly_img_slug }}">
+                    <h5>{{ b.first_name }} {{ b.last_name }}</h5>
+                    <p>{{ b.description }}</p>
                   </div>
                 </div>
               {% endfor %}
@@ -137,13 +40,13 @@
           </div>
           {% for team in teams %}
             <div class="team">
-              <h3 class="team-title">{{ team.name }}</h3>
+              <h3 class="team-title">{{ team.team|title }} Team</h3>
               <div class="pure-g center">
                 {% for m in team.members %}
-                  <div class="pure-u-xl-1-6 pure-u-lg-1-5 pure-u-md-1-4 pure-u-sm-1-3 pure-u-1-2">
+                  <div class="pure-u-xl-1-5 pure-u-lg-1-4 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-2">
                     <div class="p-contain">
-                      <img class="member pure-img" src="https://s3.amazonaws.com/hackbcawebsite/team/{{ m.fileslug }}" data-img="{{ m.fileslug }}" data-silly="{{ m.sillyslug }}">
-                      <h5>{{ m.name }}</h5>
+                      <img class="member pure-img" src="{{ m.img_slug }}" data-img="{{ m.img_slug }}" data-silly="{{ m.silly_img_slug }}">
+                      <h5>{{ m.first_name }} {{ m.last_name }}</h5>
                     </div>
                   </div>
                 {% endfor %}
@@ -153,27 +56,27 @@
         </div>
       </div>
     </div>
-    <section>
-      <div class="page-section" id="footer">
-        {% with nav_bar = nav_bar %}
-          {% include "web.footer.html" %}
-        {% endwith %}
-      </div>
-    </section>
   </div>
 {% endblock %}
 
 {% block scripts %}
   <script type="text/javascript">
-    var url_prefix = "https://s3.amazonaws.com/hackbcawebsite/team/"
     setSilly = function() {
       var members = document.getElementsByClassName("member");
+      var lol = new Audio("https://s3.amazonaws.com/hackbcawebsite/lol.mp3");
       for (var i = 0; i < members.length; i++) {
         members[i].addEventListener("mouseenter", function(event) {
-          event.target.src = url_prefix + event.target.dataset.silly;
+          event.target.src = event.target.dataset.silly;
+          if (event.target.dataset.silly.indexOf("robert_kim") > -1) {
+            lol.play();
+          }
         });
         members[i].addEventListener("mouseout", function(event) {
-          event.target.src = url_prefix + event.target.dataset.img;
+          event.target.src = event.target.dataset.img;
+          if (event.target.dataset.silly.indexOf("robert_kim") > -1) {
+            lol.pause();
+            lol.currentTime = 0;
+          }
         });
       }
     }
