@@ -43,7 +43,7 @@
               <h3 class="team-title">{{ team.team|title }} Team</h3>
               <div class="pure-g center">
                 {% for m in team.members %}
-                  <div class="pure-u-xl-1-6 pure-u-lg-1-5 pure-u-md-1-4 pure-u-sm-1-3 pure-u-1-2">
+                  <div class="pure-u-xl-1-5 pure-u-lg-1-4 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-2">
                     <div class="p-contain">
                       <img class="member pure-img" src="{{ m.img_slug }}" data-img="{{ m.img_slug }}" data-silly="{{ m.silly_img_slug }}">
                       <h5>{{ m.first_name }} {{ m.last_name }}</h5>
