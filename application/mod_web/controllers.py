@@ -37,15 +37,6 @@ def add_email(email):
 
     validate_email(new_entry)
 
-def ugh():
-    entries = TeamMemberData.objects()
-    for entry in entries:
-        silly = entry.silly_img_slug[:-4]
-        if "profile.png" not in entry.silly_img_slug:
-            entry.silly_img_slug = silly + "_silly.jpg"
-            entry.save()
-
-
 def get_team_members_by_team(teams):
     all_teams = []
     for team in teams:
