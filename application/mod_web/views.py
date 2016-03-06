@@ -9,6 +9,11 @@ def index():
 	return render_template("web.index.html")
 
 @cache.cached()
+@mod_web.route("/team", methods = ["GET"])
+def team():
+    return render_template("web.team.html")
+
+@cache.cached()
 @mod_web.route("/sponsors", methods = ["GET"])
 def sponsors():
     return mod_web.send_static_file("sponsors.pdf")
