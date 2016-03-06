@@ -365,7 +365,7 @@ class MentorApplicationForm(Form):
 
     phone = TextField("Phone Number", [
         validators.Required(message = "Enter your preferred contact number."),
-        validators.Regexp("(\+\d+-)?\d{3}-\d{3}-\d{4}$", message = "Phone number must be of the form +CC-xxx-xxx-xxxx. (Country code optional)")
+        validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
     ], description = "Phone Number")
 
     num_hackathons = SelectField("How many hackathons have you mentored at?", [validators.Required(message = "You must select an option.")], choices = num_hackathons_choices_mentor, description = "How many hackathons have you mentored at?")
@@ -491,9 +491,9 @@ class MentorRsvpForm(Form):
     attending = RadioField("Are you attending hackBCA III?", [validators.Required(message = "Please tell us if you are attending hackBCA III.")], choices = attending_choices)
 
     phone = TextField("Phone Number", [
-        validators.Required(message = "Enter your preferred contact number."),
+        validators.Required(message = "Confirm your preferred contact number."),
         validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
-    ], description = "Phone Number")
+    ], description = "Phone Number Confirmation")
 
     t_shirt_size = SelectField("What is your shirt size?", [validators.Required(message = "You must select an option.")], choices = shirt_sizes, description = "What is your shirt size?")
 
