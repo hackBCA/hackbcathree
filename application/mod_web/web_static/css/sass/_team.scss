@@ -1,0 +1,37 @@
+#team {
+  .container {
+    .header {
+      background-image: url($asset_url_prefix + "teamgroup.jpg");
+
+      .head-cover {
+        padding: 15% 0;
+      }
+    }
+
+    .info {
+      .team-title {
+        text-align: center;
+      }
+
+      .team {
+        .pure-g {
+          .p-contain {
+            padding: 15px;
+
+            .pure-img {
+              margin: 0 auto;
+            }
+
+            h5 {
+              margin-bottom: 0;
+            }
+
+            p {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

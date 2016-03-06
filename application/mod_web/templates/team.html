@@ -1,0 +1,85 @@
+{% extends "web.base.html" %}
+
+{% set nav_bar = [
+  ("/#home", "Home", True),
+  ("/#about", "About", False),
+  ("/#whenwhere", "Info", False),
+  ("/#faq", "FAQ", False),
+  ("/#guests", "Guests", False),
+  ("/#sponsors", "Sponsors", False)
+] -%}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+  {% with nav_bar = nav_bar %}
+    {% include "navbar.html" %}
+  {% endwith %}
+  <div class="page-container">
+    <div class="page-section" id="team">
+      <div class="container">
+        <div class="header">
+          <div class="head-cover">
+            <h2 clss="title">The hackBCA Team</h2>
+          </div>
+        </div>
+        <div class="info">
+          <div class="team">
+            <h3 class="team-title">The Board</h3>
+            <div class="pure-g center">
+              {% for b in board.members %}
+                <div class="pure-u-xl-1-4 pure-u-lg-1-3 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-1">
+                  <div class="p-contain">
+                    <img class="member pure-img" src="{{ b.img_slug }}" data-img="{{ b.img_slug }}" data-silly="{{ b.silly_img_slug }}">
+                    <h5>{{ b.first_name }} {{ b.last_name }}</h5>
+                    <p>{{ b.description }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% for team in teams %}
+            <div class="team">
+              <h3 class="team-title">{{ team.team|title }} Team</h3>
+              <div class="pure-g center">
+                {% for m in team.members %}
+                  <div class="pure-u-xl-1-5 pure-u-lg-1-4 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-2">
+                    <div class="p-contain">
+                      <img class="member pure-img" src="{{ m.img_slug }}" data-img="{{ m.img_slug }}" data-silly="{{ m.silly_img_slug }}">
+                      <h5>{{ m.first_name }} {{ m.last_name }}</h5>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript">
+    setSilly = function() {
+      var members = document.getElementsByClassName("member");
+      var lol = new Audio("https://s3.amazonaws.com/hackbcawebsite/lol.mp3");
+      for (var i = 0; i < members.length; i++) {
+        members[i].addEventListener("mouseenter", function(event) {
+          event.target.src = event.target.dataset.silly;
+          if (event.target.dataset.silly.indexOf("robert_kim") > -1) {
+            lol.play();
+          }
+        });
+        members[i].addEventListener("mouseout", function(event) {
+          event.target.src = event.target.dataset.img;
+          if (event.target.dataset.silly.indexOf("robert_kim") > -1) {
+            lol.pause();
+            lol.currentTime = 0;
+          }
+        });
+      }
+    }
+    setSilly();
+  </script>
+{% endblock %}
