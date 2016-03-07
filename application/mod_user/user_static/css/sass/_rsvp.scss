@@ -13,119 +13,127 @@
           max-width: 75%;
           margin: 0 auto;
         }
+      }
 
-        .form-elt {
-          input, textarea, select {
-            width: 75%;
-            color: #202020;
-          }
+      .form-elt {
+        input, textarea, select {
+          width: 75%;
+          color: #202020;
+        }
 
-          select:first-child {
-            color: #fff;
-          }
+        select:first-child {
+          color: #fff;
+        }
 
-          p {
-            margin-top: 0;
-          }
+        p {
+          margin-top: 0;
+        }
 
-          ul {
-            li {
-              width: 24.5%;
+        ul {
+          li {
+            width: 24.5%;
 
-              @media screen and (max-width: 1024px) {
-                width: 37%;
-              }
+            @media screen and (max-width: 1024px) {
+              width: 37%;
+            }
+
+            @media screen and (max-width: 768px) {
+              width: 42%; 
+            }
+
+            @media screen and (max-width: 480px) {
+              width: 49.5%;
             }
           }
+        }
 
-          #attending {
-            [value="Attending"], [value="Not Attending"] {
+        #attending {
+          [value="Attending"], [value="Not Attending"] {
 
+            ~ label {
+              background-color: #c8c8c8;
+              position: relative;
+              float: left;
+              padding: 15px 30px;
+              width: 100%;
+              cursor: pointer;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+              font-size: 20px;
+              
+              &:before {
+                position: absolute;
+                display: block;
+                left: 0;
+                content: '';
+                width: 2em;
+              }
+            }
+
+            &:checked {
               ~ label {
-                background-color: #c8c8c8;
-                position: relative;
-                float: left;
-                padding: 15px 30px;
-                width: 100%;
-                cursor: pointer;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                font-size: 20px;
-                
+                color: #fff;
+
                 &:before {
-                  position: absolute;
-                  display: block;
-                  left: 0;
-                  content: '';
-                  width: 2em;
-                }
-              }
-
-              &:checked {
-                ~ label {
                   color: #fff;
-
-                  &:before {
-                    color: #fff;
-                  }
                 }
               }
             }
+          }
 
-            [value="Attending"] {
+          [value="Attending"] {
+            ~ label {
+              &:before {
+                content:'\2714';
+                color: #c8c8c8;
+              }
+            }
+
+            &:hover:not(:checked) {
               ~ label {
                 &:before {
                   content:'\2714';
-                  color: #c8c8c8;
-                }
-              }
-
-              &:hover:not(:checked) {
-                ~ label {
-                  &:before {
-                    content:'\2714';
-                    color: #2ecc71;
-                  }
-                }
-              }
-
-              &:checked {
-                ~ label {
-                  background-color: #2ecc71;
-
-                  &:before {
-                    content:'\2714';
-                  }
+                  color: #2ecc71;
                 }
               }
             }
 
-            [value="Not Attending"] {
+            &:checked {
+              ~ label {
+                background-color: #2ecc71;
+
+                &:before {
+                  content:'\2714';
+                }
+              }
+            }
+          }
+
+          [value="Not Attending"] {
+            ~ label {
+              &:before {
+                content:'\2717';
+                color: #c8c8c8;
+              }
+            }
+
+            &:hover:not(:checked) {
               ~ label {
                 &:before {
                   content:'\2717';
-                  color: #c8c8c8;
+                  color: #e74c3c;
                 }
               }
+            }
 
-              &:hover:not(:checked) {
-                ~ label {
-                  &:before {
-                    content:'\2717';
-                    color: #e74c3c;
-                  }
-                }
-              }
+            &:checked {
+              ~ label {
+                background-color: #e74c3c;
 
-              &:checked {
-                ~ label {
-                  background-color: #e74c3c;
-
-                  &:before {
-                    content:'\2717';
-                  }
+                &:before {
+                  content:'\2717';
                 }
               }
             }
@@ -140,13 +148,15 @@
   #rsvp {
     .container {
       .info {
-        .form-elt {
-          input, textarea, select {
-            width: 75%;
-          }
+        form {
+          .form-elt {
+            input, textarea, select {
+              width: 75%;
+            }
 
-          textarea {
-            max-width: 75%;
+            textarea {
+              max-width: 75%;
+            }
           }
         }
       }
@@ -158,12 +168,14 @@
   #rsvp {
     .container {
       .info {
-        .form-elt {
-          input, textarea, select {
-            width: 85%;
-          }
-          textarea {
-            max-width: 85%;
+        form {
+          .form-elt {
+            input, textarea, select {
+              width: 85%;
+            }
+            textarea {
+              max-width: 85%;
+            }
           }
         }
       }
@@ -175,12 +187,14 @@
   #rsvp {
     .container {
       .info {
-        .form-elt {
-          input, textarea, select {
-            width: 100%;
-          }
-          textarea {
-            max-width: 100%;
+        form {
+          .form-elt {
+            input, textarea, select {
+              width: 100%;
+            }
+            textarea {
+              max-width: 100%;
+            }
           }
         }
       }

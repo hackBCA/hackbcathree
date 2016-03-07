@@ -82,7 +82,7 @@
 {% block scripts %}
 <script type="text/javascript">
 
-  var check_phone = function(){
+  var check_phone = function() {
       var phone_number = document.getElementById("phone");
       var numbers = phone_number.value.replace(/\D/g, '');
       if(numbers.length == 10 || numbers.length == 11 || numbers.length == 12){
@@ -112,9 +112,9 @@
   var attending_button = document.querySelector("input#attending-0")
   var notAttending_button = document.querySelector("input#attending-1")
 
-  hide_elts = function(hide){
+  hide_elts = function(hide) {
     var elts = document.querySelectorAll(".form-elt:not(.attending)");
-    for(var i = 0; i < elts.length; i++){
+    for (var i = 0; i < elts.length; i++) {
       if(hide){
         elts[i].classList.add("hide");
       }
@@ -123,17 +123,17 @@
       }
     }
   }
-  notAttending_button.onclick = function(){
+  notAttending_button.onclick = function() {
     hide_elts(true);
   }
-  attending_button.onclick = function(){
+  attending_button.onclick = function() {
     hide_elts(false);
   }
 
-  if("{{current_user.attending}}" == "Expired"){
+  if ("{{current_user.attending}}" == "Expired") {
     document.querySelector("input#attending-1").checked = true;
   }
-  document.querySelector("input[name='attending']:checked").click();
-
+  var attending_checked = document.querySelector("input[name='attending']:checked");
+  if (attending_checked) attending_checked.click();
 </script>
 {% endblock %}
