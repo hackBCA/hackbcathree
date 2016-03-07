@@ -8,7 +8,7 @@
 {% set can_edit = current_user.attending not in ["Attending", "Not Attending", "Expired"] %}
 
 <div class="page-container">
-  <div class="page-section" id="application">
+  <div class="page-section" id="rsvp">
     <div class="container">
       <div class="header">
         <div class="head-cover">
@@ -23,6 +23,7 @@
           {% for field in form %}
             {% if field == form.attending  %}
               <div class="form-elt attending {% if field.errors %}error{% endif %}">
+                <h6>Will you be at hackBCA?</h6>
                 {{ field(placeholder = field.description, disabled = disabled) }}
                 {% if field.errors %}
                   <p class="error-msg">{{ field.errors[0] }}</p>
@@ -70,8 +71,8 @@
             <button class="btn" type="submit" name="submit" {{ "disabled" if not can_edit }}>Yes</button>
             <button class="btn" onclick="decline_verify(); return false;">No</button>
           </div>
+          <p>{{ "*" if can_edit }}We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, and occasional messages about hackathons in line with the MLH Privacy Policy.</p>
         </form>
-        <p>{{ "*" if can_edit }}We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, and occasional messages about hackathons in line with the MLH Privacy Policy.</p>
       </div>
     </div>
   </div>

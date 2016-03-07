@@ -426,8 +426,8 @@ class MentorApplicationForm(Form):
         return True
 
 attending_choices = [
-    ("Attending", "Yes, I'll be there!"),
-    ("Not Attending", "No, I can't make it.")
+    ("Attending", "Yes, I will!"),
+    ("Not Attending", "No, I won't.")
 ]
 
 class RsvpForm(Form):
@@ -437,10 +437,10 @@ class RsvpForm(Form):
 
     school = TextField("Confirm your school", [validators.required("Please confirm your school.")], description = "School Confirmation")
 
-    phone = TextField("Phone Number", [
+    phone = TextField("Phone #", [
         validators.Required(message = "Enter your preferred contact number."),
         validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
-    ], description = "Phone Number")
+    ], description = "Phone #")
 
 
     t_shirt_size = SelectField("What is your shirt size?", [validators.Required(message = "You must select an option.")], choices = shirt_sizes, description = "What is your shirt size?")
@@ -449,27 +449,27 @@ class RsvpForm(Form):
         validators.Required(message = "Enter the name of your first emergency contact.")
     ], description = "Emergency Contact #1 Name")
 
-    emergency_contact_relation1 = TextField("Relatonship", [
+    emergency_contact_relation1 = TextField("Relationship", [
         validators.Required(message = "Enter your relationship to your emergency contact.")
-    ], description = "Emergency Contact #1 Relatonship")
+    ], description = "Emergency Contact #1 Relationship")
 
-    emergency_contact_phone1 = TextField("Phone Number", [
+    emergency_contact_phone1 = TextField("Phone #", [
         validators.Required(message = "Enter your emergency contact's phone number."),
         validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
-    ], description = "Emergency Contact #1 Phone Number")
+    ], description = "Emergency Contact #1 Phone #")
 
     emergency_contact_name2 = TextField("Full Name", [
         validators.Required(message = "Enter the name of your second emergency contact.")
     ], description = "Emergency Contact #2 Name")
 
-    emergency_contact_relation2 = TextField("Relatonship", [
+    emergency_contact_relation2 = TextField("Relationship", [
         validators.Required(message = "Enter your relationship to your emergency contact.")
-    ], description = "Emergency Contact #2 Relatonship")
+    ], description = "Emergency Contact #2 Relationship")
 
-    emergency_contact_phone2 = TextField("Phone Number", [
+    emergency_contact_phone2 = TextField("Phone #", [
         validators.Required(message = "Enter your emergency contact's phone number."),
         validators.Regexp(phone_regex, message = "Please enter a valid phone number.")
-    ], description = "Emergency Contact #2 Phone Number")
+    ], description = "Emergency Contact #2 Phone #")
 
     food_allergies = TextAreaField("Allergies", [
         validators.optional(),
