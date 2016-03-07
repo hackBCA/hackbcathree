@@ -140,7 +140,7 @@ p {
   }
 }
 
-a {
+a:not(.btn) {
   color: $blue-color-fallback;
   color: $blue-color;
 
@@ -545,7 +545,7 @@ select {
           @media screen and (max-width: 480px) { line-height: 24px; }
         }
 
-        a {
+        a:not(.btn) {
           color: $blue-color-fallback;
           color: $blue-color;
         }
