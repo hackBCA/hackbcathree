@@ -133,7 +133,13 @@
   if ("{{current_user.attending}}" == "Expired") {
     document.querySelector("input#attending-1").checked = true;
   }
+  
   var attending_checked = document.querySelector("input[name='attending']:checked");
   if (attending_checked) attending_checked.click();
+  
+  if("{{current_user.attending}}" != "Undecided"){
+    attending_button.setAttribute("disabled", "disabled");
+    notAttending_button.setAttribute("disabled", "disabled");
+  }
 </script>
 {% endblock %}

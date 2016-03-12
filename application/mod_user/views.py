@@ -227,7 +227,7 @@ def rsvp():
             flash("Saved.", "success")
           elif "submit" in request.form:
             controller.save_form_data(current_user.email, request.form)
-            if form.validate():
+            if request.form['attending'] == 'Not Attending' or form.validate():
               flash("Submitted.", "success")
               controller.set_user_attr(current_user.email, "rsvp", True)
               controller.login(current_user.email) #To immediately update application status and disable the form
