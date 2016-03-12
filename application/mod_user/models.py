@@ -55,6 +55,7 @@ class UserEntry(Document):
 	attending = StringField()
 	rsvp = BooleanField(default = False) #Has the user submitted their rsvp form?
 
+	address = StringField()
 	phone = StringField()
 	t_shirt_size = StringField()
 
@@ -70,7 +71,7 @@ class UserEntry(Document):
 	medical_information = StringField()
 	hackbca_rules = StringField()
 
-	checked_in = StringField()
+	checked_in = BooleanField(default = False)
 
 class User(UserMixin):
 	def __init__(self, uid, email, firstname, lastname, type_account, status, decision, attending, checked_in):

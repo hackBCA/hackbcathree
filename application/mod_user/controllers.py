@@ -29,9 +29,7 @@ def load_user(user_id):
 	else:
 		attending = currUser.attending
 
-	checked_in = currUser.checked_in == "Checked in"	
-
-	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status, currUser.decision, attending, checked_in) 
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status, currUser.decision, attending, currUser.checked_in) 
 	return user
 
 def get_user(email):
