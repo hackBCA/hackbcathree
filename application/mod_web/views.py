@@ -27,6 +27,15 @@ def sponsors():
 def foward_sponsors():
     return redirect("/sponsors")
 
+@mod_web.route("/privacy", methods = ["GET"])
+def privacy():
+    return mod_web.send_static_file("privacystatement.pdf")
+
+@mod_web.route("/privacy.pdf", methods = ["GET"])
+@mod_web.route("/privacystatement.pdf", methods = ["GET"])
+def forward_privacy():
+    return redirect("/privacy")
+
 @mod_web.route("/chaperones", methods = ["GET"])
 def chaperones():
     return redirect("https://docs.google.com/forms/d/13l1ToVeDeBSEF4OBdHt6gSbYan8xnMFVG6BTRcKrEQw/viewform")
