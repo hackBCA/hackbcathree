@@ -3,9 +3,9 @@
 {% if current_user != None %}
   {% if current_user.checked_in %}
     {% set action = "live" %}
-  {% elif current_user.attending in ["Attending", "Not Attending", "Expired"] %}
+  {% elif current_user.attending in ["Attending", "Not Attending"] %}
     {% set action = "attending" %}
-  {% elif current_user.decision in ["Accepted", "Waitlisted"] %}
+  {% elif current_user.decision in ["Accepted", "Waitlisted", "Expired"] %}
     {% set action = "decision" %}
   {% else %}
     {% set action = "apply" %}
@@ -36,6 +36,11 @@
   ("/account/settings", "Settings", False)]
 -%}
 
+{% set default_user_navbar = [
+  ("/#home", "Home", False),
+  ("/account/settings", "Settings", False)]
+-%}
+
 {% set default_navbar = [
   ("/#home", "Home", False)
 ]
@@ -43,12 +48,14 @@
 
 {% if action == "apply" %}
   {% set nav_bar = apply_navbar %}
-{% elif action == "decision" %}
+{% elif action == "decision" and current_user.decision == "Accepted" %}
   {% set nav_bar = decision_navbar %}
 {% elif action == "attending" %}
   {% set nav_bar = attending_navbar %}
 {% elif action == "live" %}
   {% set nav_bar = live_navbar %}
+{% elif action != "no_user" %}
+  {% set nav_bar = default_user_navbar %}
 {% else %}
   {% set nav_bar = default_navbar %}
 {% endif %}
