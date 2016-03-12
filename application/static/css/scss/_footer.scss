@@ -1,0 +1,83 @@
+#footer {
+  background-color: #222322;
+
+  .info {
+    color: #fff;
+    text-align: center;
+
+    .pure-g {
+      text-align: left;
+
+      .section {
+
+        a {
+          color: #fff;
+        }
+
+        p {
+          margin: 0;
+          line-height: 32px;
+
+          i {
+            margin-right: 5px;
+            width: 15px;
+          }
+        }
+
+        @media screen and (max-width: 48em) {
+          margin-bottom: 5%;
+        }
+      }
+
+      #sitemap-logo {
+        width: 100px;
+        height: 100px;
+      }
+
+      #mlh-trust-badge {
+        position: absolute;
+        top: 0;
+        right: 50px;
+        max-width: 100px;
+        width: 10%;
+        min-width:  60px;
+        display: block;
+        z-index: 10000;
+      }
+    }
+  }
+
+  .end {
+    text-align: center;
+
+    #credit {
+      margin-top: 0;
+      
+      i {
+        width: 20px;
+
+        &.fa-heart { color: #e74c3c; }
+        &.fa-bolt { color: #f1c40f; }
+        &.fa-wifi { color: #3498db; }
+        &.fa-bug { color: #a17917; }
+        &.fa-fighter-jet { color: #bdc3c7; }
+        &.fa-code { color: #2ecc71; }
+        &.fa-paw { color: #a17917; }
+        &.fa-rocket { color: #e74c3c; }
+        &.fa-terminal { color: #2ecc71; }
+        &.fa-trophy { color: #f1c40f; }
+        &.fa-scissors { color: #e74c3c; }
+        &.fa-star { color: #f1c40f; }
+        &.fa-cogs { color: #bdc3c7; }
+        &.fa-code-fork { color: #e67e22; }
+        &.fa-coffee { color: #bdc3c7; }
+        &.fa-money { color: #2ecc71; }
+        &.fa-magic { color: #bdc3c7; }
+        &.fa-headphones { color: #bdc3c7; }
+        &.fa-anchor { color: #bdc3c7; }
+        &.fa-flask { color: #2ecc71; }
+        &.fa-gamepad { color: #2ecc71; }
+      }
+    }
+  }
+}

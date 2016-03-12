@@ -140,7 +140,7 @@ p {
   }
 }
 
-a {
+a:not(.btn) {
   color: $blue-color-fallback;
   color: $blue-color;
 
@@ -245,6 +245,11 @@ a {
   [class *="pure-u"] {
     font-family: "Proxima Nova Light", Helvetica, sans-serif;
   }
+
+  &.center {
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
 }
 
 .full-page-container {
@@ -281,6 +286,88 @@ a {
 
           input, textarea, select {
             width: 25%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-container {
+  .page-section {
+    width: 100%;
+    padding: 0;
+    display: table;
+
+    .container {
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      .header {
+        text-align: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        .head-cover {
+          background-color: rgba(0, 0, 0, 0.5);
+          height: 100%;
+          padding: 7.5% 0;
+        }
+
+        .title {
+          margin: 0;
+        }
+      }
+
+      .info {
+        color: #202020;
+        text-align: left;
+        padding: 5% 10%;
+
+        p {
+          line-height: 32px;
+          @media screen and (max-width: 768px) { line-height: 24px; }
+          @media screen and (max-width: 480px) { line-height: 24px; }
+        }
+
+        a:not(.btn) {
+          color: $blue-color-fallback;
+          color: $blue-color;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .page-container {
+    .page-section {
+      .container {
+        .header {
+          .head-cover {
+            padding: 15% 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page-container {
+    .page-section {
+      .container {
+        .header {
+          .head-cover {
+            padding: 30% 0;
           }
         }
       }
