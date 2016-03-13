@@ -9,6 +9,10 @@ def index():
 	return render_template("web.index.html")
 
 @cache.cached()
+@mod_web.route("/rules", methods = ["GET", "POST"])
+def rules():
+    return render_template("web.rules.html")
+
 @mod_web.route("/team", methods = ["GET"])
 def team():
     board = controllers.get_team_members_by_team(["board"])[0]

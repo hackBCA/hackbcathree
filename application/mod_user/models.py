@@ -6,11 +6,15 @@ application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num
 
 #Mongo Object
 class UserEntry(Document):
+	meta = {
+		"strict": False
+	}
+
 	email = StringField(required = True)
 	hashed = StringField(required = True)
 
 	firstname = StringField(required = True)
-	lastname = StringField(required = True)	
+	lastname = StringField(required = True)
 
 	confirmed = BooleanField(required = False, default = False)
 
@@ -25,7 +29,7 @@ class UserEntry(Document):
 	ethnicity = StringField()
 	grade = StringField()
 	num_hackathons = StringField()
-	
+
 	phone = StringField()
 
 	github_link = StringField()
@@ -43,9 +47,31 @@ class UserEntry(Document):
 
 	free_response1 = StringField() #Mentor: Phone Number
 	free_response2 = StringField() #Mentor: Skills
-	free_response3 = StringField() #Mentor: Workshop	
+	free_response3 = StringField() #Mentor: Workshop
 
-	mlh_terms = StringField()	
+	mlh_terms = StringField()
+
+	decision = StringField()
+	attending = StringField()
+	rsvp = BooleanField(default = False) #Has the user submitted their rsvp form?
+
+	address = StringField()
+	phone = StringField()
+	t_shirt_size = StringField()
+
+	emergency_contact_name1 = StringField()
+	emergency_contact_phone1 = StringField()
+	emergency_contact_relation1 = StringField()
+
+	emergency_contact_name2 = StringField()
+	emergency_contact_phone2 = StringField()
+	emergency_contact_relation2 = StringField()
+
+	food_allergies = StringField()
+	medical_information = StringField()
+	hackbca_rules = StringField()
+
+	checked_in = BooleanField(default = False)
 
 	review1 = IntField()
 	reviewer1 = StringField()
@@ -58,7 +84,7 @@ class UserEntry(Document):
 
 
 class User(UserMixin):
-	def __init__(self, uid, email, firstname, lastname, type_account, status):
+	def __init__(self, uid, email, firstname, lastname, type_account, status, decision, attending, checked_in):
 
 		self.uid = str(uid)
 		self.email = email
@@ -66,6 +92,9 @@ class User(UserMixin):
 		self.lastname = lastname
 		self.type_account = type_account
 		self.status = status
+		self.decision = decision
+		self.attending = attending
+		self.checked_in = checked_in
 
 	def is_authenticated(self):
 		return True

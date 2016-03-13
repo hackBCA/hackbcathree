@@ -5,33 +5,48 @@
   {% include "navbar.html" %}
 {% endwith %}
 
-{% set can_edit = (current_user.status in ["Not Started", "In Progress"]) %}
+{% set can_edit = current_user.attending not in ["Attending", "Not Attending", "Expired"] %}
+
 <div class="page-container">
-  <div class="page-section" id="application">
+  <div class="page-section" id="rsvp">
     <div class="container">
       <div class="header">
         <div class="head-cover">
           <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
-          <h2>Application</h2>
-          <h4>Tell us about yourself!</h4>
+          <h4>Tell us if you're coming to hackBCA III!</h4>
         </div>
       </div>
       <div class="info">
-        <form class="application-form" method="POST" action="" onSubmit = "check_phone();">
+        <form class="application-form" method="POST" action="" onSubmit = "">
           <h4>{{ current_user.full_name() }}</h4>
           <h4>{{ current_user.type_account.capitalize() }}</h4>
           {% for field in form %}
-            {% if field == form.other_gender or field == form.other_intended_major or field == form.other_hear_about_us %}
-              <div class="form-elt {% if field.errors %}error{% endif %}">
-                {{ field(placeholder = field.description, disabled = not can_edit, class = "other-field hide") }}
+            {% if field == form.attending  %}
+              <div class="form-elt attending {% if field.errors %}error{% endif %}">
+                <h6>Will you be at hackBCA?</h6>
+                {{ field(placeholder = field.description, disabled = disabled) }}
                 {% if field.errors %}
                   <p class="error-msg">{{ field.errors[0] }}</p>
                 {% endif %}
               </div>
-            {% elif field == form.mlh_terms  %}
+            {% elif field == form.hackbca_rules %}
               <div class="form-elt {% if field.errors %}error{% endif %}">
                 <h6>{{ field.description }}</h6>
-                <p>The MLH Code of Conduct is available <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf">here</a>.</p>
+                <p>Our rules can be found <a href="/rules" target="_blank">here</a>.</p> <!-- Change Link to hackBCA Rules once created -->
+                <ul class="checkboxes">
+                  <li>
+                    {{ field(disabled = not can_edit) }}
+                    {{ field.label }}
+                  </li>
+                </ul>
+                {% if field.errors %}
+                  <p class="error-msg">{{ field.errors[0] }}</p>
+                {% endif %}
+              </div>
+            {% elif field == form.mlh_terms %}
+              <div class="form-elt {% if field.errors %}error{% endif %}">
+                <h6>{{ field.description }}</h6>
+                <p>The MLH Code of Conduct is available <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">here</a>.</p>
                 <ul class="checkboxes">
                   <li>
                     {{ field(disabled = not can_edit) }}
@@ -43,19 +58,20 @@
                 {% endif %}
               </div>
             {% else %}
-              {{ render_field(field, not can_edit, 500) }}
+              {{ render_field(field, not can_edit) }}
             {% endif %}
           {% endfor %}
 
           <div class="buttons horizontal {{'hide' if not can_edit}}">
             <button class="btn" type="submit" name="save" {{ "disabled" if not can_edit }}>Save</button>
-            <button class="btn" onclick="verify_submit(); return false;" {{ "disabled" if not can_edit }}>Submit</button>
+            <button class="btn" onclick="verify_submit(); return false;" {{ "disabled" if not can_edit }}>Submit*</button>
           </div>
           <div class="buttons horizontal hide" id="verify-submit">
             <h6>Are you sure?</h6>
             <button class="btn" type="submit" name="submit" {{ "disabled" if not can_edit }}>Yes</button>
             <button class="btn" onclick="decline_verify(); return false;">No</button>
           </div>
+          <p>{{ "*" if can_edit }}We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, and occasional messages about hackathons in line with the MLH Privacy Policy.</p>
         </form>
       </div>
     </div>
@@ -65,15 +81,15 @@
 
 {% block scripts %}
 <script type="text/javascript">
-    
-  var check_phone = function(){
+
+  var check_phone = function() {
       var phone_number = document.getElementById("phone");
       var numbers = phone_number.value.replace(/\D/g, '');
       if(numbers.length == 10 || numbers.length == 11 || numbers.length == 12){
           var finalstr = "";
           if(numbers.length == 10){
               finalstr += numbers.substr(0,3) + "-" + numbers.substr(3,3) + "-" + numbers.substr(6,4);
-          } 
+          }
           else if(numbers.length == 11){
               finalstr += "+" + numbers.substr(0,1) + "-" + numbers.substr(1,3) + "-" + numbers.substr(4,3) + "-" + numbers.substr(7,4);
            }
@@ -92,33 +108,38 @@
     var button_group = document.getElementById("verify-submit");
     button_group.classList.toggle("hide");
   }
-  
-  var char_counter = function() {
-    questions = document.querySelectorAll("textarea");
-    for (var i = 0; i < questions.length; i++) {
-      questions[i].onkeyup = function () {
-        document.querySelector(".count#" + this.id).innerHTML = "Characters left: " + (500 - this.value.length);
-      }
-      document.querySelector(".count#" + questions[i].id).innerHTML = "Characters left: " + (500 - questions[i].value.length);
-    }
-  }
-  char_counter();
 
-  var otherElts = document.querySelectorAll(".other-field");
-  for(var i = 0; i < otherElts.length; i++){
-    var baseField = otherElts[i].id.substr(6);
-    var selectElt = document.querySelector("#" + baseField);
-    selectElt.onchange = function(){
-      console.log(".other-field #other_" + this.id);
-      var otherElt = document.querySelector(".other-field#other_" + this.id);
-      if(this.value == "other" && otherElt.classList.contains("hide")){
-        otherElt.classList.remove("hide");
+  var attending_button = document.querySelector("input#attending-0")
+  var notAttending_button = document.querySelector("input#attending-1")
+
+  hide_elts = function(hide) {
+    var elts = document.querySelectorAll(".form-elt:not(.attending)");
+    for (var i = 0; i < elts.length; i++) {
+      if(hide){
+        elts[i].classList.add("hide");
       }
       else{
-        otherElt.classList.add("hide");
+        elts[i].classList.remove("hide");
       }
     }
-    selectElt.onchange();
+  }
+  notAttending_button.onclick = function() {
+    hide_elts(true);
+  }
+  attending_button.onclick = function() {
+    hide_elts(false);
+  }
+
+  if ("{{current_user.attending}}" == "Expired") {
+    document.querySelector("input#attending-1").checked = true;
+  }
+  
+  var attending_checked = document.querySelector("input[name='attending']:checked");
+  if (attending_checked) attending_checked.click();
+  
+  if("{{current_user.attending}}" != "Undecided"){
+    attending_button.setAttribute("disabled", "disabled");
+    notAttending_button.setAttribute("disabled", "disabled");
   }
 </script>
 {% endblock %}
