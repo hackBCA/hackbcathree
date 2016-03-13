@@ -10,7 +10,7 @@ from application import cache
 @mod_user.route("/login", methods=["GET", "POST"])
 def login():
   if current_user.is_authenticated:
-    return redirect("/account")    
+    return redirect("/account")
 
   form = LoginForm(request.form)
   if request.method == "POST" and form.validate():
@@ -111,7 +111,7 @@ def confirm_email(token):
 def settings():
   name_form = ChangeNameForm(request.form)
   password_form = ChangePasswordForm(request.form)
-  if request.method == "POST":    
+  if request.method == "POST":
     if request.form["setting"] == "name" and name_form.validate():
       try:
         controller.change_name(current_user.email, request.form["firstname"], request.form["lastname"])
@@ -206,6 +206,48 @@ def scholarship():
           flash("Something went wrong.", "error")
   return render_template("user.scholarship.html", form = form)
 
+@mod_user.route("/account/rsvp", methods = ["GET", "POST"])
+@login_required
+def rsvp():
+    if current_user.decision != "Accepted":
+      return redirect("/account")
+
+    if current_user.type_account == "mentor":
+      form = MentorRsvpForm(request.form)
+    else:
+      form = RsvpForm(request.form)
+
+    rsvp_submitted = controller.get_user_attr(current_user.email, "rsvp")
+
+    if request.method == "POST":
+      try:
+        if not rsvp_submitted:
+          if "save" in request.form:
+            controller.save_form_data(current_user.email, request.form)
+            flash("Saved.", "success")
+          elif "submit" in request.form:
+            controller.save_form_data(current_user.email, request.form)
+            if request.form['attending'] == 'Not Attending' or form.validate():
+              flash("Submitted.", "success")
+              controller.set_user_attr(current_user.email, "rsvp", True)
+              controller.login(current_user.email) #To immediately update application status and disable the form
+            else:
+              flash("Please correct any errors.", "error")
+          else:
+            if CONFIG["DEBUG"]:
+              flash("You didn't seem to tell us to do anything.", "error")
+      except Exception as e:
+        if CONFIG["DEBUG"]:
+          raise e
+        flash("Something went wrong.", "error")
+    else:
+      user = controller.get_user(current_user.email)
+      if current_user.type_account == "mentor":
+        form = MentorRsvpForm(request.form, obj = user)
+      else:
+        form = RsvpForm(request.form, obj = user)
+    return render_template("user.rsvp.html", form = form, can_edit = not rsvp_submitted)
+
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required
 def application():
@@ -221,15 +263,16 @@ def application():
 
       if applicationStatus in ["Not Started", "In Progress"]:
         if "save" in request.form:
-          controller.save_application(current_user.email, request.form)
+          controller.save_form_data(current_user.email, request.form)
+          controller.set_user_attr(current_user.email, "status", "In Progress")
           flash("Application Saved", "success")
         elif "submit" in request.form:
-          controller.save_application(current_user.email, request.form)
+          controller.save_form_data(current_user.email, request.form)
           if form.validate():
             flash("Application Submitted", "success")
             if not CONFIG["DEBUG"]:
               controller.set_user_attr(current_user.email, "status", "Submitted")
-            
+
             controller.login(current_user.email) #To immediately update application status and disable the form
           else:
             flash("Please correct any errors in your application.", "error")
@@ -246,5 +289,3 @@ def application():
     else:
       form = ApplicationForm(request.form, obj = user)
   return render_template("user.application.html", form = form)
-
-  

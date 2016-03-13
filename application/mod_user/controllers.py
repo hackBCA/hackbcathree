@@ -27,7 +27,14 @@ def load_user(user_id):
 		currUser = user_entries[0]
 	except Exception:
 		raise GenericMongoError
-	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status) 
+
+	if not currUser.rsvp:
+		attending = "Undecided"
+	else:
+		attending = currUser.attending
+
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status, currUser.decision, attending, currUser.checked_in) 
+
 	return user
 
 def get_user(email):
@@ -203,7 +210,7 @@ def get_application(email):
 			app[key] = getattr(user, key)
 	return app
 
-def save_application(email, app):
+def save_form_data(email, app):
 	user = get_user(email)
 	
 	if user is None:
@@ -214,5 +221,4 @@ def save_application(email, app):
 			continue
 		setattr(user, key, app[key])
 
-	user.status = "In Progress"
 	user.save()
