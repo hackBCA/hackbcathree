@@ -7,8 +7,10 @@
     {% set action = "attending" %}
   {% elif current_user.decision in ["Accepted", "Waitlisted", "Expired"] %}
     {% set action = "decision" %}
-  {% else %}
+  {% elif config['APPLICATION_ENABLED'] %}
     {% set action = "apply" %}
+  {% else %}
+    {% set action = "none" %}
   {% endif %}
 {% else %}
   {% set action = "no_user" %}

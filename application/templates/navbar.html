@@ -9,8 +9,10 @@
         <li class="account-item"><a href="/logout"><p>Logout</p></a></li>
         <li class="account-item"><a href="/account"><p>Account <span>({{ current_user.full_name() }})</span></p></a></li>
       {% else %}
-        <li class="account-item"><a href="/register"><p>Register</p></a></li>
-        <li class="account-item"><a href="/login"><p>Login</p></a></li>
+        {% if config['REGISTRATION_ENABLED'] %}
+          <li class="account-item"><a href="/register"><p>Register</p></a></li>
+        {% endif %}
+      <li class="account-item"><a href="/login"><p>Login</p></a></li>
       {% endif %}
     </ul>
   </nav>

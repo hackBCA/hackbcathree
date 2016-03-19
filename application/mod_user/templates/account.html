@@ -37,6 +37,9 @@
           <h5>Account Type: <span>{{ current_user.type_account.capitalize() }}</span></h5>
           <h5>Application Status: <span>{{ current_user.status }}</span></h5>
         {% endif %}
+        {% if action == "none" %}
+          <h6>Sorry, we're not accepting new applications at this time. We hope to see you next year!</h6>
+        {% endif %}
         <div class="buttons horizontal">
           {% if action == "apply" %}
             <a href="/account/application" class="btn">{{ "Edit" if current_user.status == "Not Started" or current_user.status == "In Progress" else "View" }} Application</a>
