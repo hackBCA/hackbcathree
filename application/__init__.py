@@ -84,3 +84,6 @@ app.register_blueprint(web_module)
 
 from application.mod_user import user_module
 app.register_blueprint(user_module)
+
+from application.mod_live import live_module
+app.register_blueprint(live_module)

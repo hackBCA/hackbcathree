@@ -1,0 +1,39 @@
+{% extends "live.base.html" %}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+
+<div class="page-container">
+  <div class="page-section" id="live">
+    <div class="container">
+      <div class="header">
+        <div class="head-cover">
+          <h2>hackBCA Live</h2>
+        </div>
+      </div>
+      <div class="info">
+        <div class="pure-g center">
+          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="text_blast">
+            <h4>Text Blast</h4>
+          </div>
+          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="mentor_request">
+            <h4>Mentor Request</h4>
+          </div>
+          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="twitter_feed">
+            <h4>Twitter Feed</h4>
+          </div>
+          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="schedule">
+            <h4>Schedule</h4>
+          </div>
+          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="map">
+            <h4>Map of BCA</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+{% endblock %}

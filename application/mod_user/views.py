@@ -7,7 +7,7 @@ from application import CONFIG
 from application import cache
 
 @cache.cached()
-@mod_user.route("/login", methods=["GET", "POST"])
+@mod_user.route("/login", methods = ["GET", "POST"])
 def login():
   if current_user.is_authenticated:
     return redirect("/account")
