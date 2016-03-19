@@ -163,6 +163,10 @@ def settings():
 @cache.cached()
 @mod_user.route("/register", methods = ["GET", "POST"])
 def register():
+  if not CONFIG['REGISTRATION_ENABLED']:
+    flash("You cannot currently register for hackBCA.", "error")
+    return redirect("/")
+
   if current_user.is_authenticated:
     return redirect("/account")
 
@@ -251,6 +255,9 @@ def rsvp():
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required
 def application():
+  if CONFIG["APPLICATION_ENABLED"] == False:
+    return redirect("/account")
+
   if current_user.type_account == "mentor":
     form = MentorApplicationForm(request.form)
   elif current_user.type_account == "scholarship":
