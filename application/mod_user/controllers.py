@@ -227,3 +227,13 @@ def save_form_data(email, app):
 		setattr(user, key, app[key])
 
 	user.save()
+
+def accept_applicant(uid):
+	if CONFIG["DEBUG"]:
+		url = 'http://localhost:5000/api/accept_applicant'
+	else:
+		url = 'http://staff.hackbca.com/api/accept_applicant'
+	data = {'secret-key' : CONFIG["SECRET_KEY"], 'user-id': uid}
+	headers = {'Content-Type': 'application/json'}
+
+	r = requests.post(url, data=json.dumps(data), headers=headers)
