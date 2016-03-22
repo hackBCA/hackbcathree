@@ -5,6 +5,7 @@ from . import controllers as controller
 from .forms import *
 from application import CONFIG
 from application import cache
+import json
 
 @cache.cached()
 @mod_user.route("/login", methods=["GET", "POST"])
@@ -279,7 +280,8 @@ def application():
             flash("Application Submitted", "success")
             if not CONFIG["DEBUG"]:
               controller.set_user_attr(current_user.email, "status", "Submitted")
-
+            if CONFIG["AUTO_ACCEPT_MENTORS"]:
+              controller.accept_applicant(current_user.uid)
             controller.login(current_user.email) #To immediately update application status and disable the form
           else:
             flash("Please correct any errors in your application.", "error")

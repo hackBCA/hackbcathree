@@ -5,6 +5,8 @@ import bcrypt
 import re
 import sendgrid
 import time
+import requests
+import json
 from itsdangerous import URLSafeTimedSerializer
 
 AuthenticationError = Exception("AuthenticationError", "Invalid credentials.")

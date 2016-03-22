@@ -1,0 +1,32 @@
+#schedule {
+  .container {
+
+    .header {
+      background-image: url($asset_url_prefix + "landing.png");
+    }
+
+    .info {
+      .pure-g {
+        text-align: left;
+
+        .day-pad {
+          margin: 0 1%; 
+
+          .date {
+            font-weight: bold;
+            margin-bottom: 1%;
+          }
+
+          h6 {
+            font-weight: normal;
+            margin: 5% 0;
+
+            span {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
