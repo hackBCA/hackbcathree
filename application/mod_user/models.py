@@ -3,13 +3,8 @@ from mongoengine import *
 
 application_fields = ["school", "gender", "beginner", "ethnicity", "grade", "num_hackathons", "phone", "github_link", "linkedin_link", "site_link", "other_link", "free_response1", "free_response2", "free_response3", "mlh_terms"]
 
-
 #Mongo Object
 class UserEntry(Document):
-	meta = {
-		"strict": False
-	}
-
 	email = StringField(required = True)
 	hashed = StringField(required = True)
 
@@ -51,7 +46,15 @@ class UserEntry(Document):
 
 	mlh_terms = StringField()
 
+	review1 = IntField()
+	reviewer1 = StringField()
+	review2 = IntField()
+	reviewer2 = StringField()
+	review3 = IntField()
+	reviewer3 = StringField()
+
 	decision = StringField()
+	accepted_time = IntField()
 	attending = StringField()
 	rsvp = BooleanField(default = False) #Has the user submitted their rsvp form?
 
@@ -72,16 +75,11 @@ class UserEntry(Document):
 	hackbca_rules = StringField()
 
 	checked_in = BooleanField(default = False)
+	check_in_log = ListField()
 
-	review1 = IntField()
-	reviewer1 = StringField()
-	review2 = IntField()
-	reviewer2 = StringField()
-	review3 = IntField()
-	reviewer3 = StringField()
+	waiver = BooleanField(default = False)
 
-	meta = { "strict" : False }
-
+	smsblast_optin = BooleanField(default = False)
 
 class User(UserMixin):
 	def __init__(self, uid, email, firstname, lastname, type_account, status, decision, attending, checked_in):

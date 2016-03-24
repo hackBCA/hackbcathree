@@ -5,6 +5,7 @@ from . import controllers as controller
 from .forms import *
 from application import CONFIG
 from application import cache
+import json
 
 @cache.cached()
 @mod_user.route("/login", methods = ["GET", "POST"])
@@ -166,8 +167,21 @@ def register():
   if current_user.is_authenticated:
     return redirect("/account")
 
+  if not CONFIG["HACKER_REGISTRATION_ENABLED"] and not CONFIG["MENTOR_REGISTRATION_ENABLED"]:
+    flash("Registration is not open at this time.", "error")
+    return redirect("/")
+
   form = RegistrationForm(request.form)
   if request.method == "POST" and form.validate():
+    type_account = request.form["type_account"]
+
+    if type_account == "hacker" and not CONFIG["HACKER_REGISTRATION_ENABLED"]:
+      flash("Hacker registration is not open at this time.", "error")
+      return render_template("user.register.html", form = form)
+    if type_account == "mentor" and not CONFIG["MENTOR_REGISTRATION_ENABLED"]:
+      flash("Mentor registration is not open at this time.", "error")
+      return render_template("user.register.html", form = form)
+
     try:
       controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"], request.form["type_account"])
       flash("Check your inbox for an email to confirm your account!", "success")
@@ -188,6 +202,10 @@ def register():
 def scholarship():
   if current_user.is_authenticated:
     return redirect("/account")
+
+  if not CONFIG["SCHOLARSHIP_REGISTRATION_ENABLED"]:
+    flash("Scholarship registration is not open at this time.", "error")
+    return redirect("/")
 
   form = ScholarshipRegistrationForm(request.form)
   if request.method == "POST" and form.validate():
@@ -211,7 +229,6 @@ def scholarship():
 def rsvp():
     if current_user.decision != "Accepted":
       return redirect("/account")
-
     if current_user.type_account == "mentor":
       form = MentorRsvpForm(request.form)
     else:
@@ -251,6 +268,9 @@ def rsvp():
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required
 def application():
+  if CONFIG["APPLICATION_ENABLED"] == False:
+    return redirect("/account")
+
   if current_user.type_account == "mentor":
     form = MentorApplicationForm(request.form)
   elif current_user.type_account == "scholarship":
@@ -272,7 +292,8 @@ def application():
             flash("Application Submitted", "success")
             if not CONFIG["DEBUG"]:
               controller.set_user_attr(current_user.email, "status", "Submitted")
-
+            if current_user.type_account == "mentor" and CONFIG["AUTO_ACCEPT_MENTORS"]:
+              controller.accept_applicant(current_user.uid)
             controller.login(current_user.email) #To immediately update application status and disable the form
           else:
             flash("Please correct any errors in your application.", "error")

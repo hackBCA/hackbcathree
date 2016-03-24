@@ -5,6 +5,8 @@ import bcrypt
 import re
 import sendgrid
 import time
+import requests
+import json
 from itsdangerous import URLSafeTimedSerializer
 
 AuthenticationError = Exception("AuthenticationError", "Invalid credentials.")
@@ -33,7 +35,11 @@ def load_user(user_id):
 	else:
 		attending = currUser.attending
 
-	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status, currUser.decision, attending, currUser.checked_in) 
+	checked_in = False
+	if "checked_in" in currUser:
+		checked_in = currUser.checked_in
+
+	user = User(currUser.id, currUser.email, currUser.firstname, currUser.lastname, currUser.type_account, currUser.status, currUser.decision, attending, checked_in) 
 
 	return user
 
@@ -223,3 +229,13 @@ def save_form_data(email, app):
 		setattr(user, key, app[key])
 
 	user.save()
+
+def accept_applicant(uid):
+	if CONFIG["DEBUG"]:
+		url = 'http://localhost:5000/api/accept_applicant'
+	else:
+		url = 'http://staff.hackbca.com/api/accept_applicant'
+	data = {'secret-key' : CONFIG["SECRET_KEY"], 'user-id': uid}
+	headers = {'Content-Type': 'application/json'}
+
+	r = requests.post(url, data=json.dumps(data), headers=headers)
