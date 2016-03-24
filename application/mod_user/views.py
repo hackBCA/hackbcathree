@@ -280,7 +280,7 @@ def application():
             flash("Application Submitted", "success")
             if not CONFIG["DEBUG"]:
               controller.set_user_attr(current_user.email, "status", "Submitted")
-            if CONFIG["AUTO_ACCEPT_MENTORS"]:
+            if current_user.type_account == "mentor" and CONFIG["AUTO_ACCEPT_MENTORS"]:
               controller.accept_applicant(current_user.uid)
             controller.login(current_user.email) #To immediately update application status and disable the form
           else:
