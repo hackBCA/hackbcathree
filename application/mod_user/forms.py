@@ -429,7 +429,7 @@ attending_choices = [
 ]
 
 class RsvpForm(Form):
-    attending = RadioField("Are you attending hackBCA III?", [validators.Required(message = "Please tell us if you are attending hackBCA III.")], coerce = str, choices = attending_choices)
+    attending = RadioField("Are you attending hackBCA III?", [validators.Required(message = "Please tell us if you are attending hackBCA III.")], choices = attending_choices)
 
     address = TextField("Hometown and State", [validators.required("Please enter your hometown and state.")], description = "Hometown and State")
 

@@ -29,16 +29,17 @@ if (document.querySelector("#credit i")) {
     }
 }
 
-function labelSimulateClick () {
+function labelSimulateClick (callback) {
     var labels = document.querySelectorAll("label");
     for (var i = 0; i < labels.length; i++) {
         labels[i].onclick = function() {
             var associated = this.getAttribute("for");
             var input = document.getElementById(associated);
-            input.checked = "checked";
+            input.setAttribute("checked", "checked");
             input.click();
         }
     }
+    callback(input);
 }
 
 labelSimulateClick();
