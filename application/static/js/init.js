@@ -34,7 +34,8 @@ function labelSimulateClick () {
     console.log(labels);
     for (var i = 0; i < labels.length; i++) {
         labels[i].onclick = function() {
-            this.control.click();
+            var associated = this.getAttribute("for");
+            document.getElementById(associated).click();
         }
     }
 }
