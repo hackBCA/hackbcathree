@@ -35,7 +35,9 @@ function labelSimulateClick () {
         labels[i].onclick = function() {
             console.log(this);
             var associated = this.getAttribute("for");
-            document.getElementById(associated).checked = true;
+            var input = document.getElementById(associated);
+            input.checked = true;
+            input.click();
         }
     }
 }
