@@ -388,12 +388,10 @@ class MentorApplicationForm(Form):
     ], description = "Other Link (Optional)")
 
     free_response1 = TextAreaField(free_response1_prompt_mentor, [
-        validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
 
     free_response2 = TextAreaField(free_response2_prompt_mentor, [
-        validators.Required(message = "You must answer this question."),
         validators.Length(max = 500, message = "Response must be less than 500 characters long.")
     ], description = "500 character maximum.")
 
