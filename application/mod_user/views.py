@@ -216,7 +216,6 @@ def scholarship():
 def rsvp():
     if current_user.decision != "Accepted":
       return redirect("/account")
-
     if current_user.type_account == "mentor":
       form = MentorRsvpForm(request.form)
     else:
