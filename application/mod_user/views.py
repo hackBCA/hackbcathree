@@ -164,15 +164,24 @@ def settings():
 @cache.cached()
 @mod_user.route("/register", methods = ["GET", "POST"])
 def register():
-  if not CONFIG['REGISTRATION_ENABLED']:
-    flash("You cannot currently register for hackBCA.", "error")
-    return redirect("/")
-
   if current_user.is_authenticated:
     return redirect("/account")
 
+  if not CONFIG["HACKER_REGISTRATION_ENABLED"] and not CONFIG["MENTOR_REGISTRATION_ENABLED"]:
+    flash("Registration is not open at this time.", "error")
+    return redirect("/")
+
   form = RegistrationForm(request.form)
   if request.method == "POST" and form.validate():
+    type_account = request.form["type_account"]
+
+    if type_account == "hacker" and not CONFIG["HACKER_REGISTRATION_ENABLED"]:
+      flash("Hacker registration is not open at this time.", "error")
+      return render_template("user.register.html", form = form)
+    if type_account == "mentor" and not CONFIG["MENTOR_REGISTRATION_ENABLED"]:
+      flash("Mentor registration is not open at this time.", "error")
+      return render_template("user.register.html", form = form)
+
     try:
       controller.add_user(request.form["email"], request.form["first_name"], request.form["last_name"], request.form["password"], request.form["type_account"])
       flash("Check your inbox for an email to confirm your account!", "success")
@@ -193,6 +202,10 @@ def register():
 def scholarship():
   if current_user.is_authenticated:
     return redirect("/account")
+
+  if not CONFIG["SCHOLARSHIP_REGISTRATION_ENABLED"]:
+    flash("Scholarship registration is not open at this time.", "error")
+    return redirect("/")
 
   form = ScholarshipRegistrationForm(request.form)
   if request.method == "POST" and form.validate():
