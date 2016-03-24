@@ -28,3 +28,15 @@ if (document.querySelector("#credit i")) {
         prev_icon = new_icon;
     }
 }
+
+function labelSimulateClick () {
+    var labels = document.querySelectorAll("label");
+    console.log(labels);
+    for (var i = 0; i < labels.length; i++) {
+        labels[i].onclick = function() {
+            this.control.click();
+        }
+    }
+}
+
+labelSimulateClick();
