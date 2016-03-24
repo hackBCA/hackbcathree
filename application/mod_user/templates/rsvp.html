@@ -143,5 +143,24 @@
     attending_button.setAttribute("disabled", "disabled");
     notAttending_button.setAttribute("disabled", "disabled");
   }
+
+  // Hack for IE
+  function labelSimulateClick () {
+    var labels = document.querySelectorAll("label");
+    for (var i = 0; i < labels.length; i++) {
+      labels[i].onclick = function() {
+        var associated = this.getAttribute("for");
+        var input = document.getElementById(associated);
+        input.checked = true;
+        if (input.id === "attending-0") {
+          hide_elts(false);
+        } else {
+          hide_elts(true);
+        }
+      }
+    }
+  }
+
+  labelSimulateClick();
 </script>
 {% endblock %}

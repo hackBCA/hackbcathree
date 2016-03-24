@@ -29,25 +29,14 @@ if (document.querySelector("#credit i")) {
     }
 }
 
-function eventFire(el, etype){
-    if (el.fireEvent) {
-        el.fireEvent('on' + etype);
-    } else {
-        var evObj = document.createEvent('Events');
-        evObj.initEvent(etype, true, false);
-        el.dispatchEvent(evObj);
-    }
-}
-
 function labelSimulateClick () {
     var labels = document.querySelectorAll("label");
     for (var i = 0; i < labels.length; i++) {
         labels[i].onclick = function() {
-            console.log(this);
             var associated = this.getAttribute("for");
             var input = document.getElementById(associated);
             input.checked = true;
-            eventFire(input, "click");
+            input.click();
         }
     }
 }
