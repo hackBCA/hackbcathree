@@ -31,11 +31,11 @@ if (document.querySelector("#credit i")) {
 
 function labelSimulateClick () {
     var labels = document.querySelectorAll("label");
-    console.log(labels);
     for (var i = 0; i < labels.length; i++) {
         labels[i].onclick = function() {
+            console.log(this);
             var associated = this.getAttribute("for");
-            document.getElementById(associated).click();
+            document.getElementById(associated).checked = true;
         }
     }
 }
