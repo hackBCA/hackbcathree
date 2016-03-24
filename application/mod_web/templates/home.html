@@ -12,7 +12,7 @@
           <a href="/account" class="btn">Account <span>({{ current_user.full_name() }})</span></a>
           <a href="/logout" class="btn">Logout</a>
         {% else %}
-          {% if config['REGISTRATION_ENABLED'] %}
+          {% if config['DISPLAY_REGISTER_BUTTON'] %}
             <a href="/register" class="btn">Register</a>
           {% endif %}
           <a href="/login" class="btn">Login</a>
