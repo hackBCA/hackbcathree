@@ -19,6 +19,8 @@
         {% if action == "attending" %}
           {% if current_user.attending == "Attending" %}
             <h6>You're all set.<br />Join us in our <a href="https://www.facebook.com/groups/1141112885955022/">Facebook participants group</a> and <a href="https://www.facebook.com/events/1576121956040553/">on our event page</a>!</h6>
+            <br />
+            <h6>Can't go anymore? Let us know at <a href="mailto:contact@hackbca.com">contact@hackbca.com</a>.</h6>
           {% elif current_user.attending == "Not Attending" %}
             <h6>Bummer. Hopefully we'll see you next year!</h6>
           {% endif %}
@@ -30,7 +32,7 @@
           {% elif current_user.decision == "Waitlisted" %}
             <h6>Sorry, you've been put on our waitlist. :(<br />Unfortunately, we don't have enough space to accomodate all of our applicants.<br />Don't worry, though. There's still a chance you'll be able to come to hackBCA III!</h6>
           {% elif current_user.decision == "Expired" %}
-            <h6>Bummer. You didn't respond, so we had to offer your spot to someone else. Hopefully we'll see you next year!</h6>
+            <h6>Bummer. You didn't respond in time. Hopefully we'll see you next year!</h6>
           {% endif %}
         {% endif %}
         {% if action == "apply" %}
