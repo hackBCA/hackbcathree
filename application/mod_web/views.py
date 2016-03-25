@@ -31,6 +31,15 @@ def sponsors():
 def foward_sponsors():
     return redirect("/sponsors")
 
+@cache.cached()
+@mod_web.route("/waiver", methods = ["GET"])
+def waiver():
+    return mod_web.send_static_file("waiver.pdf")
+
+@mod_web.route("/waiver.pdf", methods = ["GET"])
+def foward_waiver():
+    return redirect("/waiver")
+
 @mod_web.route("/privacy", methods = ["GET"])
 def privacy():
     return mod_web.send_static_file("privacystatement.pdf")
