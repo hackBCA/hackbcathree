@@ -233,7 +233,6 @@ def rsvp():
       form = MentorRsvpForm(request.form)
     else:
       form = RsvpForm(request.form)
-
     rsvp_submitted = controller.get_user_attr(current_user.email, "rsvp")
 
     if request.method == "POST":
