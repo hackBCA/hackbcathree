@@ -267,9 +267,6 @@ def rsvp():
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required
 def application():
-  if CONFIG["APPLICATION_ENABLED"] == False:
-    return redirect("/account")
-
   if current_user.type_account == "mentor":
     form = MentorApplicationForm(request.form)
   elif current_user.type_account == "scholarship":
