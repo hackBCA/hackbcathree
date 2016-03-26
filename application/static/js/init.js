@@ -29,7 +29,7 @@ if (document.querySelector("#credit i")) {
     }
 }
 
-function labelSimulateClick (callback) {
+function labelSimulateClick () {
     var labels = document.querySelectorAll("label");
     for (var i = 0; i < labels.length; i++) {
         labels[i].onclick = function() {
@@ -39,7 +39,6 @@ function labelSimulateClick (callback) {
             input.click();
         }
     }
-    callback(input);
 }
 
 labelSimulateClick();

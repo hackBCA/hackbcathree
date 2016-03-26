@@ -143,12 +143,23 @@
     notAttending_button.setAttribute("disabled", "disabled");
   }
 
-  labelSimulateClick(function (input) {
-    if (input.id === "attending-0") {
-      hide_elts(false);
-    } else if (input.id === "attending-1") {
-      hide_elts(true);
+  function labelSimulateClick () {
+    var labels = document.querySelectorAll("label");
+    for (var i = 0; i < labels.length; i++) {
+      labels[i].onclick = function() {
+        var associated = this.getAttribute("for");
+        var input = document.getElementById(associated);
+        input.setAttribute("checked", "checked");
+        input.click();
+        if (input.id === "attending-0") {
+          hide_elts(false);
+        } else if (input.id === "attending-1") {
+          hide_elts(true);
+        }
+      }
     }
-  });
+  }
+
+  labelSimulateClick();
 </script>
 {% endblock %}
