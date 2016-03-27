@@ -15,22 +15,23 @@
       </div>
       <div class="info">
         <div class="pure-g center">
-          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="text_blast">
-            <h4>Text Blast</h4>
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="broadcast">
+            <h4>Broadcast</h4>
+            <div id="messages_container">
+            </div>
           </div>
-          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="mentor_request">
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="mentor_request">
             <h4>Mentor Request</h4>
           </div>
-          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="twitter_feed">
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="twitter_feed">
             <h4>Twitter Feed</h4>
             <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hackBCA" data-widget-id="581445652657369088">Tweets by @hackBCA</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
-          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="schedule">
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="schedule">
             <h4>Schedule</h4>
-            {% include "web.schedule.html" %}
           </div>
-          <div class="pure-u-xl-1-3 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="map">
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="map">
             <h4>Map of BCA</h4>
           </div>
         </div>
@@ -39,4 +40,12 @@
   </div> 
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="/static/js/broadcast-client.min.js"></script>
+  <script type="text/javascript">
+    BroadcastClient.init("http://localhost:5001", "#messages_container");
+  </script>
 {% endblock %}

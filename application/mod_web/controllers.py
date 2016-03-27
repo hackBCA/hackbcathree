@@ -8,6 +8,33 @@ from itertools import groupby
 sg = sendgrid.SendGridClient(CONFIG["SENDGRID_API_KEY"])
 ts = URLSafeTimedSerializer(CONFIG["SECRET_KEY"])
 
+# def schedule(data):
+#     for d in data:
+#         f = ScheduleData(
+#             date = d["date"],
+#             time = d["time"],
+#             event = d["event"],
+#             location = d["location"]
+#         )
+#         f.save()
+
+def get_schedule():
+    schedule = groupby(ScheduleData.objects(), lambda x: x["date"])
+    new = {}
+    for k, v in schedule:
+        new[k] = []
+        print(type(k))
+        for a in v:
+            print(a)
+            # new[k].append(
+            #     {
+            #         "time": a["time"],
+            #         "event": a["event"],
+            #         "location": a["location"]
+            #     }
+            # )
+    return new
+
 def validate_email(entry):
     token = ts.dumps(entry.email, salt = CONFIG["EMAIL_TOKENIZER_SALT"])
     message = sendgrid.Mail()
