@@ -40,6 +40,15 @@ def waiver():
 def foward_waiver():
     return redirect("/waiver")
 
+@cache.cached()
+@mod_web.route("/map", methods = ["GET"])
+def map():
+    return mod_web.send_static_file("map.pdf")
+
+@mod_web.route("/map.pdf", methods = ["GET"])
+def foward_map():
+    return redirect("/map")
+
 @mod_web.route("/privacy", methods = ["GET"])
 def privacy():
     return mod_web.send_static_file("privacystatement.pdf")
