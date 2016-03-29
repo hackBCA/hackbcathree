@@ -20,9 +20,6 @@
             <div id="messages_container">
             </div>
           </div>
-          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="mentor_request">
-            <h4>Mentor Request</h4>
-          </div>
           <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="twitter_feed">
             <h4>Twitter Feed</h4>
             <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hackBCA" data-widget-id="581445652657369088">Tweets by @hackBCA</a>
@@ -46,6 +43,6 @@
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="/static/js/broadcast-client.min.js"></script>
   <script type="text/javascript">
-    BroadcastClient.init("http://localhost:5001", "#messages_container");
+    BroadcastClient.init("http://localhost:5001", "#messages_container", "/live_static/ping.mp3");
   </script>
 {% endblock %}
