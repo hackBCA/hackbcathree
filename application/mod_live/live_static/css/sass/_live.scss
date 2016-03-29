@@ -1,11 +1,16 @@
 #live {
   .container {
+    .header {
+      background-image: url($asset_url_prefix + "whenandwhere.jpg");
+    }
+
     .info {
       .pure-g {
         text-align: left;
 
         #broadcast {
           #messages_container {
+            height: 600px;
             max-height: 600px;
             overflow: scroll;
             border: 1px solid #eee;
