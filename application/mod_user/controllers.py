@@ -239,3 +239,15 @@ def accept_applicant(uid):
 	headers = {'Content-Type': 'application/json'}
 
 	r = requests.post(url, data=json.dumps(data), headers=headers)
+
+def path_spots_left(path_name):
+	users = UserEntry.objects(type_account__in = ["hacker", "scholarship"], path = path_name)
+	if users >= CONFIG["PATH_SIZE"]:
+		return 0
+	return CONFIG["PATH_SIZE"] - users
+
+def register_user_for_path(email, path_name):
+	set_user_attr(email, "path", path_name)
+
+def user_leave_path(email):
+	set_user_attr(email, "path", None)

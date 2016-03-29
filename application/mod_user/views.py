@@ -306,3 +306,31 @@ def application():
     else:
       form = ApplicationForm(request.form, obj = user)
   return render_template("user.application.html", form = form)
+
+@mod_user.route("/paths", methods = ["GET", "POST"])
+@login_required
+def path_base():
+  return render_template("user.paths-base.html")
+
+@mod_user.route("/paths/<path_name>", methods = ["GET", "POST"])
+@login_required
+def path_specific(path_name):
+  if request.method == "POST":
+    if "register" in request.form:
+      space_left = controller.path_spots_left(path_name)
+      if space_left == 0:
+        flash("Sorry, this path has been filled!", "error")
+      else:
+        user = controller.get_user(current_user.email)
+        if user.path in ["code-for-good", "ios", "web-dev"]: 
+          flash("You are already registered for a path!", "error")
+        else:
+          controller.register_user_for_path(current_user.email, path_name)
+          flash("You have sucessfully registered!", "success")
+    elif "leave-path" in request.form:
+      if user.path in ["code-for-good", "ios", "web-dev"]: 
+        flash("You are not currently registered for a path!", "error")
+      else:
+        controller.user_leave_path(current_user.email)
+        flash("Path left.", "success")
+  return render_template("user.paths-specific.html", path_name = path_name)
