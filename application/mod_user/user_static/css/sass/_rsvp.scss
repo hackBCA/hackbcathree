@@ -46,94 +46,104 @@
             }
           }
         }
+      }
+    }
+  }
+}
 
-        #attending {
-          [value="Attending"], [value="Not Attending"] {
+.checked {
+  #rsvp {
+    .container {
+      .info {
+        .form-elt {
+          #attending {
+            [value="Attending"], [value="Not Attending"] {
 
-            ~ label {
-              background-color: #c8c8c8;
-              position: relative;
-              float: left;
-              padding: 15px 30px;
-              width: 100%;
-              cursor: pointer;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-              font-size: 20px;
-              
-              &:before {
-                position: absolute;
-                display: block;
-                left: 0;
-                content: '';
-                width: 2em;
-              }
-            }
-
-            &:checked {
               ~ label {
-                color: #fff;
-
+                background-color: #c8c8c8;
+                position: relative;
+                float: left;
+                padding: 15px 30px;
+                width: 100%;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                font-size: 20px;
+                
                 &:before {
+                  position: absolute;
+                  display: block;
+                  left: 0;
+                  content: '';
+                  width: 2em;
+                }
+              }
+
+              &:checked {
+                ~ label {
                   color: #fff;
+
+                  &:before {
+                    color: #fff;
+                  }
                 }
               }
             }
-          }
 
-          [value="Attending"] {
-            ~ label {
-              &:before {
-                content:'\2714';
-                color: #c8c8c8;
-              }
-            }
-
-            &:hover:not(:checked) {
+            [value="Attending"] {
               ~ label {
                 &:before {
                   content:'\2714';
-                  color: #2ecc71;
+                  color: #c8c8c8;
+                }
+              }
+
+              &:hover:not(:checked) {
+                ~ label {
+                  &:before {
+                    content:'\2714';
+                    color: #2ecc71;
+                  }
+                }
+              }
+
+              &:checked {
+                ~ label {
+                  background-color: #2ecc71;
+
+                  &:before {
+                    content:'\2714';
+                  }
                 }
               }
             }
 
-            &:checked {
+            [value="Not Attending"] {
               ~ label {
-                background-color: #2ecc71;
-
-                &:before {
-                  content:'\2714';
-                }
-              }
-            }
-          }
-
-          [value="Not Attending"] {
-            ~ label {
-              &:before {
-                content:'\2717';
-                color: #c8c8c8;
-              }
-            }
-
-            &:hover:not(:checked) {
-              ~ label {
-                &:before {
-                  content:'\2717';
-                  color: #e74c3c;
-                }
-              }
-            }
-
-            &:checked {
-              ~ label {
-                background-color: #e74c3c;
-
                 &:before {
                   content:'\2717';
+                  color: #c8c8c8;
+                }
+              }
+
+              &:hover:not(:checked) {
+                ~ label {
+                  &:before {
+                    content:'\2717';
+                    color: #e74c3c;
+                  }
+                }
+              }
+
+              &:checked {
+                ~ label {
+                  background-color: #e74c3c;
+
+                  &:before {
+                    content:'\2717';
+                  }
                 }
               }
             }

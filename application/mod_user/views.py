@@ -233,7 +233,6 @@ def rsvp():
       form = MentorRsvpForm(request.form)
     else:
       form = RsvpForm(request.form)
-
     rsvp_submitted = controller.get_user_attr(current_user.email, "rsvp")
 
     if request.method == "POST":
@@ -268,9 +267,6 @@ def rsvp():
 @mod_user.route("/account/application", methods = ["GET", "POST"])
 @login_required
 def application():
-  if CONFIG["APPLICATION_ENABLED"] == False:
-    return redirect("/account")
-
   if current_user.type_account == "mentor":
     form = MentorApplicationForm(request.form)
   elif current_user.type_account == "scholarship":

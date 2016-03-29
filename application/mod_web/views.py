@@ -31,6 +31,25 @@ def sponsors():
 def foward_sponsors():
     return redirect("/sponsors")
 
+@cache.cached()
+@mod_web.route("/waiver", methods = ["GET"])
+def waiver():
+    return mod_web.send_static_file("waiver.pdf")
+
+@mod_web.route("/waiver.pdf", methods = ["GET"])
+def foward_waiver():
+    return redirect("/waiver")
+
+@cache.cached()
+@mod_web.route("/map", methods = ["GET"])
+def map():
+    return mod_web.send_static_file("map.jpg")
+
+@mod_web.route("/map.jpeg", methods = ["GET"])
+@mod_web.route("/map.jpg", methods = ["GET"])
+def foward_map():
+    return redirect("/map")
+
 @mod_web.route("/privacy", methods = ["GET"])
 def privacy():
     return mod_web.send_static_file("privacystatement.pdf")
@@ -44,98 +63,7 @@ def forward_privacy():
 def chaperones():
     return redirect("https://docs.google.com/forms/d/13l1ToVeDeBSEF4OBdHt6gSbYan8xnMFVG6BTRcKrEQw/viewform")
 
-@mod_web.route("/enterschedule")
-def schedule():
-    return controllers.get_schedule()
-#     data = [
-#         {
-#             "date": "Sunday, April 03", 
-#             "time": 
-#             "2:00 AM", 
-#             "event": "Pizza",
-#             "location": "Lower Cafeteria"
-#         },
-#         {
-#             "date": "Sunday, April 03", 
-#             "time": 
-#             "7:30 AM", 
-#             "event": "Breakfast",
-#             "location": "Lower Cafeteria"
-#         },
-#         {
-#             "date": "Sunday, April 03", 
-#             "time": 
-#             "11:30 AM", 
-#             "event": "Lunch",
-#             "location": "Lower Cafeteria"
-#         },
-#         {
-#             "date": "Sunday, April 03", 
-#             "time": 
-#             "12:30 PM", 
-#             "event": "Hacks Must be Submitted",
-#             "location": ""
-#         },
-#         {
-#             "date": "Sunday, April 03", 
-#             "time": 
-#             "1:00 PM", 
-#             "event": "Demos Begin",
-#             "location": "Gym, Upper Cafeteria"
-#         },
-#         {
-#             "date": "Sunday, April 03", 
-#             "time": 
-#             "3:00 PM", 
-#             "event": "Demos End, Closing Ceremony Begins",
-#             "location": "Auditorium"
-#         },
-#         {
-#             "date": "Sunday, April 03", 
-#             "time": 
-#             "4:00 PM", 
-#             "event": "Hackathon Ends",
-#             "location":""
-#         },
-#         {
-#             "date": "Saturday, April 02", 
-#             "time": 
-#             "1:30 PM", 
-#             "event": "Registration Begins",
-#             "location": "Auditorium Foyer"
-#         },
-#         {
-#             "date": "Saturday, April 02", 
-#             "time": 
-#             "3:00 PM", 
-#             "event": "Opening Ceremony Begins",
-#             "location": "Auditorium"
-#         },
-#         {
-#             "date": "Saturday, April 02", 
-#             "time": 
-#             "4:30 PM", 
-#             "event": "Opening Ceremony Ends, Hacking Begins",
-#             "location": "Gym, Lower Cafeteria, Upper Cafeteria, Basement Hallway"
-#         },
-#         {
-#             "date": "Saturday, April 02", 
-#             "time": 
-#             "6:30 PM", 
-#             "event": "Dinner",
-#             "location": "Lower Cafeteria"
-#         },
-#         {
-#             "date": "Saturday, April 02", 
-#             "time": 
-#             "11:00 PM", 
-#             "event": "Snack",
-#             "location": "Lower Cafeteria"
-#         }
-#     ]
-#     controllers.schedule(data)
-#     return "hi"
-
+#For mailing list
 #mod_web.route("/confirm/<token>")
 # def confirm_email(token):
 # 	controllers.confirm_email(token)
