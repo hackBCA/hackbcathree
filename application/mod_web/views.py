@@ -43,9 +43,10 @@ def foward_waiver():
 @cache.cached()
 @mod_web.route("/map", methods = ["GET"])
 def map():
-    return mod_web.send_static_file("map.pdf")
+    return mod_web.send_static_file("map.jpg")
 
-@mod_web.route("/map.pdf", methods = ["GET"])
+@mod_web.route("/map.jpeg", methods = ["GET"])
+@mod_web.route("/map.jpg", methods = ["GET"])
 def foward_map():
     return redirect("/map")
 
@@ -62,6 +63,7 @@ def forward_privacy():
 def chaperones():
     return redirect("https://docs.google.com/forms/d/13l1ToVeDeBSEF4OBdHt6gSbYan8xnMFVG6BTRcKrEQw/viewform")
 
+#For mailing list
 #mod_web.route("/confirm/<token>")
 # def confirm_email(token):
 # 	controllers.confirm_email(token)
