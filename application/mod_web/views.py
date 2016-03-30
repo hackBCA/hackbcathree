@@ -6,7 +6,8 @@ from application import cache
 @cache.cached()
 @mod_web.route("/", methods = ["GET", "POST"])
 def index():
-	return render_template("web.index.html")
+    schedule = controllers.get_schedule()
+    return render_template("web.index.html", schedule = schedule)
 
 @cache.cached()
 @mod_web.route("/rules", methods = ["GET", "POST"])
