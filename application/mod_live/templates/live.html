@@ -45,10 +45,9 @@
   <script type="text/javascript">
     BroadcastClient.init(
       "{{ broadcast_url }}", 
-      "{{ session }}",
       "#messages_container", 
-      "/live_static/ping.mp3"
-
+      "/live_static/ping.mp3",
+      "{{ session }}"
     );
   </script>
 {% endblock %}
