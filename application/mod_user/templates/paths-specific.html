@@ -68,8 +68,12 @@
           {% elif path_name == "web-dev" %}
           {% endif %}
         </div>
-        <form>
-          <button class="btn" method="POST" action="" name="register">Register</button>
+        <form method="POST" action="">
+          {% if user_path == path_name %}
+            <button class="btn" type="submit" name="leave-path">Leave Path</button>
+          {% else %}
+            <button class="btn" type="submit" name="register">Register</button>
+          {% endif %}
         </form>
       </div>
     </div>

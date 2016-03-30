@@ -16,6 +16,20 @@
         </div>
       </div>
       <div class="info">
+        <div class="current-path">
+          {% if user_path != None %}
+            <h6>You are currently registered for the
+              {% if user_path == 'code-for-good' %}
+                Code for Good
+              {% elif user_path == 'ios' %}
+                iOS
+              {% elif user_path == 'web-dev' %}
+                Web Development
+              {% endif %}
+              path. 
+            </h6>
+          {% endif %}
+        </div>
         <div class="codeforgood">
           Code For Good
           <p>Short Description</p>

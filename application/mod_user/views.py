@@ -310,27 +310,36 @@ def application():
 @mod_user.route("/paths", methods = ["GET", "POST"])
 @login_required
 def path_base():
-  return render_template("user.paths-base.html")
+  user = controller.get_user(current_user.email)
+  return render_template("user.paths-base.html", user_path = user.path)
 
 @mod_user.route("/paths/<path_name>", methods = ["GET", "POST"])
 @login_required
 def path_specific(path_name):
+  user = controller.get_user(current_user.email)
+
   if request.method == "POST":
     if "register" in request.form:
-      space_left = controller.path_spots_left(path_name)
-      if space_left == 0:
-        flash("Sorry, this path has been filled!", "error")
+      if current_user.type_account == "mentor":
+        flash("Mentors cannot register for paths.", "error")
       else:
-        user = controller.get_user(current_user.email)
-        if user.path in ["code-for-good", "ios", "web-dev"]: 
-          flash("You are already registered for a path!", "error")
+        if user.path == path_name:
+          flash("You are already registered for this path!", "error")
+        elif user.path in ["code-for-good", "ios", "web-dev"]: 
+          flash("You are already registered for another path!", "error")
         else:
-          controller.register_user_for_path(current_user.email, path_name)
-          flash("You have sucessfully registered!", "success")
+          space_left = controller.path_spots_left(path_name)
+          if space_left == 0:
+            flash("Sorry, this path has been filled!", "error")
+          else:
+            controller.register_user_for_path(current_user.email, path_name)
+            flash("You have sucessfully registered!", "success")
     elif "leave-path" in request.form:
-      if user.path in ["code-for-good", "ios", "web-dev"]: 
+      if user.path not in ["code-for-good", "ios", "web-dev"]: 
         flash("You are not currently registered for a path!", "error")
       else:
         controller.user_leave_path(current_user.email)
         flash("Path left.", "success")
-  return render_template("user.paths-specific.html", path_name = path_name)
+
+  user = controller.get_user(current_user.email)
+  return render_template("user.paths-specific.html", path_name = path_name, user_path = user.path)

@@ -242,9 +242,10 @@ def accept_applicant(uid):
 
 def path_spots_left(path_name):
 	users = UserEntry.objects(type_account__in = ["hacker", "scholarship"], path = path_name)
-	if users >= CONFIG["PATH_SIZE"]:
+	print(len(users))
+	if len(users) >= CONFIG["PATH_SIZE"]:
 		return 0
-	return CONFIG["PATH_SIZE"] - users
+	return CONFIG["PATH_SIZE"] - len(users)
 
 def register_user_for_path(email, path_name):
 	set_user_attr(email, "path", path_name)
