@@ -1,0 +1,44 @@
+#path {
+  .container {
+    .header {
+      background-image: url($asset_url_prefix + "whenandwhere.jpg");
+    }
+    .info {
+      .pure-g {
+        .g-contain {
+          text-align: left;
+          margin: 0 20px;
+
+          h5 {
+            font-weight: bold;
+          }
+
+          p {
+            margin: 0;
+
+            &.time {
+              font-weight: bold;
+            }
+          }
+
+          .img-contain {
+            margin: 20px 0;
+
+            .pure-img {
+              display: inline-block;
+              max-height: 200px;
+
+              &.bca {
+                max-width: 20%;
+              }
+
+              &.twilio {
+                max-width: 70%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
