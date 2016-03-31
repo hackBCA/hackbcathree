@@ -12,6 +12,7 @@ ts = URLSafeTimedSerializer(CONFIG["SECRET_KEY"])
 def get_schedule():
     schedule = ScheduleData.objects()
     sort_schedule = sorted(schedule, key = lambda k: k["time"])
+    sort_schedule = sorted(schedule, key = lambda k: int(k["date"][-2:]))
     grouped_schedule = groupby(schedule, lambda k: k["date"])
     dates = {}
     for k, g in grouped_schedule:

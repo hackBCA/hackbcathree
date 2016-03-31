@@ -9,6 +9,10 @@ def index():
     schedule = controllers.get_schedule()
     return render_template("web.index.html", schedule = schedule)
 
+@mod_web.route("/schedule")
+def forward_schedule():
+    return redirect("/#schedule")
+
 @cache.cached()
 @mod_web.route("/rules", methods = ["GET", "POST"])
 def rules():
