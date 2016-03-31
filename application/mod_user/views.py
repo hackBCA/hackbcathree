@@ -311,7 +311,7 @@ def application():
 @login_required
 def path_base():
   user = controller.get_user(current_user.email)
-  return render_template("user.paths-base.html", user_path = user.path)
+  return render_template("user.paths_base.html", user_path = user.path)
 
 @mod_user.route("/paths/<path_name>", methods = ["GET", "POST"])
 @login_required
@@ -342,4 +342,4 @@ def path_specific(path_name):
         flash("Path left.", "success")
 
   user = controller.get_user(current_user.email)
-  return render_template("user.paths-specific.html", path_name = path_name, user_path = user.path)
+  return render_template("user.paths_specific.html", path_name = path_name, user_path = user.path)
