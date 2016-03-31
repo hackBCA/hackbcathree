@@ -83,6 +83,9 @@ class UserEntry(Document):
 
 	path = StringField()
 
+class AppSettings(Document):
+	path_registration_open = BooleanField(default = False)
+
 class User(UserMixin):
 	def __init__(self, uid, email, firstname, lastname, type_account, status, decision, attending, checked_in):
 

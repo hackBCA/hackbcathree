@@ -311,29 +311,63 @@ def application():
 @login_required
 def path_base():
   user = controller.get_user(current_user.email)
-  return render_template("user.paths_base.html", user_path = user.path)
+  registration_open = controller.get_app_setting("path_registration_open")
+
+  if request.method == "POST":
+    if "register" in request.form:
+      path_name = request.form["register"]
+      if current_user.type_account == "mentor":
+        flash("Mentors cannot register for paths.", "error")
+      else:
+        if registration_open:
+          if user.path == path_name:
+            flash("You are already registered for this path!", "error")
+          elif user.path in ["code-for-good", "ios", "web-dev"]: 
+            flash("You are already registered for another path!", "error")
+          else:
+            space_left = controller.path_spots_left(path_name)
+            if space_left == 0:
+              flash("Sorry, this path has been filled!", "error")
+            else:
+              controller.register_user_for_path(current_user.email, path_name)
+              flash("You have sucessfully registered!", "success")
+        else:
+          flash("Path registration is currently closed.", "error")
+    elif "leave-path" in request.form:
+      print("here")
+      if user.path not in ["code-for-good", "ios", "web-dev"]: 
+        flash("You are not currently registered for a path!", "error")
+      else:
+        controller.user_leave_path(current_user.email)
+        flash("Path left.", "success")
+  user = controller.get_user(current_user.email)
+  return render_template("user.paths_base.html", user_path = user.path, registration_open = registration_open)
 
 @mod_user.route("/paths/<path_name>", methods = ["GET", "POST"])
 @login_required
 def path_specific(path_name):
   user = controller.get_user(current_user.email)
+  registration_open = controller.get_app_setting("path_registration_open")
 
   if request.method == "POST":
     if "register" in request.form:
       if current_user.type_account == "mentor":
         flash("Mentors cannot register for paths.", "error")
       else:
-        if user.path == path_name:
-          flash("You are already registered for this path!", "error")
-        elif user.path in ["code-for-good", "ios", "web-dev"]: 
-          flash("You are already registered for another path!", "error")
-        else:
-          space_left = controller.path_spots_left(path_name)
-          if space_left == 0:
-            flash("Sorry, this path has been filled!", "error")
+        if registration_open:
+          if user.path == path_name:
+            flash("You are already registered for this path!", "error")
+          elif user.path in ["code-for-good", "ios", "web-dev"]: 
+            flash("You are already registered for another path!", "error")
           else:
-            controller.register_user_for_path(current_user.email, path_name)
-            flash("You have sucessfully registered!", "success")
+            space_left = controller.path_spots_left(path_name)
+            if space_left == 0:
+              flash("Sorry, this path has been filled!", "error")
+            else:
+              controller.register_user_for_path(current_user.email, path_name)
+              flash("You have sucessfully registered!", "success")
+        else:
+          flash("Path registration is currently closed.", "error")
     elif "leave-path" in request.form:
       if user.path not in ["code-for-good", "ios", "web-dev"]: 
         flash("You are not currently registered for a path!", "error")
@@ -342,4 +376,4 @@ def path_specific(path_name):
         flash("Path left.", "success")
 
   user = controller.get_user(current_user.email)
-  return render_template("user.paths_specific.html", path_name = path_name, user_path = user.path)
+  return render_template("user.paths_specific.html", path_name = path_name, user_path = user.path, registration_open = registration_open)

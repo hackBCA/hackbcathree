@@ -122,7 +122,7 @@
           {% if user_path == path_name %}
             <button class="btn" name="leave-path">Leave Path</button>
           {% else %}      
-            <button class="btn" name="register">Register</button>
+            <button class="btn {{'hide' if not registration_open}}" name="register">Register</button>
           {% endif %}
         </form>
       </div>

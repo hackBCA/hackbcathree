@@ -252,3 +252,7 @@ def register_user_for_path(email, path_name):
 
 def user_leave_path(email):
 	set_user_attr(email, "path", None)
+
+def get_app_setting(setting):
+	settings = AppSettings.objects()[0]
+	return getattr(settings, setting)
