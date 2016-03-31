@@ -12,3 +12,9 @@ class TeamMemberData(Document):
     silly_img_slug = StringField(required = True)
     description = StringField(default = "", required = False)
     order = IntField(default = 9001, required = True)
+
+class ScheduleData(Document):
+    date = StringField(required = True)
+    time = DateTimeField(required = True)
+    event = StringField(required = True)
+    location = StringField()
