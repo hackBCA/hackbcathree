@@ -32,13 +32,22 @@
                 <div class="day-pad">
                   <h5 class="date">{{ date }}</h5>
                   {% for time in schedule[date] %}
-                    <h6>
+                  <div class="event">
+                    <h6>{{ time["time"] }} - </h6> 
+                    <p>
+                      {{ time["event"] }} 
+                      {% if time["location"] %}
+                        @ {{ time["location"] }}
+                      {% endif %}
+                    </p>
+                  </div>
+                    <!-- <h6>
                       <span>{{ time["time"] }}</span> - 
                       {{ time["event"] }} 
                       {% if time["location"] %}
                         @ {{ time["location"] }}
                       {% endif %}
-                    </h6>
+                    </h6> -->
                   {% endfor %}
                 </div>
               </div>

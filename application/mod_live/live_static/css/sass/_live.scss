@@ -46,6 +46,33 @@
             }
           }
         }
+
+        #schedule {
+          .day-pad {
+            margin: 0 1%; 
+
+            .date {
+              font-weight: bold;
+              margin-bottom: 1%;
+            }
+
+            .event {
+              font-weight: normal;
+              margin: 10px 0;
+
+              h6 {
+                display: inline-block;
+                margin: 0;
+              }
+
+              p {
+                display: inline-block;
+                margin: 0;
+                line-height: initial;
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -1,5 +1,70 @@
 {% extends "base.html" %}
 
+{% if current_user != None %}
+  {% if current_user.checked_in %}
+    {% set action = "live" %}
+  {% elif current_user.attending in ["Attending", "Not Attending"] %}
+    {% set action = "attending" %}
+  {% elif current_user.decision in ["Accepted", "Waitlisted", "Expired"] %}
+    {% set action = "decision" %}
+  {% elif config[(current_user.type_account|upper)+"_REGISTRATION_ENABLED"] %}
+    {% set action = "apply" %}
+  {% else %}
+    {% set action = "none" %}
+  {% endif %}
+{% else %}
+  {% set action = "no_user" %}
+{% endif %}
+
+{% set apply_navbar = [
+  ("/", "Home", False),
+  ("/account/application", "Application", False),
+  ("/account/settings", "Settings", False)]
+-%}
+
+{% set decision_navbar = [
+  ("/", "Home", False),
+  ("/account/rsvp", "RSVP", False),
+  ("/account/settings", "Settings", False)]
+-%}
+
+{% set attending_navbar = [
+  ("/", "Home", False),
+  ("/account/settings", "Settings", False)]
+-%}
+
+{% set live_navbar = [
+  ("/", "Home", False),
+  ("/account", "Account", False),
+  ("/account/settings", "Settings", False),
+  ("/live", "Live", False),
+  ("/paths", "Paths", False)]
+-%}
+
+{% set default_user_navbar = [
+  ("/", "Home", False),
+  ("/account", "Account", False)]
+-%}
+
+{% set default_navbar = [
+  ("/", "Home", False)
+]
+-%}
+
+{% if action == "apply" %}
+  {% set nav_bar = apply_navbar %}
+{% elif action == "decision" and current_user.decision == "Accepted" %}
+  {% set nav_bar = decision_navbar %}
+{% elif action == "attending" %}
+  {% set nav_bar = attending_navbar %}
+{% elif action == "live" %}
+  {% set nav_bar = live_navbar %}
+{% elif action != "no_user" %}
+  {% set nav_bar = default_user_navbar %}
+{% else %}
+  {% set nav_bar = default_navbar %}
+{% endif %}
+
 {% block static_folder %}live_static{% endblock %}
 
 {% block header %}{% endblock %}
