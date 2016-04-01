@@ -19,8 +19,9 @@
         {% endfor %}
         {% if current_user.is_authenticated %}
           <a href="/account"><p>Account</p></a>
-          <a href="/account/application"><p>Application</p></a>
           <a href="/account/settings"><p>Settings</p></a>
+          <a href="/live"><p>Live</p></a>
+          <a href="/paths"><p>Paths</p></a>
           <a href="/logout"><p>Logout</p></a>
         {% else %}
           <a href="/register"><p>Register</p></a>
