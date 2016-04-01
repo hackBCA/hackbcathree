@@ -45,6 +45,10 @@ def waiver():
 def foward_waiver():
     return redirect("/waiver")
 
+@mod_web.route("/hardware", method = ["GET"])
+def hardware():
+    return mod_web.send_static_file("hardware.pdf")
+
 @cache.cached()
 @mod_web.route("/map", methods = ["GET"])
 def map():
