@@ -57,6 +57,10 @@ def workshops():
 def workshop():
     return redirect("workshops")
 
+@mod_web.route("/checklist", methods = ["GET"])
+def checklist():
+    return mod_web.send_static_file("checklist.pdf")
+
 @cache.cached()
 @mod_web.route("/map", methods = ["GET"])
 def map():
