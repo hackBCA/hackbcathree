@@ -45,15 +45,15 @@ def waiver():
 def foward_waiver():
     return redirect("/waiver")
 
-@mod_web.route("/hardware", method = ["GET"])
+@mod_web.route("/hardware", methods = ["GET"])
 def hardware():
     return mod_web.send_static_file("hardware.pdf")
 
-@mod_web.route("/workshops", method = ["GET"])
+@mod_web.route("/workshops", methods = ["GET"])
 def workshops():
     return mod_web.send_static_file("workshops.pdf")
 
-@mod_web.route("/workshop", method = ["GET"])
+@mod_web.route("/workshop", methods = ["GET"])
 def workshop():
     return redirect("workshops")
 
