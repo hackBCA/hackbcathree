@@ -91,6 +91,11 @@ def forward_privacy():
 def chaperones():
     return redirect("https://docs.google.com/forms/d/13l1ToVeDeBSEF4OBdHt6gSbYan8xnMFVG6BTRcKrEQw/viewform")
 
+@mod_web.route("/transportation", methods = ["GET"])
+@mod_web.route("/transportation.pdf", methods = ["GET"])
+def transportation():
+    return mod_web.send_static_file("transportation.pdf")
+
 #For mailing list
 #mod_web.route("/confirm/<token>")
 # def confirm_email(token):
