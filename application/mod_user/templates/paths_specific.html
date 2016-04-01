@@ -1,0 +1,141 @@
+{% extends "user.base.html" %}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+
+<div class="page-container">
+  <div class="page-section" id="path">
+    <div class="container">
+      <div class="header">
+        <div class="head-cover">
+          <img class="logo" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+          <h2>
+            {% if path_name == "code-for-good" %}
+              Code For Good Path
+            {% elif path_name == "ios" %}
+              iOS Path
+            {% elif path_name == "web-dev" %}
+              Web Development Path
+            {% endif %}
+          <h2>
+        </div>
+      </div>
+      <div class="info">
+        <div class="pure-g center">
+          <div class="description pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-2 pure-u-sm-1-1 pure-u-1-1">
+            <div class="g-contain">
+              <h4>Description</h4>
+              {% if path_name == "code-for-good" %}
+                <div class="img-contain">
+                  <img class="pure-img" src="https://s3.amazonaws.com/hackbcawebsite/sponsors/iwe.png">
+                </div>
+                <p>
+                  If you want to change the world, you have to change behavior. This “Code for Good” challenge is to create a hack that uses gamification and other types of persuasive technology to help people make positive, lasting behavior change by taking the struggle out of change. The hack should teach people to:
+                  <ol>
+                    <li><p>Recognize the six unique sources of influence that shape behavior</p></li>
+                    <li><p>Use the six sources of influence make positive, lasting behavior changes that gives them more control of their lives and boosts well-being</p></li>
+                  </ol>
+                </p>
+              {% elif path_name == "ios" %}
+                <div class="img-contain">
+                  <img class="pure-img" src="https://s3.amazonaws.com/hackbcawebsite/sponsors/makeschool.png">
+                </div>
+                <p>You will be guided through official Make School material with Jeremy Rossman, the co-founder of Make School, and a couple other experts from the Make School team. Together, you will go from learning the basics of Swift to building official Apple sample apps and eventually your very own app! You will learn to use real tools and technologies that today’s leading companies use to build their own iOS applications to create a unique and useful app. Again, please note that to participate, you <strong>MUST</strong> have a Mac with the latest version of Xcode already installed; the Xcode download is <strong>massive</strong> and so you must download and install it prior to arriving at hackBCA.</p>
+              {% elif path_name == "web-dev" %}
+                <div class="img-contain">
+                  <img class="pure-img bca" src="https://s3.amazonaws.com/hackbcawebsite/logo.png">
+                  <img class="pure-img twilio" src="https://s3.amazonaws.com/hackbcawebsite/sponsors/twilio.png">
+                </div>
+                <p>The Web Development path will take you from zero to having a fully functional dynamic website. Throughout the Web Development path, you will learn both frontend and backend design, as well as how to interface with outside services such as Twilio to create unique and useful applications. You will learn how to use HTML and CSS to code the frontend, and Python with Flask to program the backend. If these words mean nothing to you, don’t fret! Unicorn Foundry’s co-founders Tim Lupo and Neel Patel-Shah, Jay Mo, Jared Zoneraich, and Twilio will teach you everything you need to know and more.</p>
+              {% endif %}
+            </div>
+          </div>
+          <div class="schedule pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-2 pure-u-sm-1-1 pure-u-1-1">
+            <div class="g-contain">
+              <h4>Schedule</h4>
+              <ul>
+              {% if path_name == "code-for-good" %}
+                <li>
+                  <h5>Persuasive Technology I</h5>
+                  <p class="time">5:30 PM - 6:30 PM (Saturday)</p>
+                  <p>Focus on Human Behavior: What Makes People “Tick,” or Why People Click and the Science of Behavior Change.</p>
+                </li>
+                <li>
+                  <h5>Persuasive Technology II</h5>
+                  <p class="time">8:00 PM - 9:00 PM (Saturday)</p>
+                  <p>Focus on Digital Components: Design Principles that Trigger and Reinforce Human Behavior</p>
+                </li>
+                <li>
+                  <h5>Pitch Competition</h5>
+                  <p class="time">10:30 PM - 11:00 PM (Saturday)</p>
+                </li>
+              {% elif path_name == "ios" %}
+                <li>
+                  <h5>Core iOS Session</h5>
+                  <p class="time">4:30 PM - 11:00 PM (there will be breaks for dinner, etc.)</p>
+                  <p>Jeremy and the Make School team will guide you through the process of building your own application! All throughout Saturday, you will get a handle for how to make your own iOS app.</p>
+                </li>
+                <li>
+                  <h5>iOS Design</h5>
+                  <p class="time">8:30 AM - 9:30 AM</p>
+                  <p>In this workshop, the Make School team will teach you the fundamentals of good iOS design, as well as how to successfully follow Apple’s guidelines to create apps that are pleasant for the use.</p>
+                </li>
+              {% elif path_name == "web-dev" %}
+                <li>
+                  <h5>The Basics (optional, highly recommended for never coded before)</h5>
+                  <p class="time">4:30 PM - 5:30 PM</p>
+                  <p>Learn the very basics of programming — if statements, loops, functions, and more in this one hour session led by Unicorn Foundry’s Tim Lupo and Neel Patel-Shah.</p>
+                </li>
+                <li>
+                  <h5>Frontend</h5>
+                  <p class="time">5:45 PM - 6:45 PM</p>
+                  <p>Jay Mo will be teaching you the fundamental technologies behind how websites are designed: HTML, CSS, and Javascript. Here you will learn how to create beautiful static websites that are absolutely fundamental in creating a good web application.</p>
+                </li>
+                <li>
+                  <h5>Flask</h5>
+                  <p class="time">8:00 PM - 9:00 PM</p>
+                  <p>In this workshop, Jared Zoneraich, the founder of hackBCA, will teach you how to create dynamic websites using Flask and Python as your backend stack. When combined with the Frontend workshop, you will have all the tools you need to create beautiful, useful web applications!</p>
+                </li>
+                <li>
+                  <h5>How to Use APIs</h5>
+                  <p class="time">9:30 PM - 10:30 PM</p>
+                  <p>The ability for your app to interact with other services is vital in today’s ecosystem. Twilio will guide you through how exactly your web application can communicate with other applications, and provide amazing cross-app services.</p>
+                </li>
+              {% endif %}
+              </ul>
+            </div>
+          </div>
+          <div class="prizes pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-2 pure-u-sm-1-1 pure-u-1-1">
+            <div class="g-contain">
+              <h4>Prizes</h4>
+              <ul>
+                {% if path_name == "code-for-good" %}
+                  <li><p>Prizes are for top three teams</p></li>
+                  <li><p>Free tuition to wellness coaching certification from the IWE (includes 3 units of college credit)</p></li>
+                  <li><p>Internship opportunities at the IWE!</p></li>
+                {% elif path_name == "ios" %}
+                  <li><p>Top team gets automatic acceptance to Make School’s Summer Academy</p></li>
+                {% elif path_name == "web-dev" %}
+                  <li><p>Vilros Arduino Ultimate Starter Module with LCD Module for each winning team member</p></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <form  method="POST" action="">
+          {% if user_path == path_name %}
+            <button class="btn" name="leave-path">Leave Path</button>
+          {% else %}      
+            <button class="btn {{'hide' if not registration_open}}" name="register">Register</button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

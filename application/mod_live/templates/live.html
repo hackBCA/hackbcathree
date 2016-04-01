@@ -1,0 +1,79 @@
+{% extends "live.base.html" %}
+
+{% block content %}
+{% with nav_bar = nav_bar %}
+  {% include "navbar.html" %}
+{% endwith %}
+
+<div class="page-container">
+  <div class="page-section" id="live">
+    <div class="container">
+      <div class="header">
+        <div class="head-cover">
+          <h2>hackBCA Live</h2>
+        </div>
+      </div>
+      <div class="info">
+        <div class="pure-g center">
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="broadcast">
+            <h4>Broadcast</h4>
+            <div id="messages_container">
+            </div>
+          </div>
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="twitter_feed">
+            <h4>Twitter Feed</h4>
+            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hackBCA" data-widget-id="581445652657369088">Tweets by @hackBCA</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="schedule">
+            <h4>Schedule</h4>
+            {% for date in schedule %}
+              <div class="pure-u-xl-1-1 pure-u-lg-1-1 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1">
+                <div class="day-pad">
+                  <h5 class="date">{{ date }}</h5>
+                  {% for time in schedule[date] %}
+                  <div class="event">
+                    <h6>{{ time["time"] }} - </h6> 
+                    <p>
+                      {{ time["event"] }} 
+                      {% if time["location"] %}
+                        @ {{ time["location"] }}
+                      {% endif %}
+                    </p>
+                  </div>
+                    <!-- <h6>
+                      <span>{{ time["time"] }}</span> - 
+                      {{ time["event"] }} 
+                      {% if time["location"] %}
+                        @ {{ time["location"] }}
+                      {% endif %}
+                    </h6> -->
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="map">
+            <h4>hackBCA Map</h4>
+            <a target="_blank" href="/map"><img class="pure-img" src="/web_static/map.jpg"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="/static/js/broadcast-client.min.js"></script>
+  <script type="text/javascript">
+    BroadcastClient.init(
+      "{{ broadcast_url }}", 
+      "#messages_container", 
+      "/live_static/ping.mp3",
+      "{{ session }}"
+    );
+  </script>
+{% endblock %}

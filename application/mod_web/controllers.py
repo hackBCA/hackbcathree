@@ -4,9 +4,28 @@ import sendgrid
 import time
 from itsdangerous import URLSafeTimedSerializer
 from itertools import groupby
+from datetime import datetime
+import collections
 
 sg = sendgrid.SendGridClient(CONFIG["SENDGRID_API_KEY"])
 ts = URLSafeTimedSerializer(CONFIG["SECRET_KEY"])
+
+def get_schedule():
+    print("here")
+    schedule = ScheduleData.objects()
+    sort_schedule = sorted(schedule, key = lambda k: k["time"])
+    grouped_schedule = groupby(schedule, lambda k: k["date"])
+    dates = {}
+    for k, g in grouped_schedule:
+        dates[k] = []
+        for v in g:
+            dates[k].append({
+                "time": v["time"].strftime("%I:%M %p"),
+                "event": v["event"],
+                "location": v["location"] 
+            })
+    dates = collections.OrderedDict(sorted(dates.items(), key = lambda k: int(k[0][-2:])))
+    return dates
 
 def validate_email(entry):
     token = ts.dumps(entry.email, salt = CONFIG["EMAIL_TOKENIZER_SALT"])
