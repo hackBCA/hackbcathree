@@ -49,6 +49,14 @@ def foward_waiver():
 def hardware():
     return mod_web.send_static_file("hardware.pdf")
 
+@mod_web.route("/workshops", method = ["GET"])
+def workshops():
+    return mod_web.send_static_file("workshops.pdf")
+
+@mod_web.route("/workshop", method = ["GET"])
+def workshop():
+    return redirect("workshops")
+
 @cache.cached()
 @mod_web.route("/map", methods = ["GET"])
 def map():
