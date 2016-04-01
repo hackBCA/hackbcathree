@@ -54,12 +54,19 @@ def workshops():
     return mod_web.send_static_file("workshops.pdf")
 
 @mod_web.route("/workshop", methods = ["GET"])
+@mod_web.route("/workshop.pdf", methods = ["GET"])
+@mod_web.route("/workshops.pdf", methods = ["GET"])
 def workshop():
     return redirect("workshops")
 
-@mod_web.route("/checklist", methods = ["GET"])
-def checklist():
-    return mod_web.send_static_file("checklist.pdf")
+@mod_web.route("/thingstobring", methods = ["GET"])
+def thingstobring():
+    return mod_web.send_static_file("thingstobring.pdf")
+
+@mod_web.route("/prizes", methods = ["GET"])
+@mod_web.route("/prizes.pdfs", methods = ["GET"])
+def prizes():
+    return mod_web.send_static_file("prizes.pdf")
 
 @cache.cached()
 @mod_web.route("/map", methods = ["GET"])
