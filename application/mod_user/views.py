@@ -355,17 +355,20 @@ def path_specific(path_name):
         flash("Mentors cannot register for paths.", "error")
       else:
         if registration_open:
-          if user.path == path_name:
-            flash("You are already registered for this path!", "error")
-          elif user.path in ["code-for-good", "ios", "web-dev"]: 
-            flash("You are already registered for another path!", "error")
-          else:
-            space_left = controller.path_spots_left(path_name)
-            if space_left == 0:
-              flash("Sorry, this path has been filled!", "error")
+          if user.checked_in: 
+            if user.path == path_name:
+              flash("You are already registered for this path!", "error")
+            elif user.path in ["code-for-good", "ios", "web-dev"]: 
+              flash("You are already registered for another path!", "error")
             else:
-              controller.register_user_for_path(current_user.email, path_name)
-              flash("You have sucessfully registered!", "success")
+              space_left = controller.path_spots_left(path_name)
+              if space_left == 0:
+                flash("Sorry, this path has been filled!", "error")
+              else:
+                controller.register_user_for_path(current_user.email, path_name)
+                flash("You have sucessfully registered!", "success")
+          else:
+            flash("You cannot register for a path until you have checked in.", "error")
         else:
           flash("Path registration is currently closed.", "error")
     elif "leave-path" in request.form:
