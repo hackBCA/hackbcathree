@@ -18,7 +18,8 @@ def get_schedule():
     dates = {}
     for k, g in grouped_schedule:
         dates[k] = []
-        for v in g:
+        h = sorted(g, key = lambda x: x["time"])
+        for v in h:
             dates[k].append({
                 "time": v["time"].strftime("%I:%M %p"),
                 "event": v["event"],

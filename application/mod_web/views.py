@@ -68,6 +68,10 @@ def thingstobring():
 def prizes():
     return mod_web.send_static_file("prizes.pdf")
 
+@mod_web.route("/livestream")
+def livestream():
+    return redirect("https://livestream.com/accounts/18225475/hackbca")
+
 @cache.cached()
 @mod_web.route("/map", methods = ["GET"])
 def map():
