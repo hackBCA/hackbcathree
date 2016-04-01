@@ -27,6 +27,22 @@
           </div>
           <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="schedule">
             <h4>Schedule</h4>
+            {% for date in schedule %}
+              <div class="pure-u-xl-1-1 pure-u-lg-1-1 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1">
+                <div class="day-pad">
+                  <h5 class="date">{{ date }}</h5>
+                  {% for time in schedule[date] %}
+                    <h6>
+                      <span>{{ time["time"] }}</span> - 
+                      {{ time["event"] }} 
+                      {% if time["location"] %}
+                        @ {{ time["location"] }}
+                      {% endif %}
+                    </h6>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
           </div>
           <div class="pure-u-xl-1-2 pure-u-lg-1-2 pure-u-md-1-1 pure-u-sm-1-1 pure-u-1-1" id="map">
             <h4>Map of BCA</h4>
