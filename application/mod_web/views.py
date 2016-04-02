@@ -4,8 +4,12 @@ from . import controllers
 from application import cache
 
 @mod_web.route("/radix.pdf")
+def radix_reroute():
+    return redirect("/radix")
+
+@mod_web.route("/radix")
 def radix():
-    mod_web.send_static_file("radixhackbca.pdf")
+    return mod_web.send_static_file("radixhackbca.pdf")
 
 @cache.cached()
 @mod_web.route("/", methods = ["GET", "POST"])
