@@ -19,23 +19,17 @@
 {% set apply_navbar = [
   ("/", "Home", False),
   ("/account/application", "Application", False),
-  ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
-  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
 {% set decision_navbar = [
   ("/", "Home", False),
   ("/account/rsvp", "RSVP", False),
-  ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
-  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
 {% set attending_navbar = [
   ("/", "Home", False),
-  ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
-  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
@@ -45,7 +39,6 @@
   ("/paths", "Paths", False),
   ("http://helpq.hackbca.com", "Mentor Request", False),
   ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
-  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
@@ -59,7 +52,8 @@
 {% set default_navbar = [
   ("/", "Home", False),
   ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
-  ("http://helpq.hackbca.com", "Mentor Request", False)]
+  ("http://helpq.hackbca.com", "Mentor Request", False)
+]
 -%}
 
 {% if action == "apply" %}
@@ -76,7 +70,7 @@
   {% set nav_bar = default_navbar %}
 {% endif %}
 
-{% block static_folder %}user_static{% endblock %}
+{% block static_folder %}live_static{% endblock %}
 
 {% block header %}{% endblock %}
 {% block content %}{% endblock %}
