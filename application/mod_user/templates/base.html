@@ -20,6 +20,7 @@
   ("/", "Home", False),
   ("/account/application", "Application", False),
   ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
+  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
@@ -27,12 +28,14 @@
   ("/", "Home", False),
   ("/account/rsvp", "RSVP", False),
   ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
+  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
 {% set attending_navbar = [
   ("/", "Home", False),
   ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
+  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
@@ -42,18 +45,21 @@
   ("/paths", "Paths", False),
   ("http://helpq.hackbca.com", "Mentor Request", False),
   ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
+  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account/settings", "Settings", False)]
 -%}
 
 {% set default_user_navbar = [
   ("/", "Home", False),
   ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
+  ("http://helpq.hackbca.com", "Mentor Request", False),
   ("/account", "Account", False)]
 -%}
 
 {% set default_navbar = [
   ("/", "Home", False),
-  ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False)]
+  ("https://livestream.com/accounts/18225475/hackbca", "Livestream", False),
+  ("http://helpq.hackbca.com", "Mentor Request", False)]
 -%}
 
 {% if action == "apply" %}
