@@ -3,6 +3,10 @@ from . import web_module as mod_web
 from . import controllers
 from application import cache
 
+@mod_web.route("/radix.pdf")
+def radix():
+    mod_web.send_static_file("radixhackbca.pdf")
+
 @cache.cached()
 @mod_web.route("/", methods = ["GET", "POST"])
 def index():
