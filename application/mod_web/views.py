@@ -36,7 +36,7 @@ def team():
 @cache.cached()
 @mod_web.route("/sponsors", methods = ["GET"])
 def sponsors():
-    return mod_web.send_static_file("sponsors.pdf")
+    return mod_web.send_static_file("SponsorshipProspectusIV.pdf")
 
 @mod_web.route("/sponsors.pdf", methods = ["GET"])
 @mod_web.route("/sponsor.pdf", methods = ["GET"])
